@@ -18,6 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # GP APP DIR PATH's
 GP_DIR = os.path.join(BASE_DIR, 'app_gp')
 GP_TEMPLATES_DIR = os.path.join(GP_DIR, 'templates')
+GP_STATIC_DIR = os.path.join(GP_DIR, 'static')
+# GP_CLIENT_PHOTOS_DIR = os.path.join(GP_STATIC_DIR, 'models_photos')
 
 
 # Quick-start development settings - unsuitable for production
@@ -132,3 +134,5 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
     # os.path.join(GP_DIR, 'my_static_file_path')
 # ]
+
+MEDIA_URL = '/media/'
