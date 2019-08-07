@@ -1,5 +1,13 @@
+import random
+
 from django.db import models
 from django.utils.safestring import mark_safe
+import os
+from django.db.models.signals import pre_save, post_save
+from django.utils.text import slugify
+
+from app_gp.utils.utils import unique_slug_generator
+
 
 UPLOAD_PHOTOS_PATH = 'Media'
 UPLOAD_VIDEOS_PATH = 'Media'
@@ -117,7 +125,7 @@ class ChoicesCity(models.Model):
     state = models.ForeignKey('ChoicesStates', verbose_name='UF', on_delete=models.CASCADE, null=False, blank=False)
 
     # Many to Many
-    models.ManyToManyField('Client', through='app_gp.models.InterClientActingCities')
+    models.ManyToManyField('Client', through='InterClientActingCities')
 
     class Meta:
         verbose_name = 'Cidade'
@@ -129,11 +137,38 @@ class ChoicesCity(models.Model):
         return self.name
 
 
+def get_file_name_ext(filepath):
+    base_name = os.path.basename(filepath)
+    name, ext = os.path.splitext(base_name)
+    return name, ext
+
+
+def upload_image_path(instance, filename):
+    new_file_name = random.randint(1, 99999)
+    name, ext = get_file_name_ext(filename)
+    final_file_name = '{new_file_name}{ext}'.format(new_file_name=new_file_name, ext=ext)
+    return 'clients_photos/{new_file_name}/{final_file_name}'.format(new_file_name=new_file_name,
+                                                                     final_file_name=final_file_name)
+
+
+class ClientQuerySet(models.QuerySet):
+    def genres(self):
+        return self.filter(genre='Masculino')
+
+
+class ClientManager(models.Manager):
+    def get_queryset(self):
+        return ClientQuerySet(self.model, using=self._db)
+
+    def authors(self):
+        return self.get_queryset().genres()
+
+
 # Create your models here.
 class Client(models.Model):
 
     # SINGLE FIELDS
-    slug = models.SlugField('Indentificador', max_length=50, null=True, blank=True)
+    slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
     name = models.CharField('Nome', max_length=50, null=True, blank=True)
     fake_name = models.CharField('Apelido', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
@@ -147,9 +182,9 @@ class Client(models.Model):
     service_charged = models.DecimalField('Cachê/Hr', max_digits=6, decimal_places=2, null=True, blank=True)
 
     # ONE TO ONE RELATIONS
-    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.CASCADE, null=False, blank=False)
-    eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.CASCADE, null=False, blank=False)
-    ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.CASCADE, null=False, blank=False)
+    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.CASCADE, null=True, blank=True)
+    eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.CASCADE, null=True, blank=True)
+    ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.CASCADE, null=True, blank=True)
 
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',
@@ -182,6 +217,14 @@ class Client(models.Model):
         return self.name
 
 
+# CLIENT SLUG CREATION
+def client_pre_save_receiver(sender, instance, *args, **kwargs):
+    instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(client_pre_save_receiver, sender=Client)
+
+
 class Photo(models.Model):
     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=True, blank=True)
     photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
@@ -207,7 +250,8 @@ class Video(models.Model):
 # INTERMEDIATE MODELS
 class InterClientActingCities(models.Model):
     client = models.ForeignKey('Client', verbose_name='Cliente', on_delete=models.CASCADE, null=False, blank=False)
-    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.CASCADE, null=False, blank=False)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.CASCADE, null=False, blank=False,
+                             related_name='client_city')
 
     class Meta:
         verbose_name = 'Cidades em que atua'

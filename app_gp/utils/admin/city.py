@@ -2,10 +2,19 @@ from django.contrib import admin
 from app_gp.forms import *
 
 
+class CityForm(ModelForm):
+    class Meta:
+        model = InterClientActingCities
+        exclude = ()
+
+
 class TabularClientCities(admin.TabularInline):
     model = InterClientActingCities
     extra = 0
-    raw_id_fields = ('city', )
+    # form = CityForm
+    exclude = ()
+    # fields = ('city_set_name', )
+    # raw_id_fields = ('city.name', )
     # autocomplete_fields = ('city', )
 
 

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <form type="" action="{% url 'client' %}" method="get">{% csrf_token %}
+        <label>
+            {{ search_form.genre }}
+        </label>
+        <label>
+            {{ search_form.eye }}
+        </label>
+        <label>
+            {{ search_form.ethnicity }}
+        </label>
+        <input type="submit" value="Submit">
+    </form>
+    {% for client in clients %}
+        {% if client %}{% endif %}
+        <p><label>{{ client.name }}</label></p>
+        <img src="{{ p.photo.url }}" width="p.photo.width" height="p.photo.height" alt="No image"/>
+    {% endfor %}
+{#{{ object.interclientactingcities_set. }}#}
+{#    {% for o in object.acting_cities.all %}#}
+{#        {{ o.name }}#}
+{#        {{ o.state }}#}
+{#    {% endfor %}#}
+</head>
+<body>
+
+</body>
+</html>

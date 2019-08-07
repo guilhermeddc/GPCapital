@@ -1,5 +1,5 @@
 from string import Template
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.conf import settings
 from django.core.paginator import Paginator
@@ -8,11 +8,13 @@ from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 
 from app_gp.models import *
-from django.views.generic import TemplateView, ListView, FormView
+from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView
+from django.db.models import Q
 from django.forms.models import ModelForm
 from django.forms.widgets import Widget, CheckboxSelectMultiple
 
 from django.forms.models import inlineformset_factory, modelformset_factory
+from app_gp.forms import *
 
 
 # Create your views here.
@@ -21,6 +23,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+        context['photos'] = Photo.objects.filter(client=1)
         return context
 
 
@@ -38,6 +41,88 @@ class ModelsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ModelsView, self).get_context_data(**kwargs)
         return context
+
+
+class ClientList(ListView):
+
+    template_name = 'client_list.html'
+    model = Client
+    context_object_name = 'clients'
+
+    # filtro = self.request.GET.getlist(key, default=None)
+    # filtro = self.request.GET.get(key, default=None)
+    def get_queryset(self):
+        filter_1 = self.request.GET.getlist('genre', default=[])
+        filter_2 = self.request.GET.getlist('eye', default=[])
+        filter_3 = self.request.GET.getlist('ethnicity', default=[])
+
+        if not filter_1:
+            filter_1 = ChoicesGenre.objects.all()
+        if not filter_2:
+            filter_2 = ChoicesEyeColor.objects.all()
+        if not filter_3:
+            filter_3 = ChoicesEthnicity.objects.all()
+
+        # a = Client.objects.values()
+
+        queryset = Client.objects.filter(Q(genre__in=filter_1) &
+                                         Q(eye__in=filter_2) &
+                                         Q(ethnicity__in=filter_3))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_form'] = SearchClientForm()
+        # context['genre'] = ChoicesGenre.objects.all()
+        # context['eye'] = ChoicesEyeColor.objects.all()
+        # context['ethnicity'] = ChoicesEthnicity.objects.all()
+        return context
+
+
+class ClientDetail(DetailView):
+
+    template_name = 'client_photos.html'
+    model = Client
+
+    # def get_queryset(self):
+    #     self.photos = get_object_or_404(Photo, name=self.kwargs['pk'])
+    #     return Photo.objects.filter(publisher=self.photos)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ClientList, self).get_context_data(**kwargs)
+        # context['photos'] = Photo.objects.filter(client=self.kwargs['pk'])
+        # return context
+
+# customer_services_fs = inlineformset_factory(Client, Client.customer_services.through, extra=1,
+#                                              exclude=())
+
+# acting_cities_fs = inlineformset_factory(Client, Client.acting_cities.through, extra=1,
+#                                          exclude=(), formset=)
+
+# acting_cities_fs = inlineformset_factory(Client, Client.acting_cities.through, extra=1,
+#                                          exclude=())
+# city_fs = modelformset_factory(ChoicesCity, exclude=(), extra=1)
+
+
+class ClientView(CreateView):
+    model = Client
+    template_name = 'admin/table.html'
+
+    # state = ModelChoiceField(queryset=ChoicesStates.objects.all())
+    # city = ModelChoiceField(queryset=ChoicesCity.objects.filter(state=7))
+
+    fields = ('name', 'fake_name')
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientView, self).get_context_data(**kwargs)
+        context['states'] = ChoicesStates.objects.all()
+        context['cities'] = ChoicesCity.objects.all()
+        return context
+
+    # def load_cities(self, request):
+    #     state_id = request.GET.get('state')
+    #     cities = ChoicesCity.objects.filter(sate=state_id).order_by('name')
+    #     return render(request, 'load_cities.html', {'cities': cities})
 
 
 # class CityListView(TemplateView):

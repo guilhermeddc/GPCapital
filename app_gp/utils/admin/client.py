@@ -18,9 +18,11 @@ class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
     inlines = [TabularClientCities, TabularClientPhotos, TabularClientVideos]
     # change_form_template = 'admin/change.html'
-    list_display = ('fake_name', 'name', 'genre', 'age', 'eye', 'ethnicity', 'weight', 'height', 'bust', 'waist', 'butt')
+    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'eye', 'ethnicity', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('genre', 'eye', 'ethnicity')
+    readonly_fields = ('slug', )
     exclude = ()
+
 
     # fieldsets = (
     #     ('Perfil', {
@@ -38,10 +40,10 @@ class ClientAdmin(admin.ModelAdmin):
             kwargs['widget'] = PictureShowWidget()
 
         return super(ClientAdmin, self).formfield_for_dbfield(db_field, **kwargs)
-    #
-    # def formfield_for_manytomany(self, db_field, request, **kwargs):
-    #     if db_field.attname in ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered'):
-    #         kwargs['widget'] = widgets.CheckboxSelectMultiple()
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.attname in ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered'):
+            kwargs['widget'] = widgets.CheckboxSelectMultiple()
     #
     #     return super(ClientAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
     #
