@@ -14,9 +14,6 @@ class CityForm(forms.Form):
 
 
 class SearchClientForm(forms.Form):
-    # genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(), required=False, empty_label='Todos')
-    # eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(), required=False, empty_label='Todos')
-    # ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(), required=False, empty_label='Todos')
     genre = ModelMultipleChoiceField(queryset=ChoicesGenre.objects.all(),
                                      required=False,
                                      widget=CheckboxSelectMultiple())
@@ -26,6 +23,7 @@ class SearchClientForm(forms.Form):
     ethnicity = ModelMultipleChoiceField(queryset=ChoicesEthnicity.objects.all(),
                                          required=False,
                                          widget=CheckboxSelectMultiple())
+    
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):

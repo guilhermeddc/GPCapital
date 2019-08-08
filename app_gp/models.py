@@ -249,21 +249,20 @@ class Video(models.Model):
 
 # INTERMEDIATE MODELS
 class InterClientActingCities(models.Model):
-    client = models.ForeignKey('Client', verbose_name='Cliente', on_delete=models.CASCADE, null=False, blank=False)
-    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.CASCADE, null=False, blank=False,
-                             related_name='client_city')
+    client = models.ForeignKey('Client', verbose_name='Cliente', on_delete=models.DO_NOTHING, null=False, blank=False)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False, blank=False)
 
+    def __str__(self):
+        return '{} {}'.format(self.client_id, self.city_id)
+    
     class Meta:
         verbose_name = 'Cidades em que atua'
         verbose_name_plural = 'Cidades em que atua'
         ordering = ['client']
         db_table = 'inter_client_acting_cities'
+        unique_together = ('client', 'city')
 
-    def __str__(self):
-        return 'id: {0} - Nome: {1} - Cidade: {2} - UF: {3}'.format(self.client.pk,
-                                                                    self.client.name,
-                                                                    self.city.name,
-                                                                    self.city.state.name)
+    
 
 
 # class InterClientCustomerServices(models.Model):

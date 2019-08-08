@@ -2,7 +2,7 @@
 <!DOCTYPE html>
     <meta charset="UTF-8">
     <title>Title</title>
-    <form type="" action="{% url 'client' %}" method="get">{% csrf_token %}
+    <form type="" action="{% url 'ClientList' %}" method="get">{% csrf_token %}
         <label>
             {{ search_form.genre }}
         </label>
@@ -18,7 +18,12 @@
         {% if client %}{% endif %}
         <p><label>{{ client.name }}</label></p>
         <img src="{{ p.photo.url }}" width="p.photo.width" height="p.photo.height" alt="No image"/>
+        <li>
+	        <a href="{% url 'ClientDetail' slug=client.slug %}">{{client.fake_name}}
+	        </a>
+        </li>
     {% endfor %}
+
 {#{{ object.interclientactingcities_set. }}#}
 {#    {% for o in object.acting_cities.all %}#}
 {#        {{ o.name }}#}

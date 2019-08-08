@@ -45,9 +45,10 @@ class ModelsView(TemplateView):
 
 class ClientList(ListView):
 
-    template_name = 'client_list.html'
     model = Client
     context_object_name = 'clients'
+    template_name = 'index.html'
+    # template_name = 'Client/client_list.html'
 
     # filtro = self.request.GET.getlist(key, default=None)
     # filtro = self.request.GET.get(key, default=None)
