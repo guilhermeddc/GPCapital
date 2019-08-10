@@ -47,36 +47,27 @@ class ClientList(ListView):
 
     model = Client
     context_object_name = 'clients'
-    template_name = 'index.html'
-    # template_name = 'Client/client_list.html'
+    # template_name = 'index.html'
+    template_name = 'Client/client_list.html'
+    # paginate_by = 2
 
     # filtro = self.request.GET.getlist(key, default=None)
     # filtro = self.request.GET.get(key, default=None)
     def get_queryset(self):
-        filter_1 = self.request.GET.getlist('genre', default=[])
-        filter_2 = self.request.GET.getlist('eye', default=[])
-        filter_3 = self.request.GET.getlist('ethnicity', default=[])
 
-        if not filter_1:
-            filter_1 = ChoicesGenre.objects.all()
-        if not filter_2:
-            filter_2 = ChoicesEyeColor.objects.all()
-        if not filter_3:
-            filter_3 = ChoicesEthnicity.objects.all()
+        list_filter_dict = {
+            'genre_id': self.request.GET.getlist('genre', default=[]),
+            'eye_id': self.request.GET.getlist('eye', default=[]),
+            'ethnicity_id': self.request.GET.getlist('ethnicity', default=[])
+        }
 
-        # a = Client.objects.values()
-
-        queryset = Client.objects.filter(Q(genre__in=filter_1) &
-                                         Q(eye__in=filter_2) &
-                                         Q(ethnicity__in=filter_3))
+        queryset = Client.objects.actives(list_filter_dict)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search_form'] = SearchClientForm()
-        # context['genre'] = ChoicesGenre.objects.all()
-        # context['eye'] = ChoicesEyeColor.objects.all()
-        # context['ethnicity'] = ChoicesEthnicity.objects.all()
+        context['client_per_row'] = 3
         return context
 
 

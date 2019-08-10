@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 import os
 from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
+from django.db.models import Q
 
 from app_gp.utils.utils import unique_slug_generator
 
@@ -151,21 +152,48 @@ def upload_image_path(instance, filename):
                                                                      final_file_name=final_file_name)
 
 
+class ChoicesStatus(models.Model):
+    status = models.CharField('Status', max_length=50, unique=True)
+    
+    def __str__(self):
+        return self.status
+    
+    class Meta:
+        verbose_name = 'Status'
+        verbose_name_plural = 'Status'
+        ordering = ['status']
+        db_table = 'choices_status'
+
+
 class ClientQuerySet(models.QuerySet):
-    def genres(self):
-        return self.filter(genre='Masculino')
+    
+    def actives(self, list_filter_dict):
+        select = "SELECT id FROM Client WHERE status_id = 1"
+        
+        and_filter = ''
+        for key, list_items in list_filter_dict.items():
+            if len(list_items):
+                items = ''.join(str(list_items)[1:-1])
+                and_filter = and_filter + ' AND {0} in ({1})'.format(key, items)
+
+        select_with_filters = select + and_filter
+
+        return self.raw(select_with_filters)
 
 
 class ClientManager(models.Manager):
     def get_queryset(self):
         return ClientQuerySet(self.model, using=self._db)
 
-    def authors(self):
-        return self.get_queryset().genres()
+    def actives(self, list_filter_dict={}):
+        return self.get_queryset().actives(list_filter_dict)
 
 
 # Create your models here.
 class Client(models.Model):
+    
+    # SET MY OWN MANAGER
+    objects = ClientManager()
 
     # SINGLE FIELDS
     slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
@@ -182,9 +210,10 @@ class Client(models.Model):
     service_charged = models.DecimalField('Cachê/Hr', max_digits=6, decimal_places=2, null=True, blank=True)
 
     # ONE TO ONE RELATIONS
-    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.CASCADE, null=True, blank=True)
-    eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.CASCADE, null=True, blank=True)
-    ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.CASCADE, null=True, blank=True)
+    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=True, blank=True)
+    eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.DO_NOTHING, null=True, blank=True)
+    ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
+    status = models.ForeignKey('ChoicesStatus', verbose_name='Status', on_delete=models.DO_NOTHING, null=True, blank=True)
 
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',
@@ -263,8 +292,6 @@ class InterClientActingCities(models.Model):
         unique_together = ('client', 'city')
 
     
-
-
 # class InterClientCustomerServices(models.Model):
 #     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False, blank=False)
 #     customer_service = models.ForeignKey('ChoicesCustomerService', on_delete=models.CASCADE, null=False, blank=False)

@@ -50,63 +50,35 @@
                     data-aos-duration="600" data-aos-delay="300" href="index.html#galeria">Galeria</a></div>
         </div>
     </header>
-    <section id="galeria" class="p-0">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters" data-aos="fade-up">
-                {% for client in clients %}
-                <div class="col-sm-6 col-lg-4 col-xl-4">
-                    <a class="portfolio-box" href="{% url 'ClientDetail' slug=client.slug %}">
+    <section id="galeria">
+        <div class="container">
+            {% for client in clients %}
+            {% if forloop.counter0|divisibleby:client_per_row or forloop.first %}
+                <div class="row no-gutters">
+            {% endif %}
 
+                    <div class="col-sm-6 col-lg-4 col-xl-4">
                         {% if client.image_profile %}
-                            <img class="img-fluid" src="{{client.image_profile.url}}" alt="No image">
-                        {% endif %}
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    <span>{{client.description}}</span>
+                        <a class="portfolio-box" href="{% url 'ClientDetail' slug=client.slug %}">
+                        <img class="img-fluid" src="{{client.image_profile.url}}" alt="No image">
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-category text-faded">
+                                        <span>{{client.description}}</span>
+                                    </div>
+                                    <div class="project-name">
+                                    <span>{{client.fake_name}}</span>
                                 </div>
-                                <div class="project-name">
-                                <span>{{client.fake_name}}</span>
+                                </div>
                             </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
-
-                <div
-                    class="col-sm-6 col-lg-4">
-                    <a class="portfolio-box" href="{% static "img/Mulheres-Fashion-45.jpg" %}">
-                        <img class="img-fluid" src="{% static "img/Mulheres-Fashion-45.jpg" %}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    <span>namoradinha</span>
-                                </div><div class="project-name">
-                                <span>Bibi Praado</span></div></div></div></a></div>
-            <div
-                class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-26.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-26.jpg" %}"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>acompanhante de luxo</span></div><div class="project-name"><span>Lara Gaúcha</span></div></div></div></a></div>
-        <div
-            class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-45.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-45.jpg" %}"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-            <div
-                class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-26.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-26.jpg" %}"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                <div
-                    class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-43.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-43.jpg" %}"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
+                        </a>
+                        {% endif %}
                     </div>
-                    <div class="row no-gutters popup-gallery">
-                        <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-43.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-43.jpg"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                        <div
-                            class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-45.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-45.jpg"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                    <div
-                        class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-26.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-26.jpg"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                        <div
-                            class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-45.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-45.jpg"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                            <div
-                                class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-26.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-26.jpg"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                                <div
-                                    class="col-sm-6 col-lg-4"><a class="portfolio-box" href="{% static "img/Mulheres-Fashion-43.jpg" %}"><img class="img-fluid" src="{% static "img/Mulheres-Fashion-43.jpg"><div class="portfolio-box-caption"><div class="portfolio-box-caption-content"><div class="project-category text-faded"><span>categoria</span></div><div class="project-name"><span>nome</span></div></div></div></a></div>
-                                    </div>
-                                    </div>
+                {% if forloop.counter|divisibleby:client_per_row %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </section>
     <section id="link-modelos" class="bg-primary">
         <div class="container">

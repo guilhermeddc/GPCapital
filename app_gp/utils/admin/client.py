@@ -18,11 +18,10 @@ class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
     inlines = [TabularClientCities, TabularClientPhotos, TabularClientVideos]
     # change_form_template = 'admin/change.html'
-    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'eye', 'ethnicity', 'weight', 'height', 'bust', 'waist', 'butt')
+    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'eye', 'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('genre', 'eye', 'ethnicity')
     readonly_fields = ('slug', )
     exclude = ()
-
 
     # fieldsets = (
     #     ('Perfil', {

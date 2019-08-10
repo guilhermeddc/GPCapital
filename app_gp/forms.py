@@ -24,6 +24,7 @@ class SearchClientForm(forms.Form):
                                          required=False,
                                          widget=CheckboxSelectMultiple())
     
+    
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):

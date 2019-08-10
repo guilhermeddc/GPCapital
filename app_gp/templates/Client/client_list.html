@@ -1,8 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
-    <meta charset="UTF-8">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        <link rel="stylesheet" href="{% static "css/styles.min.css" %}">
+    </head>
+
     <title>Title</title>
-    <form type="" action="{% url 'ClientList' %}" method="get">{% csrf_token %}
+    <form type="" action="{% url 'ClientList' %}" method="get">
+
+        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+
         <label>
             {{ search_form.genre }}
         </label>
@@ -23,6 +39,84 @@
 	        </a>
         </li>
     {% endfor %}
+    {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <label>has previous</label>
+                        <label>{{ page_obj.has_previous }}</label>
+{#                        <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>#}
+                    {% endif %}
+                    <span class="page-current">
+                        <label>pagenumber</label>
+                        <label>{{ page_obj.number }}</label>
+                        <label>numero paginas</label>
+                        <label>{{ page_obj.paginator.num_pages }}</label>
+{#                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+                    </span>
+                    {% if page_obj.has_next %}
+                        <label>{{page_obj.has_next}}</label>
+                        <label>{{ page_obj.next_page_number }}</label>
+{#                        <a href="/cars?page={{ page_obj.next_page_number }}">next</a>#}
+                    {% endif %}
+                </span>
+            </div>
+    {% endif %}
+
+<main class="page projets-page">
+    <section class="portfolio-block projects compact-grid">
+        <div class="heading">
+            <h2>Recent Work</h2>
+        </div>
+
+{#        {% for client in clients %}#}
+{#            {% if forloop.counter0|divisibleby:client_per_row or forloop.first %}#}
+{#                <div class="row no-gutters">#}
+{#            {% endif %}#}
+{#                <div class="col-md-6 col-lg-4 item">#}
+{#                    {% if client.image_profile %}#}
+{#                        <a href="{% url 'ClientDetail' slug=client.slug %}">#}
+{#                            <img class="img-fluid image" src="{{client.image_profile.url}}" />#}
+{#                            <span class="description">#}
+{#                                <span class="description-heading">Description Head</span>#}
+{#                                <span class="description-body">Description Body</span>#}
+{#                            </span>#}
+{#                        </a>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#            {% if forloop.counter|divisibleby:client_per_row %}#}
+{#            </div>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+
+        {% for client in clients %}
+        {% if forloop.counter0|divisibleby:client_per_row or forloop.first %}
+            <div class="row no-gutters">
+        {% endif %}
+
+                <div class="col-sm-6 col-lg-4 col-xl-4">
+                    {% if client.image_profile %}
+                    <a class="portfolio-box" href="{% url 'ClientDetail' slug=client.slug %}">
+                    <img class="img-fluid" src="{{client.image_profile.url}}" alt="No image">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    <span>{{client.description}}</span>
+                                </div>
+                                <div class="project-name">
+                                <span>{{client.fake_name}}</span>
+                            </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endif %}
+                </div>
+            {% if forloop.counter|divisibleby:client_per_row %}
+			</div>
+            {% endif %}
+        {% endfor %}
+    </section>
+</main>
 
 {#{{ object.interclientactingcities_set. }}#}
 {#    {% for o in object.acting_cities.all %}#}
@@ -30,6 +124,12 @@
 {#        {{ o.state }}#}
 {#    {% endfor %}#}
 </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="{% static "js/script.min.js" %}"></script>
 <body>
 
 </body>

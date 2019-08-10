@@ -1,3 +1,12 @@
+INSERT INTO public.choices_status(
+	id, status)
+	VALUES
+	(1, 'Ativo'),
+	(2, 'Em aprovação'),
+	(3, 'Aguardando pagamento'),
+	(4, 'Desativado'),
+	(5, 'Reprovado');
+
 INSERT INTO public.choices_ethnicity(
 	id, ethnicity)
 	VALUES

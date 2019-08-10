@@ -25,6 +25,6 @@ urlpatterns = [
     # path('', HomeView.as_view()),
     path('gallery/', GalleryView.as_view()),
     path('models/', ModelsView.as_view()),
-    path('', ClientList.as_view(), name='ClientList'),
+    path('client/', ClientList.as_view(), name='ClientList'),
     path('client/<slug:slug>/', ClientDetail.as_view(), name='ClientDetail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
