@@ -50,6 +50,7 @@ class ClientList(ListView):
     # template_name = 'index.html'
     template_name = 'Client/client_list.html'
     # paginate_by = 2
+    form = SearchClientForm()
 
     # filtro = self.request.GET.getlist(key, default=None)
     # filtro = self.request.GET.get(key, default=None)
@@ -60,13 +61,13 @@ class ClientList(ListView):
             'eye_id': self.request.GET.getlist('eye', default=[]),
             'ethnicity_id': self.request.GET.getlist('ethnicity', default=[])
         }
-
+        self.form = SearchClientForm(self.request.GET)
         queryset = Client.objects.actives(list_filter_dict)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['search_form'] = SearchClientForm()
+        context['search_form'] = self.form
         context['client_per_row'] = 3
         return context
 

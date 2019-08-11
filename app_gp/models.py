@@ -41,16 +41,29 @@ class ChoicesGenre(models.Model):
 
 
 class ChoicesEyeColor(models.Model):
-    color = models.CharField('Cor', max_length=75, null=False, blank=False)
+    eye_color = models.CharField('Cor do olho', max_length=75, null=False, blank=False)
 
     class Meta:
-        verbose_name = 'Cor'
-        verbose_name_plural = 'Cores'
-        ordering = ['color']
+        verbose_name = 'Cor do olho'
+        verbose_name_plural = 'Cores dos olhos'
+        ordering = ['eye_color']
         db_table = 'choices_eye_color'
 
     def __str__(self):
-        return self.color
+        return self.eye_color
+    
+    
+class ChoicesHairColor(models.Model):
+    hair_color = models.CharField('Cor do cabelo', max_length=50, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Cor de cabelo'
+        verbose_name_plural = 'Cores de cabelo'
+        ordering = ['hair_color']
+        db_table = 'choices_hair_color'
+
+    def __str__(self):
+        return self.hair_color
 
 
 class ChoicesCustomerService(models.Model):
@@ -174,6 +187,7 @@ class ClientQuerySet(models.QuerySet):
         params = []
         for key, list_items in list_filter_dict.items():
             if len(list_items):
+                # TO AVOID SQL INJECTION WE NEED TO PASS PARAMETERS IN FUNCTION RAW
                 params.append(tuple(list_items))
                 and_filter = and_filter + ' AND {0} in %s'.format(key)
 

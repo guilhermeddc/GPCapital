@@ -39,6 +39,16 @@ INSERT INTO public.choices_eye_color(
 	(11, 'castanho-clara'),
 	(12, 'castanho escura');
 
+INSERT INTO public.choices_hair_color(
+	id, hair_color)
+	VALUES
+	(1, 'loiros'),
+	(2, 'ruivos'),
+	(3, 'castanhos'),
+	(4, 'pretos'),
+	(5, 'grisalhos'),
+	(6, 'outras cores');
+
 INSERT INTO public.choices_customer_service(
 	id, customer_service)
 	VALUES
