@@ -171,14 +171,15 @@ class ClientQuerySet(models.QuerySet):
         select = "SELECT id FROM Client WHERE status_id = 1"
         
         and_filter = ''
+        params = []
         for key, list_items in list_filter_dict.items():
             if len(list_items):
-                items = ''.join(str(list_items)[1:-1])
-                and_filter = and_filter + ' AND {0} in ({1})'.format(key, items)
+                params.append(tuple(list_items))
+                and_filter = and_filter + ' AND {0} in %s'.format(key)
 
-        select_with_filters = select + and_filter
+        select_and_filter = select + and_filter
 
-        return self.raw(select_with_filters)
+        return self.raw(select_and_filter, params=params)
 
 
 class ClientManager(models.Manager):
