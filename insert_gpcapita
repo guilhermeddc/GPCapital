@@ -94,6 +94,8 @@ INSERT INTO public.choices_services_offered(
 	(18, 'Sexo vaginal'),
 	(19, 'Striptease');
 
+
+-- TOTAL STATES 27 records
 INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (1, E'AC', E'Acre', 12);
 INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (2, E'AL', E'Alagoas', 27);
 INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (3, E'AM', E'Amazonas', 13);
@@ -123,6 +125,7 @@ INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (26, E'SP', E
 INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (27, E'TO', E'Tocantins', 17);
 
 
+-- TOTAL CITIES 10828 records
 INSERT INTO public.choices_city(id, city, state, cep, ibge_code, area, subordinate_municipality) VALUES (1, E'Acrelândia', E'AC', E'69945000', E'1200013', 180795, 0);
 INSERT INTO public.choices_city(id, city, state, cep, ibge_code, area, subordinate_municipality) VALUES (2, E'Assis Brasil', E'AC', E'69935000', E'1200054', 497417, 0);
 INSERT INTO public.choices_city(id, city, state, cep, ibge_code, area, subordinate_municipality) VALUES (3, E'Brasiléia', E'AC', E'69932000', E'1200104', 39165, 0);
