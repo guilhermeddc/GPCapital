@@ -151,6 +151,20 @@ class ChoicesCity(models.Model):
         return self.city
 
 
+class ChoicesNeighborhoods(models.Model):
+    neighborhood = models.CharField('Bairro', max_length=255, null=False)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False)
+    
+    class Meta:
+        verbose_name = 'Bairro'
+        verbose_name_plural = 'Bairros'
+        ordering = ['neighborhood']
+        db_table = 'choices_neighborhoods'
+
+    def __str__(self):
+        return self.neighborhood
+
+
 def get_file_name_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
