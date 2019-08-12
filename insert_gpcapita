@@ -94,36 +94,33 @@ INSERT INTO public.choices_services_offered(
 	(18, 'Sexo vaginal'),
 	(19, 'Striptease');
 
-INSERT INTO public.choices_states(
-	id, name, uf)
-	VALUES
-	(1, 'Acre', 'AC'),
-	(2, 'Alagoas', 'AL'),
-	(3, 'Amazonas', 'AM'),
-	(4, 'Amapá', 'AP'),
-	(5, 'Bahia', 'BA'),
-	(6, 'Ceará', 'CE'),
-	(7, 'Distrito Federal', 'DF'),
-	(8, 'Espírito Santo', 'ES'),
-	(9, 'Goiás', 'GO'),
-	(10, 'Maranhão', 'MA'),
-	(11, 'Minas Gerais', 'MG'),
-	(12, 'Mato Grosso do Sul', 'MS'),
-	(13, 'Mato Grosso', 'MT'),
-	(14, 'Pará', 'PA'),
-	(15, 'Paraíba', 'PB'),
-	(16, 'Pernambuco', 'PE'),
-	(17, 'Piauí', 'PI'),
-	(18, 'Paraná', 'PR'),
-	(19, 'Rio de Janeiro', 'RJ'),
-	(20, 'Rio Grande do Norte', 'RN'),
-	(21, 'Rondônia', 'RO'),
-	(22, 'Roraima', 'RR'),
-	(23, 'Rio Grande do Sul', 'RS'),
-	(24, 'Santa Catarina', 'SC'),
-	(25, 'Sergipe', 'SE'),
-	(26, 'São Paulo', 'SP'),
-	(27, 'Tocantins', 'TO');
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (1, E'AC', E'Acre', 12);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (2, E'AL', E'Alagoas', 27);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (3, E'AM', E'Amazonas', 13);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (4, E'AP', E'Amapá', 16);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (5, E'BA', E'Bahia', 29);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (6, E'CE', E'Ceará', 23);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (7, E'DF', E'Distrito Federal', 53);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (8, E'ES', E'Espírito Santo', 32);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (9, E'GO', E'Goiás', 52);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (10, E'MA', E'Maranhão', 21);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (11, E'MG', E'Minas Gerais', 31);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (12, E'MS', E'Mato Grosso do Sul', 50);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (13, E'MT', E'Mato Grosso', 51);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (14, E'PA', E'Pará', 15);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (15, E'PB', E'Paraíba', 25);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (16, E'PE', E'Pernambuco', 26);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (17, E'PI', E'Piauí', 22);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (18, E'PR', E'Paraná', 41);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (19, E'RJ', E'Rio de Janeiro', 33);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (20, E'RN', E'Rio Grande do Norte', 24);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (21, E'RO', E'Rondônia', 11);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (22, E'RR', E'Roraima', 14);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (23, E'RS', E'Rio Grande do Sul', 43);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (24, E'SC', E'Santa Catarina', 42);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (25, E'SE', E'Sergipe', 28);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (26, E'SP', E'São Paulo', 35);
+INSERT INTO public.choices_states(id, uf, state, ibge_code) VALUES (27, E'TO', E'Tocantins', 17);
 
 
 INSERT INTO public.choices_city(id, city, state, cep, ibge_code, area, subordinate_municipality) VALUES (1, E'Acrelândia', E'AC', E'69945000', E'1200013', 180795, 0);
