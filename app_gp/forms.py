@@ -1,4 +1,5 @@
-from django.forms import forms, ImageField, CharField, ChoiceField, widgets, ModelChoiceField, ModelMultipleChoiceField, modelformset_factory, \
+from django.forms import forms, ImageField, CharField, ChoiceField, widgets, ModelChoiceField, ModelMultipleChoiceField, \
+    modelformset_factory, \
     CheckboxSelectMultiple, MultiWidget, FileField, Select
 from django.utils.html import format_html
 
@@ -14,17 +15,21 @@ class CityForm(forms.Form):
 
 
 class SearchClientForm(forms.Form):
-    genre = ModelMultipleChoiceField(queryset=ChoicesGenre.objects.all(),
-                                     required=False,
-                                     widget=CheckboxSelectMultiple())
-    eye = ModelMultipleChoiceField(queryset=ChoicesEyeColor.objects.all(),
-                                   required=False,
-                                   widget=CheckboxSelectMultiple())
-    ethnicity = ModelMultipleChoiceField(queryset=ChoicesEthnicity.objects.all(),
-                                         required=False,
-                                         widget=CheckboxSelectMultiple())
+    category = ModelChoiceField(queryset=ChoicesHairColor.objects.all(),
+                                required=False,
+                                widget=Select(attrs={'class': 'form-control'}))
     
+    genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(),
+                             required=False,
+                             widget=Select(attrs={'class': 'form-control'}))
     
+    eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(),
+                           required=False,
+                           widget=Select(attrs={'class': 'form-control'}))
+    
+    ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(),
+                                 required=False,
+                                 widget=Select(attrs={'class': 'form-control'}))
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):
@@ -44,26 +49,23 @@ class SearchClientForm(forms.Form):
 #         fields = [
 #             'name',
 #             'fake_name',
-            # 'description',
-            # 'acting_cities',
-            # 'image_profile',
-            # 'age',
-            # 'service_charged',
-            # 'genre',
-            # 'ethnicity',
-            # 'customer_services',
-            # 'places_accepted',
-            # 'payments_accepted',
-            # 'services_offered',
-            # 'acting_cities',
-        # ]
+# 'description',
+# 'acting_cities',
+# 'image_profile',
+# 'age',
+# 'service_charged',
+# 'genre',
+# 'ethnicity',
+# 'customer_services',
+# 'places_accepted',
+# 'payments_accepted',
+# 'services_offered',
+# 'acting_cities',
+# ]
 
-        # widgets = {
-        #     'customer_services': widgets.CheckboxSelectMultiple(),
-        #     'places_accepted': widgets.CheckboxSelectMultiple(),
-        #     'payments_accepted': widgets.CheckboxSelectMultiple(),
-        #     'services_offered': widgets.CheckboxSelectMultiple(),
-        # }
-
-
-
+# widgets = {
+#     'customer_services': widgets.CheckboxSelectMultiple(),
+#     'places_accepted': widgets.CheckboxSelectMultiple(),
+#     'payments_accepted': widgets.CheckboxSelectMultiple(),
+#     'services_offered': widgets.CheckboxSelectMultiple(),
+# }

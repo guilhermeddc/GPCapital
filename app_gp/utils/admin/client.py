@@ -7,22 +7,14 @@ from app_gp.utils.admin.video import TabularClientVideos
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
 
 
-# from app_gp.utils.admin.customer_service import TabularClientCustomerServices
-
-# weight = models.FloatField('Peso(kg)', null=True, blank=True)
-#     height = models.FloatField('Altura(m)', null=True, blank=True)
-#     bust = models.FloatField('Busto(cm)', null=True, blank=True)
-#     waist = models.FloatField('Cintura(cm)', null=True, blank=True)
-#     butt = models.FloatField('Bunda(cm)', null=True, blank=True)
 class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
     inlines = [TabularClientCities, TabularClientPhotos, TabularClientVideos]
     # change_form_template = 'admin/change.html'
-    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'eye', 'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
-    list_filter = ('genre', 'eye', 'ethnicity')
+    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye', 'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
+    list_filter = ('genre', 'hair', 'eye', 'ethnicity')
     readonly_fields = ('slug', )
     exclude = ()
-
     # fieldsets = (
     #     ('Perfil', {
     #         'fields': ('name', 'fake_name', 'image_profile', 'age', 'genre', 'ethnicity')
@@ -33,8 +25,6 @@ class ClientAdmin(admin.ModelAdmin):
     # )
 
     def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.attname in ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered'):
-            kwargs['widget'] = widgets.CheckboxSelectMultiple()
         if db_field.attname == 'image_profile':
             kwargs['widget'] = PictureShowWidget()
 
@@ -42,10 +32,11 @@ class ClientAdmin(admin.ModelAdmin):
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.attname in ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered'):
-            kwargs['widget'] = widgets.CheckboxSelectMultiple()
-    #
-    #     return super(ClientAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
-    #
+            kwargs['widget'] = widgets.CheckboxSelectMultiple
+            # kwargs['widget'] = widgets.CheckboxSelectMultiple(attrs={'class': 'form-check form-check-inline'})
+            
+        return super(ClientAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
     # def formfield_for_foreignkey(self, db_field, request, **kwargs):
     #     return super(ClientAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
     #

@@ -4,7 +4,7 @@ from app_gp.utils.admin.client import *
 
 
 # class TabularClientCustomerServices(admin.TabularInline):
-#     model = ModelInterClientCustomerServices
+#     model = Inter
 #     extra = 0
 
     # def formfield_for_dbfield(self, db_field, **kwargs):

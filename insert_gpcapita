@@ -24,7 +24,7 @@ INSERT INTO public.choices_genre(
 	(2, 'Feminino');
 
 INSERT INTO public.choices_eye_color(
-	id, color)
+	id, eye_color)
 	VALUES
 	(1, 'azul-clara'),
 	(2, 'azul-esverdeada'),

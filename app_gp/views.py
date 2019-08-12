@@ -47,8 +47,8 @@ class ClientList(ListView):
 
     model = Client
     context_object_name = 'clients'
-    # template_name = 'index.html'
-    template_name = 'Client/client_list.html'
+    template_name = 'index.html'
+    # template_name = 'Client/client_list.html'
     # paginate_by = 2
     form = SearchClientForm()
 
@@ -57,11 +57,12 @@ class ClientList(ListView):
     def get_queryset(self):
 
         list_filter_dict = {
+            'hair_id': self.request.GET.getlist('category', default=[]),
             'genre_id': self.request.GET.getlist('genre', default=[]),
             'eye_id': self.request.GET.getlist('eye', default=[]),
             'ethnicity_id': self.request.GET.getlist('ethnicity', default=[])
         }
-        self.form = SearchClientForm(self.request.GET)
+        # self.form = SearchClientForm(self.request.GET)
         queryset = Client.objects.actives(list_filter_dict)
         return queryset
 

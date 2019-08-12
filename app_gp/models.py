@@ -133,13 +133,12 @@ class ChoicesStates(models.Model):
 
 
 class ChoicesCity(models.Model):
-    name = models.CharField('Nome', max_length=120, null=False, blank=False)
-
-    # Many to One
-    state = models.ForeignKey('ChoicesStates', verbose_name='UF', on_delete=models.CASCADE, null=False, blank=False)
-
-    # Many to Many
-    models.ManyToManyField('Client', through='InterClientActingCities')
+    city = models.CharField('Cidade', max_length=255, null=False)
+    district = models.CharField('UF', max_length=255, null=False)
+    cep = models.CharField('Cep', max_length=255, null=False)
+    ibge_code = models.CharField('Código IBGE', max_length=255, null=False)
+    area = models.FloatField('Area', null=True)
+    subordinate_municipality = models.IntegerField('Município subordinado', null=False)
 
     class Meta:
         verbose_name = 'Cidade'
@@ -148,7 +147,7 @@ class ChoicesCity(models.Model):
         db_table = 'choices_city'
 
     def __str__(self):
-        return self.name
+        return self.city
 
 
 def get_file_name_ext(filepath):
@@ -186,7 +185,7 @@ class ClientQuerySet(models.QuerySet):
         and_filter = ''
         params = []
         for key, list_items in list_filter_dict.items():
-            if len(list_items):
+            if len(list_items) and list_items != ['']:
                 # TO AVOID SQL INJECTION WE NEED TO PASS PARAMETERS IN FUNCTION RAW
                 params.append(tuple(list_items))
                 and_filter = and_filter + ' AND {0} in %s'.format(key)
@@ -214,6 +213,7 @@ class Client(models.Model):
     slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
     name = models.CharField('Nome', max_length=50, null=True, blank=True)
     fake_name = models.CharField('Apelido', max_length=50, null=True, blank=True)
+    short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
     image_profile = models.ImageField('Imagem de Perfil', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
     age = models.PositiveIntegerField('Idade', null=True, blank=True)
@@ -227,6 +227,7 @@ class Client(models.Model):
     # ONE TO ONE RELATIONS
     genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=True, blank=True)
     eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.DO_NOTHING, null=True, blank=True)
+    hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True, blank=True)
     ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
     status = models.ForeignKey('ChoicesStatus', verbose_name='Status', on_delete=models.DO_NOTHING, null=True, blank=True)
 
@@ -297,7 +298,7 @@ class InterClientActingCities(models.Model):
     city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False, blank=False)
 
     def __str__(self):
-        return '{} {}'.format(self.client_id, self.city_id)
+        return f'{self.client_id} {self.city_id}'
     
     class Meta:
         verbose_name = 'Cidades em que atua'
