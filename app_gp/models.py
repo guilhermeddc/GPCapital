@@ -119,9 +119,10 @@ class ChoicesServicesOffered(models.Model):
 
 
 class ChoicesStates(models.Model):
-    name = models.CharField('Nome', max_length=75, null=False, blank=False)
-    uf = models.CharField('UF', max_length=5, null=False, blank=False)
-
+    uf = models.CharField('UF', max_length=5, null=False)
+    state = models.CharField('Estado', max_length=75, null=False)
+    ibge_code = models.IntegerField('Código IBGE', null=False)
+    
     class Meta:
         verbose_name = 'UF'
         verbose_name_plural = 'UF'
@@ -134,8 +135,8 @@ class ChoicesStates(models.Model):
 
 class ChoicesCity(models.Model):
     city = models.CharField('Cidade', max_length=255, null=False)
-    district = models.CharField('UF', max_length=255, null=False)
-    cep = models.CharField('Cep', max_length=255, null=False)
+    state = models.CharField('UF', max_length=5, null=False)
+    cep = models.CharField('Cep', max_length=10, null=True)
     ibge_code = models.CharField('Código IBGE', max_length=255, null=False)
     area = models.FloatField('Area', null=True)
     subordinate_municipality = models.IntegerField('Município subordinado', null=False)
@@ -143,7 +144,7 @@ class ChoicesCity(models.Model):
     class Meta:
         verbose_name = 'Cidade'
         verbose_name_plural = 'Cidades'
-        ordering = ['name']
+        ordering = ['city']
         db_table = 'choices_city'
 
     def __str__(self):
@@ -248,9 +249,9 @@ class Client(models.Model):
                                               verbose_name='Serviços Oferecidos',
                                               db_table='inter_client_services_offered')
 
-    acting_cities = models.ManyToManyField('ChoicesCity',
-                                           verbose_name='Cidades de atuação',
-                                           through='InterClientActingCities')
+    # acting_cities = models.ManyToManyField('ChoicesCity',
+    #                                        verbose_name='Cidades de atuação',
+    #                                        through='InterClientActingCities')
 
     class Meta:
         verbose_name = 'Cliente'
@@ -293,19 +294,19 @@ class Video(models.Model):
 
 
 # INTERMEDIATE MODELS
-class InterClientActingCities(models.Model):
-    client = models.ForeignKey('Client', verbose_name='Cliente', on_delete=models.DO_NOTHING, null=False, blank=False)
-    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False, blank=False)
-
-    def __str__(self):
-        return f'{self.client_id} {self.city_id}'
-    
-    class Meta:
-        verbose_name = 'Cidades em que atua'
-        verbose_name_plural = 'Cidades em que atua'
-        ordering = ['client']
-        db_table = 'inter_client_acting_cities'
-        unique_together = ('client', 'city')
+# class InterClientActingCities(models.Model):
+#     client = models.ForeignKey('Client', verbose_name='Cliente', on_delete=models.DO_NOTHING, null=False, blank=False)
+#     city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False, blank=False)
+#
+#     def __str__(self):
+#         return f'{self.client_id} {self.city_id}'
+#
+#     class Meta:
+#         verbose_name = 'Cidades em que atua'
+#         verbose_name_plural = 'Cidades em que atua'
+#         ordering = ['client']
+#         db_table = 'inter_client_acting_cities'
+#         unique_together = ('client', 'city')
 
     
 # class InterClientCustomerServices(models.Model):

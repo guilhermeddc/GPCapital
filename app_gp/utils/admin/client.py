@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import widgets
 
-from app_gp.utils.admin.city import TabularClientCities
+# from app_gp.utils.admin.city import TabularClientCities
 from app_gp.utils.admin.photo import TabularClientPhotos
 from app_gp.utils.admin.video import TabularClientVideos
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
@@ -9,7 +9,7 @@ from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
 
 class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
-    inlines = [TabularClientCities, TabularClientPhotos, TabularClientVideos]
+    inlines = [TabularClientPhotos, TabularClientVideos]
     # change_form_template = 'admin/change.html'
     list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye', 'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('genre', 'hair', 'eye', 'ethnicity')
