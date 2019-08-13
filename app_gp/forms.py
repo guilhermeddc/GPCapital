@@ -48,7 +48,16 @@ class ModelFormSit(ModelForm):
     
 class ModelFormClient(ModelForm):
     
-    client_city_sit_order = ModelFormSit()
+    sit_form = ModelFormSit()
+    
+    def save(self, commit=True):
+        instance = super(ModelFormClient, self).save(commit=False)
+        instance.sit_form = self.sit_form
+
+        if commit:
+            instance.save()
+            
+        return instance
     
     class Meta:
         model = Client
@@ -58,7 +67,7 @@ class ModelFormClient(ModelForm):
             'fake_name',
             'description',
             'image_profile',
-            'client_city_sit_order',
+            # 'client_city_sit_order',
             # 'age',
             # 'service_charged',
             # 'genre',
@@ -69,6 +78,9 @@ class ModelFormClient(ModelForm):
             # 'services_offered',
             # 'acting_cities',
         ]
+        
+        def save(self):
+            self.model.client_city_sit_order.city_id = 0
 
 # widgets = {
 #     'customer_services': widgets.CheckboxSelectMultiple(),
