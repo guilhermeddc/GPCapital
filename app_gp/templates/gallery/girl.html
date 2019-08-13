@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }} - {{ object.name }}
+{% endblock %}
+{% block container %}
+    {% include 'gallery/component/client_header.html' %}
+    {% include 'gallery/component/client_video.html' %}
+    <section id="model-details">
+        <div class="container">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapse1" aria-expanded="true"
+                                    aria-controls="collapse1">
+                                Descrição
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse1" class="collapse show" aria-labelledby="headOne"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            {% include 'gallery/component/client_description.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapse2" aria-expanded="false"
+                                    aria-controls="collapse2">
+                                Tipos de Serviços
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse2" class="collapse" aria-labelledby="headTwo"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            {% include 'gallery/component/client_service_types.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapse3" aria-expanded="false"
+                                    aria-controls="collapse3">
+                                Tipos de Pagamentos
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse3" class="collapse" aria-labelledby="headThree"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            {% include 'gallery/component/client_payments.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 col-xl-3 offset-xl-0 col-md-5">
+                    <div class="profile-block">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                            Perfil
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headOne"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {% include 'gallery/component/client_profile.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                            Atendimentos
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {% include 'gallery/component/client_customerService.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                            Locais Aceitos
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {% include 'gallery/component/client_places.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 col-xl-9 offset-md-0 offset-xl-0 col-md-5">
+                    {% include 'gallery/component/client_photos.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

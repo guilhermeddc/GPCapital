@@ -1,0 +1,22 @@
+{% load static %}
+
+<header class="masthead text-center text-white d-flex"
+        style="background-image: url('{{ object.image.url }}');">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="text-uppercase">
+                    <strong>{{ object.first_name }}</strong> {{ object.last_name }}
+                </h1>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5"><strong>{{ object.first_name }}</strong>&nbsp; - {{ object.description }}<br>
+            </p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#model-details">
+                Mais detalhes!!!
+            </a>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,22 @@
+{% load static %}
+
+<section id="galeria" class="p-0">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters popup-gallery">
+            {% for p in photos %}
+                <div class="col-sm-6 col-lg-4 col-xl-6">
+                    <a class="portfolio-box" href="{{ p.photo.url }}">
+                        <img class="img-fluid" src="{{ p.photo.url }}" alt={{ p.title }}""/>
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded"><span>{{ p.title }}</span>
+                                </div>
+                                <div class="project-name"><span>{{ p.description }}</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }} - {{ object.name }}
+{% endblock %}
+{% block container %}
+    {% include 'gallery/component/client_header.html' %}
+    {% include 'gallery/component/client_video.html' %}
+    <section id="model-details">
+        <div class="container">
+            {% include 'gallery/component/client_description.html' %}
+            {% include 'gallery/component/client_service_types.html' %}
+            <div class="row">
+                <div class="col-12 col-xl-3 offset-xl-0 col-md-5">
+                    <div class="profile-block">
+                        {% include 'gallery/component/client_profile.html' %}
+                        {% include 'gallery/component/client_customerService.html' %}
+                        {% include 'gallery/component/client_places.html' %}
+                        {% include 'gallery/component/client_payments.html' %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 col-xl-9 offset-md-0 offset-xl-0 col-md-5">
+                    {% include 'gallery/component/client_photos.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
