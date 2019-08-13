@@ -24,7 +24,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye',
                     'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt', 'city', 'sit_number')
     list_filter = ('genre', 'hair', 'eye', 'ethnicity')
-    # readonly_fields = ('slug', )
+    readonly_fields = ('slug', )
     
     # fields = ('slug', 'fake_name', 'name')
     exclude = ()
