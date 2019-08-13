@@ -139,6 +139,7 @@ class ChoicesCity(models.Model):
     ibge_code = models.CharField('Código IBGE', max_length=255, null=False)
     area = models.FloatField('Area', null=True)
     subordinate_municipality = models.IntegerField('Município subordinado', null=False)
+    sits = models.ManyToManyField('ChoicesSitNumber', through='InterCitySit')
     
     class Meta:
         verbose_name = 'Cidade'
@@ -232,18 +233,19 @@ class ChoicesSitNumber(models.Model):
 
 
 class InterCitySit(models.Model):
-    city = models.ForeignKey('ChoicesCity', null=False, on_delete=models.DO_NOTHING)
-    sit_number = models.ForeignKey('ChoicesSitNumber', null=False, on_delete=models.DO_NOTHING)
+    client = models.OneToOneField('Client', on_delete=models.DO_NOTHING, primary_key=True)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
+    sit_number = models.ForeignKey('ChoicesSitNumber', verbose_name='Posição', null=False, on_delete=models.DO_NOTHING)
     
     class Meta:
         verbose_name = 'Ordem do clientes'
         verbose_name_plural = 'Ordens dos clientes'
-        ordering = ['sit_number', 'city']
+        ordering = ['city', 'sit_number']
         unique_together = ('city', 'sit_number')
         db_table = 'inter_city_sits'
         
     def __str__(self):
-        return f'{self.sit_number}{self.city}'
+        return f'{self.client}-{self.city}-{self.sit_number}'
 
 
 # Create your models here.
@@ -272,12 +274,6 @@ class Client(models.Model):
     hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True, blank=True)
     ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
     status = models.ForeignKey('ChoicesStatus', verbose_name='Status', on_delete=models.DO_NOTHING, null=True, blank=True)
-    client_city_sit_order = models.ForeignKey('ClientCitySitOrder',
-                                              verbose_name='cidade',
-                                              on_delete=models.DO_NOTHING,
-                                              null=True,
-                                              blank=True,
-                                              related_name='city_order')
     
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',

@@ -42,22 +42,22 @@ class SearchClientForm(forms.Form):
 
 class ModelFormSit(ModelForm):
     class Meta:
-        model = ClientCitySitOrder
+        model = InterCitySit
         exclude = ()
     
     
 class ModelFormClient(ModelForm):
     
-    sit_form = ModelFormSit()
+    # sit_form = ModelFormSit()
     
-    def save(self, commit=True):
-        instance = super(ModelFormClient, self).save(commit=False)
-        instance.sit_form = self.sit_form
-
-        if commit:
-            instance.save()
-            
-        return instance
+    # def save(self, commit=True):
+    #     instance = super(ModelFormClient, self).save(commit=False)
+    #     instance.sit_form = self.sit_form
+    #
+    #     if commit:
+    #         instance.save()
+    #
+    #     return instance
     
     class Meta:
         model = Client
@@ -78,9 +78,6 @@ class ModelFormClient(ModelForm):
             # 'services_offered',
             # 'acting_cities',
         ]
-        
-        def save(self):
-            self.model.client_city_sit_order.city_id = 0
 
 # widgets = {
 #     'customer_services': widgets.CheckboxSelectMultiple(),

@@ -1,25 +1,37 @@
 from django.contrib import admin
-from django.forms import widgets
+from django.forms import widgets, ModelForm, ModelChoiceField
 
 # from app_gp.utils.admin.city import TabularClientCities
 from app_gp.forms import ModelFormClient, ModelFormSit
+from app_gp.models import *
 from app_gp.utils.admin.photo import TabularClientPhotos
 from app_gp.utils.admin.video import TabularClientVideos
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
 
 
-class ClientAdmin(admin.ModelAdmin):
-    form = ModelFormClient
-    inlines = [TabularClientPhotos, TabularClientVideos]
-    change_form_template = 'admin/change2.html'
+class SitsForm(ModelForm):
     
+    class Meta:
+        model = InterCitySit
+        exclude = ()
+        
+        
+class TabularSits(admin.TabularInline):
+    model = InterCitySit
+    # form = SitsForm
+    raw_id_fields = ('city', )
+
+
+class ClientAdmin(admin.ModelAdmin):
+    # form = ModelFormClient
+    inlines = [TabularClientPhotos, TabularClientVideos, TabularSits]
+    # change_form_template = 'admin/change2.html'
     list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye', 'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('genre', 'hair', 'eye', 'ethnicity')
-    
     # readonly_fields = ('slug', )
     
     # fields = ('slug', 'fake_name', 'name')
-    # exclude = ()
+    exclude = ()
     # fieldsets = (
     #     ('Perfil', {
     #         'fields': ('name', 'fake_name', 'image_profile', 'age', 'genre', 'ethnicity')
@@ -28,7 +40,7 @@ class ClientAdmin(admin.ModelAdmin):
     #         'fields': ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered')
     #     }),
     # )
-
+    
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == 'image_profile':
             kwargs['widget'] = PictureShowWidget()
