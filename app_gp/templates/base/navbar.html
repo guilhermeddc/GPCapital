@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}#page-top">
+            <img class="nav-logo" src="{% static 'assets/img/GP_3nav2.png' %}" alt="bg">
+        </a>
+        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right"
+                type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-align-justify"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link js-scroll-trigger" href="{% url 'index' %}#galeria">Galeria</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link js-scroll-trigger" href="{% url 'index' %}#termos">Termos</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link js-scroll-trigger" href="{% url 'index' %}#anuncie">Anuncie</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link js-scroll-trigger" href="{% url 'index' %}#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" role="button" href="#">Galeria</a>
+            <button class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                    aria-expanded="false" type="button" style="background-color: #4F012C;"></button>
+            <div class="dropdown-menu dropdown-menu-right" role="menu">
+
+                {% for item in ethnicitys %}
+                    <a class="dropdown-item" role="presentation" href="#">{{ item.ethnicity }}</a>
+                {% endfor %}
+
+                <div class="dropdown-divider" role="presentation"></div>
+                <a class="dropdown-item" role="presentation" href="#">Todas</a>
+            </div>
+        </div>
+    </div>
+</nav>
+

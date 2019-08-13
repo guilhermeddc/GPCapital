@@ -24,6 +24,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', ClientList.as_view(), name='index'),
     path('client/<slug:slug>/', ClientDetail.as_view(), name='detail'),
-    path('gallery/', GalleryView.as_view()),
-    path('models/', ModelsView.as_view()),
+    path('create/', CreateClientView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

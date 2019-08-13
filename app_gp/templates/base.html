@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}GP Capital{% endblock %}</title>
+    {% include 'base/meta.html' %}
+    {% include 'base/css.html' %}
+</head>
+<body id="page-top">
+{% include 'base/navbar.html' %}
+{% block container %}{% endblock %}
+{% include 'base/footer.html' %}
+{% include 'base/js.html' %}
+</body>
+</html>

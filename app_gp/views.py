@@ -27,19 +27,13 @@ class HomeView(TemplateView):
         return context
 
 
-class GalleryView(TemplateView):
-    template_name = 'gallery.html'
+class CreateClientView(CreateView):
+    model = Client
+    template_name = 'create_client_test.html'
+    fields = ('name', )
 
     def get_context_data(self, **kwargs):
-        context = super(GalleryView, self).get_context_data(**kwargs)
-        return context
-
-
-class ModelsView(TemplateView):
-    template_name = 'models.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ModelsView, self).get_context_data(**kwargs)
+        context = super(CreateClientView, self).get_context_data(**kwargs)
         return context
 
 
