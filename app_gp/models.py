@@ -144,11 +144,11 @@ class ChoicesCity(models.Model):
     class Meta:
         verbose_name = 'Cidade'
         verbose_name_plural = 'Cidades'
-        ordering = ['city']
+        ordering = ['state', 'city']
         db_table = 'choices_city'
 
     def __str__(self):
-        return self.city
+        return f'{self.state}-{self.city}'
 
 
 class ChoicesNeighborhoods(models.Model):
@@ -158,7 +158,7 @@ class ChoicesNeighborhoods(models.Model):
     class Meta:
         verbose_name = 'Bairro'
         verbose_name_plural = 'Bairros'
-        ordering = ['neighborhood']
+        ordering = ['city', 'neighborhood']
         db_table = 'choices_neighborhoods'
 
     def __str__(self):
@@ -218,6 +218,33 @@ class ClientManager(models.Manager):
         return self.get_queryset().actives(list_filter_dict)
 
 
+class ChoicesSitNumber(models.Model):
+    sit_number = models.IntegerField('Número', null=False)
+
+    def __str__(self):
+        return self.sit_number
+
+    class Meta:
+        verbose_name = 'Number'
+        verbose_name_plural = 'Numbers'
+        ordering = ['sit_number']
+        db_table = 'choices_sit_number'
+    
+    
+class ClientCitySitOrder(models.Model):
+    city = models.ForeignKey('ChoicesCity', null=False, on_delete=models.DO_NOTHING)
+    sit_number = models.ForeignKey('ChoicesSitNumber', null=False, on_delete=models.DO_NOTHING)
+    
+    class Meta:
+        verbose_name = 'Ordem do clientes'
+        verbose_name_plural = 'Ordens dos clientes'
+        ordering = ['sit_number', 'city']
+        db_table = 'client_city_sit_order'
+        
+    def __str__(self):
+        return f'{self.sit_number}{self.city}'
+    
+    
 # Create your models here.
 class Client(models.Model):
     
@@ -245,6 +272,12 @@ class Client(models.Model):
     hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True, blank=True)
     ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
     status = models.ForeignKey('ChoicesStatus', verbose_name='Status', on_delete=models.DO_NOTHING, null=True, blank=True)
+    client_city_sit_order = models.ForeignKey('ClientCitySitOrder',
+                                              verbose_name='cidade',
+                                              on_delete=models.DO_NOTHING,
+                                              null=True,
+                                              blank=True,
+                                              related_name='city_order')
 
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',

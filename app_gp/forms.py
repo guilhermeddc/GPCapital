@@ -39,29 +39,36 @@ class SearchClientForm(forms.Form):
 #             width=250,   # obj.image_profile.width,
 #             height=300))     # obj.image_profile.height,))
 
-# class ModelFormClient(ModelForm):
-#
-#     class Meta:
-#         model = Client
 
-#
-#         exclude = ()
-#         fields = [
-#             'name',
-#             'fake_name',
-# 'description',
-# 'acting_cities',
-# 'image_profile',
-# 'age',
-# 'service_charged',
-# 'genre',
-# 'ethnicity',
-# 'customer_services',
-# 'places_accepted',
-# 'payments_accepted',
-# 'services_offered',
-# 'acting_cities',
-# ]
+class ModelFormSit(ModelForm):
+    class Meta:
+        model = ClientCitySitOrder
+        exclude = ()
+    
+    
+class ModelFormClient(ModelForm):
+    
+    client_city_sit_order = ModelFormSit()
+    
+    class Meta:
+        model = Client
+        # exclude = ()
+        fields = [
+            'name',
+            'fake_name',
+            'description',
+            'image_profile',
+            'client_city_sit_order',
+            # 'age',
+            # 'service_charged',
+            # 'genre',
+            # 'ethnicity',
+            # 'customer_services',
+            # 'places_accepted',
+            # 'payments_accepted',
+            # 'services_offered',
+            # 'acting_cities',
+        ]
 
 # widgets = {
 #     'customer_services': widgets.CheckboxSelectMultiple(),
