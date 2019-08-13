@@ -26,7 +26,8 @@ class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
     inlines = [TabularClientPhotos, TabularClientVideos, TabularSits]
     # change_form_template = 'admin/change2.html'
-    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye', 'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
+    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye',
+                    'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('genre', 'hair', 'eye', 'ethnicity')
     # readonly_fields = ('slug', )
     
@@ -63,8 +64,8 @@ class ClientAdmin(admin.ModelAdmin):
     # def get_fields(self, request, obj=None):
     #     return super(ClientAdmin, self).get_fields(request, obj)
     #
-    # def get_formsets_with_inlines(self, request, obj=None):
-    #     return super(ClientAdmin, self).get_formsets_with_inlines(request, obj)
-    #
-    # def get_inline_formsets(self, request, formsets, inline_instances, obj=None):
-    #     return super(ClientAdmin, self).get_inline_formsets(request, formsets, inline_instances, obj)
+    def get_formsets_with_inlines(self, request, obj=None):
+        return super(ClientAdmin, self).get_formsets_with_inlines(request, obj)
+
+    def get_inline_formsets(self, request, formsets, inline_instances, obj=None):
+        return super(ClientAdmin, self).get_inline_formsets(request, formsets, inline_instances, obj)

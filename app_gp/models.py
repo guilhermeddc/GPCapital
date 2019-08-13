@@ -195,7 +195,7 @@ class ChoicesStatus(models.Model):
 class ClientQuerySet(models.QuerySet):
     
     def actives(self, list_filter_dict):
-        select = "SELECT id FROM Client WHERE status_id = 1"
+        select = "SELECT Client.id FROM Client, inter_city_sits WHERE Client.id = inter_city_sits.client_id AND status_id = 1"
         
         and_filter = ''
         params = []
@@ -203,9 +203,10 @@ class ClientQuerySet(models.QuerySet):
             if len(list_items) and list_items != ['']:
                 # TO AVOID SQL INJECTION WE NEED TO PASS PARAMETERS IN FUNCTION RAW
                 params.append(tuple(list_items))
-                and_filter = and_filter + ' AND {0} in %s'.format(key)
-        
-        select_and_filter = select + and_filter
+                and_filter = and_filter + f' AND {key} in %s'
+
+        order_by = 'ORDER BY inter_city_sits.sit_number_id ASC'
+        select_and_filter = select + and_filter + order_by
         
         return self.raw(select_and_filter, params=params)
 
