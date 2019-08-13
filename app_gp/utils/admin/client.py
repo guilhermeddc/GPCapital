@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.forms import widgets, ModelForm, ModelChoiceField
+from django.forms import widgets, ModelForm, ModelChoiceField, fields
 
 # from app_gp.utils.admin.city import TabularClientCities
 from app_gp.forms import ModelFormClient, ModelFormSit
@@ -9,17 +9,12 @@ from app_gp.utils.admin.video import TabularClientVideos
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
 
 
-class SitsForm(ModelForm):
-    
-    class Meta:
-        model = InterCitySit
-        exclude = ()
-        
-        
 class TabularSits(admin.TabularInline):
     model = InterCitySit
-    # form = SitsForm
+    test = ModelChoiceField(ChoicesStates.objects.all())
+    fields = ('city', 'sit_number')
     raw_id_fields = ('city', )
+    exclude = ()
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -27,7 +22,7 @@ class ClientAdmin(admin.ModelAdmin):
     inlines = [TabularClientPhotos, TabularClientVideos, TabularSits]
     # change_form_template = 'admin/change2.html'
     list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye',
-                    'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
+                    'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt', 'city', 'sit_number')
     list_filter = ('genre', 'hair', 'eye', 'ethnicity')
     # readonly_fields = ('slug', )
     
@@ -41,6 +36,12 @@ class ClientAdmin(admin.ModelAdmin):
     #         'fields': ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered')
     #     }),
     # )
+
+    def sit_number(self, obj):
+        return obj.intercitysit.sit_number
+
+    def city(self, obj):
+        return obj.intercitysit.city.city
     
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == 'image_profile':
@@ -50,8 +51,8 @@ class ClientAdmin(admin.ModelAdmin):
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.attname in ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered'):
-            kwargs['widget'] = widgets.CheckboxSelectMultiple
-            # kwargs['widget'] = widgets.CheckboxSelectMultiple(attrs={'class': 'form-check form-check-inline'})
+            # kwargs['widget'] = widgets.CheckboxSelectMultiple
+            kwargs['widget'] = widgets.CheckboxSelectMultiple(attrs={'class': 'form-check form-check-inline'})
             
         return super(ClientAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
