@@ -4,10 +4,10 @@
     <div class="container text-center">
         <h2 class="mb-4">Meus Videos</h2>
         <!-- 16:9 aspect ratio -->
-        {% for video in videos %}
+        {% for v in object.video_set.all %}
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item col-auto"
-                        src="{{ video.video.url }}"></iframe>
+                        src="{{ v.video.url }}"></iframe>
             </div>
         {% endfor %}
     </div>

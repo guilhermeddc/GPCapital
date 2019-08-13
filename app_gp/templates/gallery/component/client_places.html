@@ -1,7 +1,7 @@
 {% load static %}
 
 <ul>
-    {% for place in places %}
+    {% for place in object.places_accepted.all %}
         <li><span class="font-400">{{ place }}</span></li>
     {% endfor %}
 </ul>

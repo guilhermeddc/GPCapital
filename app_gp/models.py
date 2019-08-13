@@ -279,6 +279,7 @@ class Client(models.Model):
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',
                                                verbose_name='Atendimentos',
+                                               related_name='client_customer_service_rel',
                                                db_table='inter_client_customer_services')
     
     places_accepted = models.ManyToManyField('ChoicesPlace',

@@ -5,11 +5,6 @@
     {% for p in object.photo_set.all %}
         <img src="{{ p.photo.url }}" width="p.photo.width" height="p.photo.height" alt="No image"/>
     {% endfor %}
-{#{{ object.interclientactingcities_set. }}#}
-{#    {% for o in object.acting_cities.all %}#}
-{#        {{ o.name }}#}
-{#        {{ o.state }}#}
-{#    {% endfor %}#}
 </head>
 <body>
 

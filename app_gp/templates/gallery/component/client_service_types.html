@@ -1,7 +1,11 @@
 {% load static %}
 
 <div class="text-center col-auto">
-    {% for serv in services %}
-        {{ serv }} -
+    {% for serv in object.services_offered.all %}
+        {% if not forloop.last %}
+            {{ serv }} -
+        {% else %}
+            {{ serv }}
+        {% endif %}
     {% endfor %}
 </div>
