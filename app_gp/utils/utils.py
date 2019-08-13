@@ -10,7 +10,7 @@ def unique_slug_generator(instance, counter=0):
 
     klass = instance.__class__
 
-    qs_exists = klass.objects.filter(slug=slug).exists()
+    qs_exists = klass.objects.filter(slug=slug).exclude(id=instance.id).exists()
 
     if qs_exists:
         return unique_slug_generator(instance, counter=counter+1)
