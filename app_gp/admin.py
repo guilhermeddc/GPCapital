@@ -25,7 +25,6 @@ admin.site.register(ChoicesPaymentAccepted)
 admin.site.register(ChoicesServicesOffered)
 admin.site.register(ChoicesStates)
 admin.site.register(ChoicesNeighborhoods, AdminNeighborhood)
-admin.site.register(ChoicesSitNumber)
 admin.site.register(ChoicesCity, AdminCity)
 
 # ADMIN INTERMEDIATE

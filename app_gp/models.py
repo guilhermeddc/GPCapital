@@ -139,7 +139,6 @@ class ChoicesCity(models.Model):
     ibge_code = models.CharField('Código IBGE', max_length=255, null=False)
     area = models.FloatField('Area', null=True)
     subordinate_municipality = models.IntegerField('Município subordinado', null=False)
-    sits = models.ManyToManyField('ChoicesSitNumber', through='InterCitySit')
     
     class Meta:
         verbose_name = 'Cidade'
@@ -192,6 +191,22 @@ class ChoicesStatus(models.Model):
         db_table = 'choices_status'
 
 
+class ClientCitySit(models.Model):
+    client = models.OneToOneField('Client', on_delete=models.DO_NOTHING, primary_key=True)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
+    sit_number = models.PositiveIntegerField('Ordem', null=False)
+
+    class Meta:
+        verbose_name = 'Ordem do clientes'
+        verbose_name_plural = 'Ordens dos clientes'
+        ordering = ['city', 'sit_number']
+        unique_together = ('city', 'sit_number')
+        db_table = 'client_city_sit'
+
+    def __str__(self):
+        return f'{self.client}-{self.city}-{self.sit_number}'
+
+
 class ClientQuerySet(models.QuerySet):
     
     def actives(self, list_filter_dict):
@@ -203,10 +218,10 @@ class ClientQuerySet(models.QuerySet):
             if len(list_items) and list_items != ['']:
                 # TO AVOID SQL INJECTION WE NEED TO PASS PARAMETERS IN FUNCTION RAW
                 params.append(tuple(list_items))
-                and_filter = and_filter + f' AND {key} in %s'
+                and_filter = f' {and_filter} AND {key} in %s'
 
-        order_by = 'ORDER BY inter_city_sits.sit_number_id ASC'
-        select_and_filter = select + and_filter + order_by
+        order_by = 'ORDER BY inter_city_sits.sit_number ASC'
+        select_and_filter = f'{select} {and_filter} {order_by}'
         
         return self.raw(select_and_filter, params=params)
 
@@ -217,36 +232,6 @@ class ClientManager(models.Manager):
     
     def actives(self, list_filter_dict={}):
         return self.get_queryset().actives(list_filter_dict)
-
-
-class ChoicesSitNumber(models.Model):
-    sit_number = models.IntegerField('Número', null=False)
-    cities = models.ManyToManyField('ChoicesCity', through='InterCitySit')
-    
-    def __str__(self):
-        return str(self.sit_number)
-    
-    class Meta:
-        verbose_name = 'Number'
-        verbose_name_plural = 'Numbers'
-        ordering = ['sit_number']
-        db_table = 'choices_sit_number'
-
-
-class InterCitySit(models.Model):
-    client = models.OneToOneField('Client', on_delete=models.DO_NOTHING, primary_key=True)
-    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
-    sit_number = models.ForeignKey('ChoicesSitNumber', verbose_name='Posição', null=False, on_delete=models.DO_NOTHING)
-    
-    class Meta:
-        verbose_name = 'Ordem do clientes'
-        verbose_name_plural = 'Ordens dos clientes'
-        ordering = ['city', 'sit_number']
-        unique_together = ('city', 'sit_number')
-        db_table = 'inter_city_sits'
-        
-    def __str__(self):
-        return f'{self.client}-{self.city}-{self.sit_number}'
 
 
 # Create your models here.
@@ -279,24 +264,20 @@ class Client(models.Model):
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',
                                                verbose_name='Atendimentos',
-                                               related_name='client_customer_service_rel',
-                                               db_table='inter_client_customer_services')
+                                               through='InterClientCustomerServices')
     
     places_accepted = models.ManyToManyField('ChoicesPlace',
                                              verbose_name='Lugares Aceitos',
-                                             db_table='inter_client_places_accepted')
+                                             through='InterClientPlacesAccepted')
     
     payments_accepted = models.ManyToManyField('ChoicesPaymentAccepted',
                                                verbose_name='Pagamentos Aceitos',
-                                               db_table='inter_client_payments_accepted')
+                                               through='InterClientPaymentsAccepted')
     
     services_offered = models.ManyToManyField('ChoicesServicesOffered',
                                               verbose_name='Serviços Oferecidos',
-                                              db_table='inter_client_services_offered')
-    
-    # acting_cities = models.ManyToManyField('ChoicesCity',
-    #                                        verbose_name='Cidades de atuação',
-    #                                        through='InterClientActingCities')
+                                              through='InterClientServicesOffered')
+
     
     class Meta:
         verbose_name = 'Cliente'
@@ -337,62 +318,51 @@ class Video(models.Model):
         ordering = ['client']
         db_table = 'video'
 
+
 # INTERMEDIATE MODELS
-# class InterClientActingCities(models.Model):
-#     client = models.ForeignKey('Client', verbose_name='Cliente', on_delete=models.DO_NOTHING, null=False, blank=False)
-#     city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False, blank=False)
-#
-#     def __str__(self):
-#         return f'{self.client_id} {self.city_id}'
-#
-#     class Meta:
-#         verbose_name = 'Cidades em que atua'
-#         verbose_name_plural = 'Cidades em que atua'
-#         ordering = ['client']
-#         db_table = 'inter_client_acting_cities'
-#         unique_together = ('client', 'city')
+class InterClientCustomerServices(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    customer_service = models.ForeignKey('ChoicesCustomerService', on_delete=models.DO_NOTHING, null=False)
+
+    class Meta:
+        verbose_name = 'inter_client_customer_services'
+        verbose_name_plural = 'inter_client_customer_services'
+        ordering = ['client', 'customer_service']
+        unique_together = ('client', 'customer_service')
+        db_table = 'inter_client_customer_services'
 
 
-# class InterClientCustomerServices(models.Model):
-#     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False, blank=False)
-#     customer_service = models.ForeignKey('ChoicesCustomerService', on_delete=models.CASCADE, null=False, blank=False)
-#
-#     class Meta:
-#         verbose_name = 'inter_client_customer_services'
-#         verbose_name_plural = 'inter_client_customer_services'
-#         ordering = ['client']
-#         db_table = 'inter_client_customer_services'
+class InterClientPlacesAccepted(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    place = models.ForeignKey('ChoicesPlace', on_delete=models.DO_NOTHING, null=False)
+
+    class Meta:
+        verbose_name = 'inter_client_places_accepted'
+        verbose_name_plural = 'inter_client_places_accepted'
+        ordering = ['client', 'place']
+        unique_together = ('client', 'place')
+        db_table = 'inter_client_places_accepted'
 
 
-# class InterClientPlacesAccepted(models.Model):
-#     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False, blank=False)
-#     place = models.ForeignKey('ChoicesPlace', on_delete=models.CASCADE, null=False, blank=False,
-#                               related_name='place_set')
-#
-#     class Meta:
-#         verbose_name = 'inter_client_places_accepted'
-#         verbose_name_plural = 'inter_client_places_accepted'
-#         ordering = ['client']
-#         db_table = 'inter_client_places_accepted'
-#
-#
-# class InterClientPaymentsAccepted(models.Model):
-#     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False, blank=False)
-#     payment_accepted = models.ForeignKey('ChoicesPaymentAccepted', on_delete=models.CASCADE, null=False, blank=False)
-#
-#     class Meta:
-#         verbose_name = 'inter_client_payments_accepted'
-#         verbose_name_plural = 'inter_client_payments_accepted'
-#         ordering = ['client']
-#         db_table = 'inter_client_payments_accepted'
-#
-#
-# class InterClientServicesOffered(models.Model):
-#     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False, blank=False)
-#     services_offered = models.ForeignKey('ChoicesServicesOffered', on_delete=models.CASCADE, null=False, blank=False)
-#
-#     class Meta:
-#         verbose_name = 'inter_client_services_offered'
-#         verbose_name_plural = 'inter_client_services_offered'
-#         ordering = ['client']
-#         db_table = 'inter_client_services_offered'
+class InterClientPaymentsAccepted(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    payment_accepted = models.ForeignKey('ChoicesPaymentAccepted', on_delete=models.DO_NOTHING, null=False)
+
+    class Meta:
+        verbose_name = 'inter_client_payments_accepted'
+        verbose_name_plural = 'inter_client_payments_accepted'
+        ordering = ['client', 'payment_accepted']
+        unique_together = ('client', 'payment_accepted')
+        db_table = 'inter_client_payments_accepted'
+
+
+class InterClientServicesOffered(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    services_offered = models.ForeignKey('ChoicesServicesOffered', on_delete=models.DO_NOTHING, null=False)
+
+    class Meta:
+        verbose_name = 'inter_client_services_offered'
+        verbose_name_plural = 'inter_client_services_offered'
+        ordering = ['client', 'services_offered']
+        unique_together = ('client', 'services_offered')
+        db_table = 'inter_client_services_offered'

@@ -42,7 +42,7 @@ class SearchClientForm(forms.Form):
 
 class ModelFormSit(ModelForm):
     class Meta:
-        model = InterCitySit
+        model = ClientCitySit
         exclude = ()
     
     

@@ -10,20 +10,25 @@ from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
 
 
 class TabularSits(admin.TabularInline):
-    model = InterCitySit
-    test = ModelChoiceField(ChoicesStates.objects.all())
+    model = ClientCitySit
     fields = ('city', 'sit_number')
     raw_id_fields = ('city', )
     exclude = ()
 
 
+class TabularClientCustomerServices(admin.TabularInline):
+    model = InterClientCustomerServices
+    exclude = ()
+    extra = 0
+
+
 class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
-    inlines = [TabularClientPhotos, TabularClientVideos, TabularSits]
+    inlines = [TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos, TabularSits]
     # change_form_template = 'admin/change2.html'
     list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye',
                     'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt', 'city', 'sit_number')
-    list_filter = ('genre', 'hair', 'eye', 'ethnicity')
+    list_filter = ('status', 'genre', 'hair', 'eye', 'ethnicity')
     readonly_fields = ('slug', )
     
     # fields = ('slug', 'fake_name', 'name')
@@ -51,9 +56,9 @@ class ClientAdmin(admin.ModelAdmin):
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.attname in ('customer_services', 'places_accepted', 'payments_accepted', 'services_offered'):
-            # kwargs['widget'] = widgets.CheckboxSelectMultiple
-            kwargs['widget'] = widgets.CheckboxSelectMultiple(attrs={'class': 'form-check form-check-inline'})
-            
+            kwargs['widget'] = widgets.CheckboxSelectMultiple
+            # kwargs['widget'] = widgets.CheckboxSelectMultiple(attrs={'class': 'form-check form-check-inline'})
+
         return super(ClientAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
     # def formfield_for_foreignkey(self, db_field, request, **kwargs):

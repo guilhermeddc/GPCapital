@@ -3,9 +3,9 @@ from app_gp.forms import *
 from app_gp.utils.admin.client import *
 
 
-# class TabularClientCustomerServices(admin.TabularInline):
-#     model = Inter
-#     extra = 0
+class TabularClientCustomerServices(admin.TabularInline):
+    model = InterClientCustomerServices
+    exclude = ()
 
     # def formfield_for_dbfield(self, db_field, **kwargs):
     #     attrs = {'size': 15}
