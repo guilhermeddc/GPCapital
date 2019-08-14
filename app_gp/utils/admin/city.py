@@ -21,7 +21,7 @@ from app_gp.forms import *
 
 
 class AdminCity(admin.ModelAdmin):
-    list_display = ('city', 'state')
+    list_display = ('id', 'city', 'state')
     list_filter = ('state',)
     search_fields = ('city', )
     list_per_page = 15
