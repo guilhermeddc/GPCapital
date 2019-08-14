@@ -16,8 +16,8 @@ choices_ethnicity_ids = list(ChoicesEthnicity.objects.all().values_list('pk', fl
 choices_status_ids = list(ChoicesStatus.objects.all().values_list('pk', flat=True))
 choices_customer_services_ids = list(ChoicesCustomerService.objects.all().values_list('pk', flat=True))
 
-# Brasília, Santa Maria, Goiânia
-choices_cities_ids = [1778, 8087, 2174]
+# Brasília, Santa Maria, Goiânia, Belo Horizonte, São Paulo
+choices_cities_ids = [1778, 8087, 2174, 2754, 9668]
 
 girls_image_profile_list = []
 girl_image_profile_dir = 'Media/girls_image_profile_1024_768'
@@ -38,7 +38,7 @@ for root, dirs, files in os.walk(men_image_profile_dir):
 count_men_image_profile = len(men_image_profile_list)
 
 
-def create_client(genre_id=2):
+def create_client(genre_id=fake.random_int(min=1, max=2)):
     if genre_id == 1:
         name = fake.name_male()
         fake_name = fake.first_name_male()
