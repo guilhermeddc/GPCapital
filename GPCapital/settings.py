@@ -33,7 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,15 +75,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'GPCapital.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': dict(ENGINE='django.db.backends.postgresql_psycopg2', NAME='gpcapital', USER='postgres',
-                    PASSWORD='trismegistos', HOST='localhost', PORT='5432')
+                    PASSWORD='29gu09il', HOST='localhost', PORT='5432')
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -104,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -118,11 +114,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# In the INSTALLED_APPS the 'django.contrib.staticfiles' will serve all static files and the URL tag will begin with STATIC_URL
+# In the INSTALLED_APPS the 'django.contrib.staticfiles' will serve all static files and the URL tag will begin with
+# STATIC_URL
 STATIC_URL = '/static/'
 
 # That's where files get collected automatically after you run manage.py collectstatic
@@ -132,7 +128,7 @@ STATIC_URL = '/static/'
 # In the INSTALLED_APPS the 'django.contrib.staticfiles' will look for Static files that are stored in $APP/static/
 # BUT if you want to look in another path you need to put in STATICFILES_DIRS
 # STATICFILES_DIRS = [
-    # os.path.join(GP_DIR, 'my_static_file_path')
+# os.path.join(GP_DIR, 'my_static_file_path')
 # ]
 
 MEDIA_URL = '/media/'
