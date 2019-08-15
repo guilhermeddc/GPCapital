@@ -182,6 +182,24 @@ def create_client_services_offered(client_id):
         inter_client_services_offered.save()
 
 
+def create_client_photo(client_id, genre_id, n_samples=5):
+
+    for n in range(n_samples):
+        if genre_id == 1:
+            photo = men_image_profile_list[fake.random_int(min=0, max=count_men_image_profile)]
+        else:
+            photo = girls_image_profile_list[fake.random_int(min=0, max=count_girls_image_profile)]
+
+        dict_client_photo = {
+            'client_id': client_id,
+            'photo': photo,
+            'order_priority': n,
+        }
+
+        client_photo = ClientPhoto(**dict_client_photo)
+        client_photo.save()
+
+
 if __name__ == '__main__':
 
     active_girls = 10
@@ -205,6 +223,9 @@ if __name__ == '__main__':
             create_client_places_accepted(client_id=girl.id)
             create_client_payments_accepted(client_id=girl.id)
             create_client_services_offered(client_id=girl.id)
+
+            n_samples = random.randint(3, 10)
+            create_client_photo(client_id=girl.id, genre_id=2, n_samples=n_samples)
 
         men_start = active_girls + 1
         men_end = active_girls + active_men + 1

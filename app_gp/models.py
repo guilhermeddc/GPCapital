@@ -278,7 +278,6 @@ class Client(models.Model):
                                               verbose_name='Serviços Oferecidos',
                                               through='InterClientServicesOffered')
 
-    
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
@@ -297,26 +296,30 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
 pre_save.connect(client_pre_save_receiver, sender=Client)
 
 
-class Photo(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=True, blank=True)
-    photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
+class ClientPhoto(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=False)
+    order_priority = models.PositiveIntegerField('Prioridade da foto', null=False)
     
     class Meta:
         verbose_name = 'Foto'
         verbose_name_plural = 'Fotos'
-        ordering = ['client']
-        db_table = 'photo'
+        ordering = ['client', 'order_priority']
+        unique_together = ('client', 'order_priority')
+        db_table = 'client_photo'
 
 
-class Video(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=True, blank=True)
-    video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=True, blank=True)
+class ClientVideo(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=False)
+    order_priority = models.PositiveIntegerField('Prioridade do Vídeo', null=False)
     
     class Meta:
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
-        ordering = ['client']
-        db_table = 'video'
+        ordering = ['client', 'order_priority']
+        unique_together = ('client', 'order_priority')
+        db_table = 'client_video'
 
 
 # INTERMEDIATE MODELS

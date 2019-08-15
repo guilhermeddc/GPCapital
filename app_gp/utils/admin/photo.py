@@ -6,7 +6,7 @@ from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
 class PhotoForm(ModelForm):
 
     class Meta:
-        model = Photo
+        model = ClientPhoto
         fields = ('photo', )
         widgets = {
             'photo': PictureShowWidget()
@@ -14,7 +14,7 @@ class PhotoForm(ModelForm):
 
 
 class TabularClientPhotos(admin.TabularInline):
-    model = Photo
+    model = ClientPhoto
     form = PhotoForm
     extra = 0
     # template = 'admin/tabular.html'

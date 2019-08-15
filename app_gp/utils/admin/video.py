@@ -6,7 +6,7 @@ from app_gp.utils.admin.widgets.VideoShow import VideoShowWidget
 class VideoForm(ModelForm):
 
     class Meta:
-        model = Video
+        model = ClientVideo
         fields = ('video', )
         widgets = {
             'video': VideoShowWidget()
@@ -14,6 +14,6 @@ class VideoForm(ModelForm):
 
 
 class TabularClientVideos(admin.TabularInline):
-    model = Video
+    model = ClientVideo
     form = VideoForm
     extra = 0
