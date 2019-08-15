@@ -1,9 +1,6 @@
 import os
-import time
 
 import django
-import random
-import numpy as np
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'GPCapital.settings')
 django.setup()
@@ -17,6 +14,7 @@ choices_eye_color_ids = list(ChoicesEyeColor.objects.all().values_list('pk', fla
 choices_hair_color_ids = list(ChoicesHairColor.objects.all().values_list('pk', flat=True))
 choices_ethnicity_ids = list(ChoicesEthnicity.objects.all().values_list('pk', flat=True))
 choices_status_ids = list(ChoicesStatus.objects.all().values_list('pk', flat=True))
+
 choices_customer_services_ids = list(ChoicesCustomerService.objects.all().values_list('pk', flat=True))
 choices_place_ids = list(ChoicesPlace.objects.all().values_list('pk', flat=True))
 choices_payment_accepted_ids = list(ChoicesPaymentAccepted.objects.all().values_list('pk', flat=True))
@@ -191,9 +189,14 @@ if __name__ == '__main__':
 
     for city_id in choices_cities_ids:
 
+        last_id_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')[0].sit_number
+
         for i in range(1, active_girls+1):
             girl = create_client(status_id=1, genre_id=2)
-            create_client_city_sit(client_id=girl.id, city_id=city_id, sit_number=i)
+
+            id_sit = last_id_sit + i
+            create_client_city_sit(client_id=girl.id, city_id=city_id, sit_number=id_sit)
+
             create_client_customer_services(client_id=girl.id)
             create_client_places_accepted(client_id=girl.id)
             create_client_payments_accepted(client_id=girl.id)
@@ -201,9 +204,13 @@ if __name__ == '__main__':
 
         men_start = active_girls + 1
         men_end = active_girls + active_men + 1
+        last_id_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')[0].sit_number
         for i in range(men_start, men_end):
             men = create_client(status_id=1, genre_id=1)
-            create_client_city_sit(client_id=men.id, city_id=city_id, sit_number=i)
+
+            id_sit = last_id_sit + i
+            create_client_city_sit(client_id=men.id, city_id=city_id, sit_number=id_sit)
+
             create_client_customer_services(client_id=men.id)
             create_client_places_accepted(client_id=men.id)
             create_client_payments_accepted(client_id=men.id)
