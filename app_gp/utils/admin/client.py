@@ -27,7 +27,7 @@ class ClientAdmin(admin.ModelAdmin):
     inlines = [TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos, TabularSits]
     # change_form_template = 'admin/change2.html'
     list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye',
-                    'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt', 'city', 'sit_number')
+                    'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('status', 'genre', 'hair', 'eye', 'ethnicity')
     readonly_fields = ('slug', )
     
@@ -42,11 +42,11 @@ class ClientAdmin(admin.ModelAdmin):
     #     }),
     # )
 
-    def sit_number(self, obj):
-        return obj.intercitysit.sit_number
-
-    def city(self, obj):
-        return obj.intercitysit.city.city
+    # def sit_number(self, obj):
+    #     return obj.client_city_sit.sit_number
+    #
+    # def city(self, obj):
+    #     return obj.client_city_sit.city.city
     
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.attname == 'image_profile':

@@ -210,7 +210,7 @@ class ClientCitySit(models.Model):
 class ClientQuerySet(models.QuerySet):
     
     def actives(self, list_filter_dict):
-        select = "SELECT Client.id FROM Client, inter_city_sits WHERE Client.id = inter_city_sits.client_id AND status_id = 1"
+        select = "SELECT Client.id FROM Client, client_city_sit WHERE Client.id = client_city_sit.client_id AND status_id = 1"
         
         and_filter = ''
         params = []
@@ -220,7 +220,7 @@ class ClientQuerySet(models.QuerySet):
                 params.append(tuple(list_items))
                 and_filter = f' {and_filter} AND {key} in %s'
 
-        order_by = 'ORDER BY inter_city_sits.sit_number ASC'
+        order_by = 'ORDER BY client_city_sit.sit_number ASC'
         select_and_filter = f'{select} {and_filter} {order_by}'
         
         return self.raw(select_and_filter, params=params)
