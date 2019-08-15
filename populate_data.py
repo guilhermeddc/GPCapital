@@ -23,6 +23,8 @@ choices_services_offered_ids = list(ChoicesServicesOffered.objects.all().values_
 # Brasília, Santa Maria, Goiânia, Belo Horizonte, São Paulo
 choices_cities_ids = [1778, 8087, 2174, 2754, 9668]
 
+
+# GIRLS
 girls_image_profile_list = []
 girl_image_profile_dir = 'Media/girls_image_profile_1024_768'
 for root, dirs, files in os.walk(girl_image_profile_dir):
@@ -32,6 +34,25 @@ for root, dirs, files in os.walk(girl_image_profile_dir):
 
 count_girls_image_profile = len(girls_image_profile_list) - 1
 
+girls_photos_list = []
+girls_photos_profile_dir = 'Media/girls_images_shuffle_size'
+for root, dirs, files in os.walk(girls_photos_profile_dir):
+    for filename in files:
+        image_path = f'{girls_photos_profile_dir}/{filename}'
+        girls_photos_list.append(image_path)
+
+count_girls_photos = len(girls_photos_list) - 1
+
+girls_videos_list = []
+girls_videos_profile_dir = 'Media/girls_videos'
+for root, dirs, files in os.walk(girls_videos_profile_dir):
+    for filename in files:
+        image_path = f'{girls_videos_profile_dir}/{filename}'
+        girls_videos_list.append(image_path)
+
+count_girls_videos = len(girls_videos_list) - 1
+
+# MEN
 men_image_profile_list = []
 men_image_profile_dir = 'Media/men_image_profile_1024_768'
 for root, dirs, files in os.walk(men_image_profile_dir):
@@ -40,6 +61,24 @@ for root, dirs, files in os.walk(men_image_profile_dir):
         men_image_profile_list.append(image_path)
 
 count_men_image_profile = len(men_image_profile_list) - 1
+
+men_photos_list = []
+men_photos_profile_dir = 'Media/men_images_shuffle_size'
+for root, dirs, files in os.walk(men_photos_profile_dir):
+    for filename in files:
+        image_path = f'{men_photos_profile_dir}/{filename}'
+        men_photos_list.append(image_path)
+
+count_men_photos = len(men_photos_list) - 1
+
+men_videos_list = []
+men_videos_profile_dir = 'Media/men_videos'
+for root, dirs, files in os.walk(men_videos_profile_dir):
+    for filename in files:
+        image_path = f'{men_videos_profile_dir}/{filename}'
+        men_videos_list.append(image_path)
+
+count_men_videos = len(men_videos_list) - 1
 
 
 def create_client(
@@ -186,9 +225,9 @@ def create_client_photo(client_id, genre_id, n_samples=5):
 
     for n in range(n_samples):
         if genre_id == 1:
-            photo = men_image_profile_list[fake.random_int(min=0, max=count_men_image_profile)]
+            photo = men_photos_list[fake.random_int(min=0, max=count_men_photos)]
         else:
-            photo = girls_image_profile_list[fake.random_int(min=0, max=count_girls_image_profile)]
+            photo = girls_photos_list[fake.random_int(min=0, max=count_girls_photos)]
 
         dict_client_photo = {
             'client_id': client_id,
