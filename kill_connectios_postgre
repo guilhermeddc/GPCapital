@@ -1,1 +1,8 @@
 select pg_terminate_backend(pid) from pg_stat_activity where datname='gpcapital';
+
+DELETE FROM public.client;
+DELETE FROM public.client_city_sit;
+DELETE FROM public.inter_client_customer_services;
+DELETE FROM public.inter_client_payments_accepted;
+DELETE FROM public.inter_client_places_accepted;
+DELETE FROM public.inter_client_services_offered;

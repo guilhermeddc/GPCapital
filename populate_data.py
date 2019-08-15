@@ -189,7 +189,11 @@ if __name__ == '__main__':
 
     for city_id in choices_cities_ids:
 
-        last_id_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')[0].sit_number
+        last_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')
+        if last_sit:
+            last_id_sit = last_sit.sit_number
+        else:
+            last_id_sit = 1
 
         for i in range(1, active_girls+1):
             girl = create_client(status_id=1, genre_id=2)
@@ -204,7 +208,9 @@ if __name__ == '__main__':
 
         men_start = active_girls + 1
         men_end = active_girls + active_men + 1
+
         last_id_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')[0].sit_number
+
         for i in range(men_start, men_end):
             men = create_client(status_id=1, genre_id=1)
 
