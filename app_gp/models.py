@@ -210,7 +210,7 @@ class ClientCitySit(models.Model):
 class ClientQuerySet(models.QuerySet):
     
     def actives(self, list_filter_dict):
-        select = "SELECT Client.id FROM Client, client_city_sit WHERE Client.id = client_city_sit.client_id AND status_id = 1"
+        select = "SELECT id FROM Client WHERE status_id = 1"
         
         and_filter = ''
         params = []
@@ -220,7 +220,7 @@ class ClientQuerySet(models.QuerySet):
                 params.append(tuple(list_items))
                 and_filter = f' {and_filter} AND {key} in %s'
 
-        order_by = 'ORDER BY client_city_sit.sit_number ASC'
+        order_by = 'ORDER BY profile_priority ASC'
         select_and_filter = f'{select} {and_filter} {order_by}'
         
         return self.raw(select_and_filter, params=params)
@@ -246,6 +246,8 @@ class Client(models.Model):
     short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
     image_profile = models.ImageField('Imagem de Perfil', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
+    profile_priority = models.PositiveIntegerField('Prioridade do Profile', null=False)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
     age = models.PositiveIntegerField('Idade', null=True, blank=True)
     weight = models.FloatField('Peso(kg)', null=True, blank=True)
     height = models.FloatField('Altura(m)', null=True, blank=True)
@@ -253,9 +255,9 @@ class Client(models.Model):
     waist = models.FloatField('Cintura(cm)', null=True, blank=True)
     butt = models.FloatField('Bunda(cm)', null=True, blank=True)
     service_charged = models.DecimalField('Cachê/Hr', max_digits=6, decimal_places=2, null=True, blank=True)
-    
+
     # ONE TO ONE RELATIONS
-    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=True, blank=True)
+    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=False)
     eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.DO_NOTHING, null=True, blank=True)
     hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True, blank=True)
     ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
@@ -281,7 +283,8 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
-        ordering = ['name']
+        ordering = ['genre', 'profile_priority']
+        unique_together = ('city', 'genre', 'profile_priority')
         db_table = 'client'
     
     def __str__(self):

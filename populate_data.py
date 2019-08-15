@@ -7,6 +7,7 @@ django.setup()
 
 from app_gp.models import *
 from faker import Faker
+from django.db.models import Q
 
 fake = Faker(locale='pt_BR')
 
@@ -22,7 +23,6 @@ choices_services_offered_ids = list(ChoicesServicesOffered.objects.all().values_
 
 # Brasília, Santa Maria, Goiânia, Belo Horizonte, São Paulo
 choices_cities_ids = [1778, 8087, 2174, 2754, 9668]
-
 
 # GIRLS
 girls_image_profile_list = []
@@ -86,8 +86,9 @@ def create_client(
         eye_id=None,
         hair_id=None,
         ethnicity_id=None,
-        status_id=None):
-
+        status_id=None,
+        profile_priority=None,
+        city_id=None):
     if genre_id is None:
         genre_id = random.randint(1, 2)
 
@@ -128,6 +129,8 @@ def create_client(
         'short_description': short_description,
         'description': description,
         'image_profile': image_profile,
+        'profile_priority': profile_priority,
+        'city_id': city_id,
         'age': age,
         'weight': weight,
         'height': height,
@@ -148,25 +151,12 @@ def create_client(
     return client
 
 
-def create_client_city_sit(client_id, city_id, sit_number):
-    dict_client_city_sit = {
-        'client_id': client_id,
-        'city_id': city_id,
-        'sit_number': sit_number,
-    }
-
-    client_city_sit = ClientCitySit(**dict_client_city_sit)
-    client_city_sit.save()
-
-
 def create_client_customer_services(client_id):
-
     len_choice = len(choices_customer_services_ids)
     r_number = random.randint(1, len_choice)
     samples = random.sample(choices_customer_services_ids, r_number)
 
     for i in samples:
-
         dict_inter_client_customer_services = {
             'client_id': client_id,
             'customer_service_id': i,
@@ -222,7 +212,6 @@ def create_client_services_offered(client_id):
 
 
 def create_client_photo(client_id, genre_id, n_samples=5):
-
     for n in range(n_samples):
         if genre_id == 1:
             photo = men_photos_list[fake.random_int(min=0, max=count_men_photos)]
@@ -240,7 +229,6 @@ def create_client_photo(client_id, genre_id, n_samples=5):
 
 
 def create_client_video(client_id, genre_id, n_samples=5):
-
     for n in range(n_samples):
         if genre_id == 1:
             video = men_videos_list[fake.random_int(min=0, max=count_men_videos)]
@@ -261,30 +249,30 @@ if __name__ == '__main__':
 
     active_men = 5
     active_girls = 10
-    person_list = [active_men, active_girls]
+    genre_list = [active_men, active_girls]
 
-    for city_id in choices_cities_ids:
+    genre_id = 0
+    for genre_number in genre_list:
+        genre_id = genre_id + 1
 
-        last_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')
-        if last_sit:
-            last_id_sit = last_sit.sit_number
-        else:
-            last_id_sit = 1
+        for city_id in choices_cities_ids:
+            priority = 1
+            last_number = Client.objects.filter(city_id=city_id, genre_id=genre_id).order_by('-profile_priority')
+            if last_number:
+                priority = last_number.profile_priority
 
-        for i in range(1, active_girls+1):
-            person = create_client(status_id=1, genre_id=2)
+            for i in range(genre_number):
+                priority = priority + i
 
-            id_sit = last_id_sit + i
-            create_client_city_sit(client_id=person.id, city_id=city_id, sit_number=id_sit)
+                person = create_client(status_id=1, genre_id=genre_id, city_id=city_id, profile_priority=priority)
 
-            create_client_customer_services(client_id=person.id)
-            create_client_places_accepted(client_id=person.id)
-            create_client_payments_accepted(client_id=person.id)
-            create_client_services_offered(client_id=person.id)
+                create_client_customer_services(client_id=person.id)
+                create_client_places_accepted(client_id=person.id)
+                create_client_payments_accepted(client_id=person.id)
+                create_client_services_offered(client_id=person.id)
 
-            n_samples = random.randint(3, 10)
-            create_client_photo(client_id=person.id, genre_id=2, n_samples=n_samples)
+                n_samples = random.randint(3, 10)
+                create_client_photo(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
 
-            n_samples = random.randint(1, 5)
-            create_client_photo(client_id=person.id, genre_id=2, n_samples=n_samples)
-
+                n_samples = random.randint(1, 5)
+                create_client_video(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
