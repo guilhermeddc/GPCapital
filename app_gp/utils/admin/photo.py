@@ -7,7 +7,7 @@ class PhotoForm(ModelForm):
 
     class Meta:
         model = ClientPhoto
-        fields = ('photo', )
+        fields = ('photo', 'order_priority')
         widgets = {
             'photo': PictureShowWidget()
         }

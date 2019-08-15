@@ -296,6 +296,11 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
 pre_save.connect(client_pre_save_receiver, sender=Client)
 
 
+# class ClientPhotoManager(models.Manager):
+#     def get_queryset(self):
+#         return super().get_queryset().order_by('order_priority')
+
+
 class ClientPhoto(models.Model):
     client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
     photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=False)
