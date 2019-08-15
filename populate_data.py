@@ -239,10 +239,29 @@ def create_client_photo(client_id, genre_id, n_samples=5):
         client_photo.save()
 
 
+def create_client_video(client_id, genre_id, n_samples=5):
+
+    for n in range(n_samples):
+        if genre_id == 1:
+            video = men_videos_list[fake.random_int(min=0, max=count_men_videos)]
+        else:
+            video = girls_videos_list[fake.random_int(min=0, max=count_girls_videos)]
+
+        dict_client_video = {
+            'client_id': client_id,
+            'video': video,
+            'order_priority': n,
+        }
+
+        client_video = ClientVideo(**dict_client_video)
+        client_video.save()
+
+
 if __name__ == '__main__':
 
-    active_girls = 10
     active_men = 5
+    active_girls = 10
+    person_list = [active_men, active_girls]
 
     for city_id in choices_cities_ids:
 
@@ -253,31 +272,19 @@ if __name__ == '__main__':
             last_id_sit = 1
 
         for i in range(1, active_girls+1):
-            girl = create_client(status_id=1, genre_id=2)
+            person = create_client(status_id=1, genre_id=2)
 
             id_sit = last_id_sit + i
-            create_client_city_sit(client_id=girl.id, city_id=city_id, sit_number=id_sit)
+            create_client_city_sit(client_id=person.id, city_id=city_id, sit_number=id_sit)
 
-            create_client_customer_services(client_id=girl.id)
-            create_client_places_accepted(client_id=girl.id)
-            create_client_payments_accepted(client_id=girl.id)
-            create_client_services_offered(client_id=girl.id)
+            create_client_customer_services(client_id=person.id)
+            create_client_places_accepted(client_id=person.id)
+            create_client_payments_accepted(client_id=person.id)
+            create_client_services_offered(client_id=person.id)
 
             n_samples = random.randint(3, 10)
-            create_client_photo(client_id=girl.id, genre_id=2, n_samples=n_samples)
+            create_client_photo(client_id=person.id, genre_id=2, n_samples=n_samples)
 
-        men_start = active_girls + 1
-        men_end = active_girls + active_men + 1
+            n_samples = random.randint(1, 5)
+            create_client_photo(client_id=person.id, genre_id=2, n_samples=n_samples)
 
-        last_id_sit = ClientCitySit.objects.filter(city_id=city_id).order_by('-sit_number')[0].sit_number
-
-        for i in range(men_start, men_end):
-            men = create_client(status_id=1, genre_id=1)
-
-            id_sit = last_id_sit + i
-            create_client_city_sit(client_id=men.id, city_id=city_id, sit_number=id_sit)
-
-            create_client_customer_services(client_id=men.id)
-            create_client_places_accepted(client_id=men.id)
-            create_client_payments_accepted(client_id=men.id)
-            create_client_services_offered(client_id=men.id)
