@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="container-fluid mt-5" id="gallery">
+    <section>
+        <div class="row mt-5 mb-4">
+            <div class="col-md-12">
+                <div class="divider-new">
+                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
+                        data-wow-delay="0.2s">Modelos</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row wow fadeIn" data-wow-delay="0.4s">
+            <div class="col-md-12">
+                {% for client in clients %}
+                    {% if forloop.counter0|divisibleby:client_per_row or forloop.first %}
+                        <div class="row no-gutters">
+                    {% endif %}
+                <div class="col-lg-3 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
+                    <div class="card card-cascade wider">
+                        <div class="view view-cascade overlay zoom">
+                            <img src="{{ client.image_profile.url }}" class="img-fluid" alt="client photo">
+                            <a href="{% url 'detail' slug=client.slug %}">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body card-body-cascade text-center">
+                            <h4 class="card-title"><strong>{{ client.fake_name }}</strong></h4>
+                            <p>Cachê: R${{ client.service_charged }}</p>
+                            <span>Idade: {{ client.age }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:client_per_row %}
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+<!--/Gallery-->

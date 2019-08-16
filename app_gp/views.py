@@ -41,7 +41,7 @@ class ClientList(ListView):
 
     model = Client
     context_object_name = 'clients'
-    template_name = 'index.html'
+    template_name = 'mdb/pages/index.html'
     # template_name = 'Client/client_list.html'
     # paginate_by = 2
     form = SearchClientForm()
