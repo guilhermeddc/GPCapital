@@ -26,7 +26,7 @@ class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
     inlines = [TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos, TabularSits]
     # change_form_template = 'admin/change2.html'
-    list_display = ('slug', 'fake_name', 'name', 'genre', 'age', 'hair', 'eye',
+    list_display = ('slug', 'fake_name', 'name', 'city', 'profile_priority', 'genre', 'age', 'hair', 'eye',
                     'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
     list_filter = ('status', 'genre', 'hair', 'eye', 'ethnicity')
     readonly_fields = ('slug', )

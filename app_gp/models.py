@@ -210,7 +210,7 @@ class ClientCitySit(models.Model):
 class ClientQuerySet(models.QuerySet):
     
     def actives(self, list_filter_dict):
-        select = "SELECT Client.id FROM Client, client_city_sit WHERE Client.id = client_city_sit.client_id AND status_id = 1"
+        select = "SELECT id FROM Client WHERE status_id = 1"
         
         and_filter = ''
         params = []
@@ -220,7 +220,7 @@ class ClientQuerySet(models.QuerySet):
                 params.append(tuple(list_items))
                 and_filter = f' {and_filter} AND {key} in %s'
 
-        order_by = 'ORDER BY client_city_sit.sit_number ASC'
+        order_by = 'ORDER BY profile_priority ASC'
         select_and_filter = f'{select} {and_filter} {order_by}'
         
         return self.raw(select_and_filter, params=params)
@@ -246,6 +246,8 @@ class Client(models.Model):
     short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
     image_profile = models.ImageField('Imagem de Perfil', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
+    profile_priority = models.PositiveIntegerField('Prioridade do Profile', null=False)
+    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
     age = models.PositiveIntegerField('Idade', null=True, blank=True)
     weight = models.FloatField('Peso(kg)', null=True, blank=True)
     height = models.FloatField('Altura(m)', null=True, blank=True)
@@ -253,9 +255,9 @@ class Client(models.Model):
     waist = models.FloatField('Cintura(cm)', null=True, blank=True)
     butt = models.FloatField('Bunda(cm)', null=True, blank=True)
     service_charged = models.DecimalField('Cachê/Hr', max_digits=6, decimal_places=2, null=True, blank=True)
-    
+
     # ONE TO ONE RELATIONS
-    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=True, blank=True)
+    genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=False)
     eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.DO_NOTHING, null=True, blank=True)
     hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True, blank=True)
     ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
@@ -278,11 +280,11 @@ class Client(models.Model):
                                               verbose_name='Serviços Oferecidos',
                                               through='InterClientServicesOffered')
 
-    
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
-        ordering = ['name']
+        ordering = ['genre', 'profile_priority']
+        unique_together = ('city', 'genre', 'profile_priority')
         db_table = 'client'
     
     def __str__(self):
@@ -297,26 +299,35 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
 pre_save.connect(client_pre_save_receiver, sender=Client)
 
 
-class Photo(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=True, blank=True)
-    photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
+# class ClientPhotoManager(models.Manager):
+#     def get_queryset(self):
+#         return super().get_queryset().order_by('order_priority')
+
+
+class ClientPhoto(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=False)
+    order_priority = models.PositiveIntegerField('Prioridade da foto', null=False)
     
     class Meta:
         verbose_name = 'Foto'
         verbose_name_plural = 'Fotos'
-        ordering = ['client']
-        db_table = 'photo'
+        ordering = ['client', 'order_priority']
+        unique_together = ('client', 'order_priority')
+        db_table = 'client_photo'
 
 
-class Video(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=True, blank=True)
-    video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=True, blank=True)
+class ClientVideo(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=False)
+    order_priority = models.PositiveIntegerField('Prioridade do Vídeo', null=False)
     
     class Meta:
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
-        ordering = ['client']
-        db_table = 'video'
+        ordering = ['client', 'order_priority']
+        unique_together = ('client', 'order_priority')
+        db_table = 'client_video'
 
 
 # INTERMEDIATE MODELS

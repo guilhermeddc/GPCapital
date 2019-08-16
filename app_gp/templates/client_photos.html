@@ -2,7 +2,7 @@
 <!DOCTYPE html>
     <meta charset="UTF-8">
     <title>Title</title>
-    {% for p in object.photo_set.all %}
+    {% for p in object.clientphoto_set.all %}
         <img src="{{ p.photo.url }}" width="p.photo.width" height="p.photo.height" alt="No image"/>
     {% endfor %}
 </head>
