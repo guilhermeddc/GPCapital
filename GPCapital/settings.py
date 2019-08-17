@@ -17,7 +17,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # GP APP DIR PATH's
 GP_DIR = os.path.join(BASE_DIR, 'app_gp')
-GP_TEMPLATES_DIR = os.path.join(GP_DIR, 'templates')
+TEMPLATES_DIR = (
+    os.path.join(GP_DIR, 'templates')
+)
 GP_STATIC_DIR = os.path.join(GP_DIR, 'static')
 # GP_CLIENT_PHOTOS_DIR = os.path.join(GP_STATIC_DIR, 'models_photos')
 
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'GPCapital.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [GP_TEMPLATES_DIR],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +82,7 @@ WSGI_APPLICATION = 'GPCapital.wsgi.application'
 
 DATABASES = {
     'default': dict(ENGINE='django.db.backends.postgresql_psycopg2', NAME='gpcapital', USER='postgres',
-                    PASSWORD='29gu09il', HOST='localhost', PORT='5432')
+                    PASSWORD='trismegistos', HOST='localhost', PORT='5432')
 }
 
 # Password validation

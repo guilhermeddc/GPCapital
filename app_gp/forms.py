@@ -45,43 +45,27 @@ class SearchClientForm(forms.Form):
 #             height=300))     # obj.image_profile.height,))
 
 
-class ModelFormSit(ModelForm):
-    class Meta:
-        model = ClientCitySit
-        exclude = ()
-
-
-class ModelFormClient(ModelForm):
-    # sit_form = ModelFormSit()
-
-    # def save(self, commit=True):
-    #     instance = super(ModelFormClient, self).save(commit=False)
-    #     instance.sit_form = self.sit_form
-    #
-    #     if commit:
-    #         instance.save()
-    #
-    #     return instance
-
-    class Meta:
-        model = Client
-        # exclude = ()
-        fields = [
-            'name',
-            'fake_name',
-            'description',
-            'image_profile',
-            # 'client_city_sit_order',
-            # 'age',
-            # 'service_charged',
-            # 'genre',
-            # 'ethnicity',
-            # 'customer_services',
-            # 'places_accepted',
-            # 'payments_accepted',
-            # 'services_offered',
-            # 'acting_cities',
-        ]
+# class ModelFormClient(ModelForm):
+#
+#     class Meta:
+#         model = Client
+#         # exclude = ()
+#         fields = [
+#             'name',
+#             'fake_name',
+#             'description',
+#             'image_profile',
+#             'client_city_sit_order',
+#             'age',
+#             'service_charged',
+#             'genre',
+#             'ethnicity',
+#             'customer_services',
+#             'places_accepted',
+#             'payments_accepted',
+#             'services_offered',
+#             'acting_cities',
+#         ]
 
 # widgets = {
 #     'customer_services': widgets.CheckboxSelectMultiple(),

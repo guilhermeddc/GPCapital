@@ -81,16 +81,6 @@ class ClientDetail(DetailView):
         # context['photos'] = Photo.objects.filter(client=self.kwargs['pk'])
         # return context
 
-# customer_services_fs = inlineformset_factory(Client, Client.customer_services.through, extra=1,
-#                                              exclude=())
-
-# acting_cities_fs = inlineformset_factory(Client, Client.acting_cities.through, extra=1,
-#                                          exclude=(), formset=)
-
-# acting_cities_fs = inlineformset_factory(Client, Client.acting_cities.through, extra=1,
-#                                          exclude=())
-# city_fs = modelformset_factory(ChoicesCity, exclude=(), extra=1)
-
 
 class ClientView(CreateView):
     model = Client

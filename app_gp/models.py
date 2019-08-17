@@ -191,22 +191,6 @@ class ChoicesStatus(models.Model):
         db_table = 'choices_status'
 
 
-class ClientCitySit(models.Model):
-    client = models.OneToOneField('Client', on_delete=models.DO_NOTHING, primary_key=True)
-    city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
-    sit_number = models.PositiveIntegerField('Ordem', null=False)
-
-    class Meta:
-        verbose_name = 'Ordem do clientes'
-        verbose_name_plural = 'Ordens dos clientes'
-        ordering = ['city', 'sit_number']
-        unique_together = ('city', 'sit_number')
-        db_table = 'client_city_sit'
-
-    def __str__(self):
-        return f'{self.client}-{self.city}-{self.sit_number}'
-
-
 class ClientQuerySet(models.QuerySet):
     
     def actives(self, list_filter_dict):

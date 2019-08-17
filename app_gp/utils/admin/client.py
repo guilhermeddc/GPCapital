@@ -2,18 +2,10 @@ from django.contrib import admin
 from django.forms import widgets, ModelForm, ModelChoiceField, fields
 
 # from app_gp.utils.admin.city import TabularClientCities
-from app_gp.forms import ModelFormClient, ModelFormSit
 from app_gp.models import *
 from app_gp.utils.admin.photo import TabularClientPhotos
 from app_gp.utils.admin.video import TabularClientVideos
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
-
-
-class TabularSits(admin.TabularInline):
-    model = ClientCitySit
-    fields = ('city', 'sit_number')
-    raw_id_fields = ('city', )
-    exclude = ()
 
 
 class TabularClientCustomerServices(admin.TabularInline):
@@ -24,7 +16,7 @@ class TabularClientCustomerServices(admin.TabularInline):
 
 class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
-    inlines = [TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos, TabularSits]
+    inlines = [TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos]
     # change_form_template = 'admin/change2.html'
     list_display = ('slug', 'fake_name', 'name', 'city', 'profile_priority', 'genre', 'age', 'hair', 'eye',
                     'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')
