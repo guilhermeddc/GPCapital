@@ -4,10 +4,9 @@
     {{ block.super }} - Melhores garotas de programa da capital
 {% endblock %}
 {% block content %}
-
+    {% include 'mdb/base/components/intro.html' %}
     {% include 'mdb/components/gallery.html' %}
     {% include 'component/terms.html' %}
     {% include 'mdb/components/streak.html' %}
     {% include 'component/contact.html' %}
-
 {% endblock %}

@@ -1,0 +1,328 @@
+{% extends 'mdb/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }} - Melhores garotas de programa da capital
+{% endblock %}
+{% block content %}
+    <style>
+        html,
+        body,
+        header,
+        .jarallax {
+            height: 70vh;
+        }
+
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .jarallax {
+                height: 70vh;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .jarallax {
+                height: 70vh;
+            }
+        }
+
+        @media (min-width: 560px) and (max-width: 660px) {
+            header .jarallax h5 {
+                display: none !important;
+            }
+        }
+    </style>
+    <body>
+    <!--Main Navigation-->
+    <header>
+        {% include 'mdb/base/components/navbar.html' %}
+        <!-- Intro Section -->
+        <div class="view jarallax" data-jarallax='{"speed": 0.2}'
+             style="background-image: url({{ object.image_profile.url }});
+                     background-repeat: no-repeat;
+                     background-size: cover;
+                     background-position: center center;">
+            <div class="mask rgba-indigo-slight">
+                <div class="container h-100 d-flex justify-content-center align-items-center">
+                    <div class="row pt-5 mt-3">
+                        <div class="col-md-12 mb-3">
+                            <div class="intro-info-content text-center">
+                                <h1 class="display-3 mb-5 wow fadeInDown"
+                                    data-wow-delay="0.3s">{{ object.fake_name }}
+                                </h1>
+                                <hr>
+                                <h5 class="text-uppercase mb-5 mt-1 font-weight-bold wow fadeInDown"
+                                    data-wow-delay="0.3s">{{ object.description }}</h5>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Main Navigation-->
+    <!--Main Layout-->
+    <main>
+        <div class="container">
+            <!--Section: Team v.1-->
+            <section class="text-center team-section">
+                <!--Grid row-->
+                <div class="row text-center">
+                    <!--Grid column-->
+                    <div class="col-md-12 mb-4" style="margin-top: -100px;">
+                        <div class="avatar mx-auto">
+                            <img src="{{ object.image_profile.url }}"
+                                 class="img-fluid rounded-circle z-depth-1"
+                                 alt="First sample avatar image">
+                        </div>
+                        <h3 class="my-3 font-weight-bold">
+                            <strong>{{ object.fake_name }}</strong>
+                        </h3>
+                        <h6 class="font-weight-bold pink-text mb-4">{{ object.short_description }}</h6>
+                        <!--Whatsapp-->
+                        <a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-whatsapp grey-text"></i></a>
+                        <!--Phone-->
+                        <a class="p-2 m-2 fa-lg tw-ic"><i class="fas fa-phone grey-text"></i></a>
+                        <!--Email-->
+                        <a class="p-2 m-2 fa-lg ins-ic"><i class="fas fa-at grey-text"></i></a>
+                        <br>
+                        <hr>
+                        <h3 class="text-center">Serviços Aceitos</h3>
+                        <div class="container col-md-6 mt-4">
+                            {% for serv in object.services_offered.all %}
+                                <span class="badge pink mx-1"> {{ serv }} </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!--Section: Team v.1-->
+            <!--Section: Tabs-->
+            <section>
+                <hr>
+                <ul class="nav md-pills pills-pink d-flex justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel12" role="tab">
+                            <strong>Perfil</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#panel13" role="tab">
+                            <strong>Minhas Fotos</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel11" role="tab">
+                            <strong>Videos</strong>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <!-- Tab panels -->
+                <div class="tab-content">
+                    <!--Panel 1-->
+                    <div class="tab-pane fade show" id="panel11" role="tabpanel">
+                        <br>
+                        <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <!--Projects section v.4-->
+                                <section class="text-center mb-5">
+                                    <!--Grid row-->
+                                    <div class="row mb-4">
+                                        {% for v in object.clientvideo_set.all %}
+                                            <!--Grid column-->
+                                            <div class="col-md-12 mb-4 align-content-center zoom">
+                                                <video class="video-fluid z-depth-1" autoplay loop controls muted>
+                                                    <source src="{{ v.video.url }}"
+                                                            type="video/mp4"/>
+                                                </video>
+                                            </div>
+                                            <hr>
+                                        {% endfor %}
+                                    </div>
+                                    <!--Grid row-->
+                                </section>
+                                <!--Projects section v.4-->
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
+                    </div>
+                    <!--/.Panel 1-->
+
+                    <!--Panel 2-->
+                    <div class="tab-pane fade" id="panel12" role="tabpanel">
+                        <!-- Section: Team v.3 -->
+                        <section id="team" class="section team-section pb-4">
+                            <h3 class="text-center">Descrição</h3>
+                            <p class="mt-5 text-center">{{ object.description }}</p>
+                            <br>
+                            <hr>
+                            <br>
+                            <!-- Grid row -->
+                            <div class="row mb-lg-4 text-center text-md-left">
+                                <!-- Grid column -->
+                                <div class="col-lg-6 col-md-12 mb-4">
+
+                                    <div class="list-group-flush">
+                                        <ul>
+                                            <li class="list-group-item text-uppercase">
+                                                <i class="fas fa-user fa-2x mr-4 pink p-3 white-text rounded "
+                                                   aria-hidden="true"></i>Perfil
+                                            </li>
+                                            <li class="list-group-item">Nome: {{ object.fake_name }}</li>
+                                            <li class="list-group-item">Idade: {{ object.age }}</li>
+                                            <li class="list-group-item">Etnia: {{ object.ethnicity }}</li>
+                                            <li class="list-group-item">Cachê/hr: {{ object.service_charged }}</li>
+                                            <li class="list-group-item">Gênero: {{ object.genre }}</li>
+                                            <li class="list-group-item">Peso: {{ object.weight }}</li>
+                                            <li class="list-group-item">Olhos: {{ object.eye }}</li>
+                                            <li class="list-group-item">Altura: {{ object.height }}</li>
+                                            <li class="list-group-item">Busto: {{ object.bust }}</li>
+                                            <li class="list-group-item">Cintura: {{ object.waist }}</li>
+                                            <li class="list-group-item">Bunda: {{ object.butt }}</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <!-- Grid column -->
+                                <!-- Grid column -->
+                                <div class="col-lg-6 col-md-12 mb-4">
+
+                                    <div class="list-group-flush">
+                                        <ul>
+                                            <li class="list-group-item text-uppercase">
+                                                <i class="fas fa-map-marker-alt fa-2x mr-4 pink p-3 white-text rounded "
+                                                   aria-hidden="true"></i>Locais Aceitos
+                                            </li>
+                                            {% for place in object.places_accepted.all %}
+                                                <li class="list-group-item">{{ place }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                    <div class="list-group-flush">
+                                        <ul>
+                                            <li class="list-group-item text-uppercase">
+                                                <i class="fas fa-transgender fa-2x mr-4 pink p-3 white-text rounded "
+                                                   aria-hidden="true"></i>Atendimentos
+                                            </li>
+                                            {% for service in object.customer_services.all %}
+                                                <li class="list-group-item">{{ service }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                    <div class="list-group-flush">
+                                        <ul>
+                                            <li class="list-group-item text-uppercase">
+                                                <i class="far fa-credit-card fa-2x mr-4 pink p-3 white-text rounded "
+                                                   aria-hidden="true"></i>Tipos de Pagamentos
+                                            </li>
+                                            {% for payment in object.payments_accepted.all %}
+                                                <li class="list-group-item">{{ payment }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <!-- Grid column -->
+
+
+                            </div>
+                            <!-- Grid row -->
+
+                            <!-- Grid row -->
+                            <div class="row text-center text-md-left">
+
+                                <!-- Grid column -->
+                                <div class="col-lg-6 col-md-12 mb-4">
+
+
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-lg-6 col-md-12 mb-4">
+
+
+                                </div>
+                                <!-- Grid column -->
+
+                            </div>
+                            <!-- Grid row -->
+
+                        </section>
+                        <!-- Section: Team v.3 -->
+                    </div>
+                    <!--/.Panel 2-->
+
+                    <!--Panel 3-->
+                    <div class="tab-pane fade show active" id="panel13" role="tabpanel">
+                        <br>
+
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-12">
+
+                                <div id="mdb-lightbox-ui"></div>
+
+                                <div class="mdb-lightbox no-gutters">
+                                    {% for p in object.clientphoto_set.all %}
+                                        <figure class="col-md-4">
+                                            <a class="portfolio-box" href="{{ p.photo.url }}"
+                                               data-size="1024x768">
+                                                <img src="{{ p.photo.url }}"
+                                                     class="img-fluid" alt="{{ p.photo }}">
+                                            </a>
+                                        </figure>
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--/.Panel 3-->
+
+                    <!--Panel 4-->
+                    <div class="tab-pane fade" id="panel14" role="tabpanel">
+                        <br>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
+                            doloribus
+                            reiciendis
+                            molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
+                            porro
+                            voluptate
+                            odit minima.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
+                            doloribus
+                            reiciendis
+                            molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
+                            porro
+                            voluptate
+                            odit minima.</p>
+
+                    </div>
+                    <!--/.Panel 4-->
+
+                </div>
+                <hr>
+            </section>
+            <!--Section: Tabs-->
+
+        </div>
+
+    </main>
+    <!--Main Layout-->
+{% endblock %}

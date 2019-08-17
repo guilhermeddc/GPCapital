@@ -17,19 +17,24 @@ class CityForm(forms.Form):
 class SearchClientForm(forms.Form):
     category = ModelChoiceField(queryset=ChoicesHairColor.objects.all(),
                                 required=False,
-                                widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+                                widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                                     'multiple searchable': 'Search here..'}))
 
     genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(),
                              required=False,
-                             widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+                             widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                                  'multiple searchable': 'Search here..'}))
 
     eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(),
                            required=False,
-                           widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+                           widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                                'multiple searchable': 'Search here..'}))
 
     ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(),
                                  required=False,
-                                 widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+                                 widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                                      'multiple searchable': 'Search here..'}))
+
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):
@@ -47,7 +52,6 @@ class ModelFormSit(ModelForm):
 
 
 class ModelFormClient(ModelForm):
-
     # sit_form = ModelFormSit()
 
     # def save(self, commit=True):

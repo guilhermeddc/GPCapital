@@ -69,7 +69,7 @@ class ClientList(ListView):
 
 class ClientDetail(DetailView):
 
-    template_name = 'gallery/girl.html'
+    template_name = 'mdb/pages/profile-page.html'
     model = Client
 
     # def get_queryset(self):

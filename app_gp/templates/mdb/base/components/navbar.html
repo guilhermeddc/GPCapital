@@ -1,0 +1,33 @@
+{% load static %}
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'assets/img/navi-logo.png' %}" alt="logo" class="nav-logo">
+        </a>
+        <button class="navbar-toggler text-dark" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent-7"
+                aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+            <div class="navbar-nav mr-auto"></div>
+            <ul class="navbar-nav smooth-scroll list-unstyled">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#gallery">Galeria
+                        <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#terms">Termos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#advertise">Anuncie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
