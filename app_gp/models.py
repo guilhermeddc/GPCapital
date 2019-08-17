@@ -1,5 +1,6 @@
 import random
 
+from PIL import Image
 from django.db import models
 from django.utils.safestring import mark_safe
 import os
@@ -7,7 +8,7 @@ from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
 from django.db.models import Q
 
-from app_gp.utils.utils import unique_slug_generator
+from app_gp.utils.utils import unique_slug_generator, image_resize
 
 UPLOAD_PHOTOS_PATH = 'Media'
 UPLOAD_VIDEOS_PATH = 'Media'
@@ -230,6 +231,7 @@ class Client(models.Model):
     short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
     image_profile = models.ImageField('Imagem de Perfil', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
+    image_thumb = models.ImageField('Thumb', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
     profile_priority = models.PositiveIntegerField('Prioridade do Profile', null=False)
     city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
     age = models.PositiveIntegerField('Idade', null=True, blank=True)
@@ -278,6 +280,9 @@ class Client(models.Model):
 # CLIENT SLUG CREATION
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
     instance.slug = unique_slug_generator(instance)
+    img = Image.open(instance.image_profile)
+    b = img.thumbnail((300, 300), Image.ANTIALIAS)
+    a = 0
 
 
 pre_save.connect(client_pre_save_receiver, sender=Client)

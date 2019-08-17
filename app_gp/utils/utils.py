@@ -53,18 +53,18 @@ def images_resize_path(from_path='',
                 im.save(save_path_name)
 
 
-def image_resize(image_path='',
-                 to_path='',
+def image_resize(image=Image,
                  square_fit_size=300,
                  prefix_name='image',
                  postfix_name='thumb',
                  save_as_jpg=True):
+    a = 0
     if save_as_jpg:
         ext = 'jpg'
     else:
         ext = 'png'
 
-    im = Image.open(image_path)
+    im = Image.open(image)
     width, height = im.size
 
     if width > height:
