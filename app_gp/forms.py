@@ -17,19 +17,19 @@ class CityForm(forms.Form):
 class SearchClientForm(forms.Form):
     category = ModelChoiceField(queryset=ChoicesHairColor.objects.all(),
                                 required=False,
-                                widget=Select(attrs={'class': 'form-control'}))
-    
+                                widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+
     genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(),
                              required=False,
-                             widget=Select(attrs={'class': 'form-control'}))
-    
+                             widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+
     eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(),
                            required=False,
-                           widget=Select(attrs={'class': 'form-control'}))
-    
+                           widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
+
     ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(),
                                  required=False,
-                                 widget=Select(attrs={'class': 'form-control'}))
+                                 widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-dark'}))
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):
@@ -44,12 +44,12 @@ class ModelFormSit(ModelForm):
     class Meta:
         model = ClientCitySit
         exclude = ()
-    
-    
+
+
 class ModelFormClient(ModelForm):
-    
+
     # sit_form = ModelFormSit()
-    
+
     # def save(self, commit=True):
     #     instance = super(ModelFormClient, self).save(commit=False)
     #     instance.sit_form = self.sit_form
@@ -58,7 +58,7 @@ class ModelFormClient(ModelForm):
     #         instance.save()
     #
     #     return instance
-    
+
     class Meta:
         model = Client
         # exclude = ()

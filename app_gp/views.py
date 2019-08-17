@@ -23,7 +23,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['photos'] = Photo.objects.filter(client=1)
+        context['photos'] = ClientPhoto.objects.filter(client=1)
         return context
 
 
