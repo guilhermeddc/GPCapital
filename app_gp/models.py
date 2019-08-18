@@ -286,9 +286,31 @@ class Client(models.Model):
 
 # CLIENT SLUG CREATION
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
-    instance.slug = unique_slug_generator(instance)
 
-    #   Create image based on other image
+    # IF PK EXIST SO WE ARE SAVING FOR CHANGE SOME FIELD
+    # ELSE WE ARE CREATING THE DATA FOR THE FIRST TIME
+    if instance.pk:
+        # GET Instance before change anything
+        old_instance = sender.objects.get(pk=instance.pk)
+
+        # Fake name changed? IF yes, recreate the slug field
+        if not old_instance.fake_name == instance.fake_name:
+            slug = slugify(instance.fake_name)
+            instance.slug = unique_slug_generator(instance=instance, slug=slug)
+
+        # Image profile changed? IF yes, delete old image and old thumb from path
+        if not old_instance.image_profile == instance.image_profile:
+            if os.path.isfile(old_instance.image_profile.path):
+                os.remove(old_instance.image_profile.path)
+            if os.path.isfile(old_instance.image_thumb.path):
+                os.remove(old_instance.image_thumb.path)
+    else:   # FIRST TIME
+        # Create slug
+        slug = slugify(instance.fake_name)
+        instance.slug = unique_slug_generator(instance=instance, slug=slug)
+
+    # THIS CODE WIL RUN IN THE FIRST TIME AND CHANGE
+    # Create thumbnail from profile image
     img = Image.open(instance.image_profile)
 
     # Change image to thumbnail with specific size and save in a BytesIO
