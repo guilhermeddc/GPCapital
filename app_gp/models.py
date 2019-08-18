@@ -1,6 +1,10 @@
 import random
+import sys
 
+import PIL
 from PIL import Image
+from django.core.files.base import ContentFile, File, BytesIO, StringIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.utils.safestring import mark_safe
 import os
@@ -16,104 +20,104 @@ UPLOAD_VIDEOS_PATH = 'Media'
 
 class ChoicesEthnicity(models.Model):
     ethnicity = models.CharField('Etnia', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Etnia'
         verbose_name_plural = 'Etnias'
         ordering = ['ethnicity']
         db_table = 'choices_ethnicity'
-    
+
     def __str__(self):
         return self.ethnicity
 
 
 class ChoicesGenre(models.Model):
     genre = models.CharField('Gênero', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Gênero'
         verbose_name_plural = 'Gêneros'
         ordering = ['genre']
         db_table = 'choices_genre'
-    
+
     def __str__(self):
         return self.genre
 
 
 class ChoicesEyeColor(models.Model):
     eye_color = models.CharField('Cor do olho', max_length=75, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Cor do olho'
         verbose_name_plural = 'Cores dos olhos'
         ordering = ['eye_color']
         db_table = 'choices_eye_color'
-    
+
     def __str__(self):
         return self.eye_color
 
 
 class ChoicesHairColor(models.Model):
     hair_color = models.CharField('Cor do cabelo', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Cor de cabelo'
         verbose_name_plural = 'Cores de cabelo'
         ordering = ['hair_color']
         db_table = 'choices_hair_color'
-    
+
     def __str__(self):
         return self.hair_color
 
 
 class ChoicesCustomerService(models.Model):
     customer_service = models.CharField('Tipos de atendimento', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Atendimento'
         verbose_name_plural = 'Atendimentos'
         ordering = ['customer_service']
         db_table = 'choices_customer_service'
-    
+
     def __str__(self):
         return self.customer_service
 
 
 class ChoicesPlace(models.Model):
     place = models.CharField('Lugares', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Lugar'
         verbose_name_plural = 'Lugares'
         ordering = ['place']
         db_table = 'choices_place'
-    
+
     def __str__(self):
         return self.place
 
 
 class ChoicesPaymentAccepted(models.Model):
     payment = models.CharField('Pagamento', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Pagamento'
         verbose_name_plural = 'Pagamentos'
         ordering = ['payment']
         db_table = 'choices_payment_accepted'
-    
+
     def __str__(self):
         return self.payment
 
 
 class ChoicesServicesOffered(models.Model):
     services = models.CharField('Serviços', max_length=50, null=False, blank=False)
-    
+
     class Meta:
         verbose_name = 'Serviço'
         verbose_name_plural = 'Serviços'
         ordering = ['services']
         db_table = 'choices_services_offered'
-    
+
     def __str__(self):
         return self.services
 
@@ -122,13 +126,13 @@ class ChoicesStates(models.Model):
     uf = models.CharField('UF', max_length=5, null=False)
     state = models.CharField('Estado', max_length=75, null=False)
     ibge_code = models.IntegerField('Código IBGE', null=False)
-    
+
     class Meta:
         verbose_name = 'UF'
         verbose_name_plural = 'UF'
         ordering = ['uf']
         db_table = 'choices_states'
-    
+
     def __str__(self):
         return self.uf
 
@@ -140,13 +144,13 @@ class ChoicesCity(models.Model):
     ibge_code = models.CharField('Código IBGE', max_length=255, null=False)
     area = models.FloatField('Area', null=True)
     subordinate_municipality = models.IntegerField('Município subordinado', null=False)
-    
+
     class Meta:
         verbose_name = 'Cidade'
         verbose_name_plural = 'Cidades'
         ordering = ['state', 'city']
         db_table = 'choices_city'
-    
+
     def __str__(self):
         return f'{self.state}-{self.city}'
 
@@ -154,13 +158,13 @@ class ChoicesCity(models.Model):
 class ChoicesNeighborhoods(models.Model):
     neighborhood = models.CharField('Bairro', max_length=255, null=False)
     city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', on_delete=models.DO_NOTHING, null=False)
-    
+
     class Meta:
         verbose_name = 'Bairro'
         verbose_name_plural = 'Bairros'
         ordering = ['city', 'neighborhood']
         db_table = 'choices_neighborhoods'
-    
+
     def __str__(self):
         return self.neighborhood
 
@@ -181,10 +185,10 @@ def upload_image_path(instance, filename):
 
 class ChoicesStatus(models.Model):
     status = models.CharField('Status', max_length=50, unique=True)
-    
+
     def __str__(self):
         return self.status
-    
+
     class Meta:
         verbose_name = 'Status'
         verbose_name_plural = 'Status'
@@ -193,10 +197,10 @@ class ChoicesStatus(models.Model):
 
 
 class ClientQuerySet(models.QuerySet):
-    
+
     def actives(self, list_filter_dict):
         select = "SELECT id FROM Client WHERE status_id = 1"
-        
+
         and_filter = ''
         params = []
         for key, list_items in list_filter_dict.items():
@@ -207,14 +211,14 @@ class ClientQuerySet(models.QuerySet):
 
         order_by = 'ORDER BY profile_priority ASC'
         select_and_filter = f'{select} {and_filter} {order_by}'
-        
+
         return self.raw(select_and_filter, params=params)
 
 
 class ClientManager(models.Manager):
     def get_queryset(self):
         return ClientQuerySet(self.model, using=self._db)
-    
+
     def actives(self, list_filter_dict={}):
         return self.get_queryset().actives(list_filter_dict)
 
@@ -223,7 +227,7 @@ class ClientManager(models.Manager):
 class Client(models.Model):
     # SET MY OWN MANAGER
     objects = ClientManager()
-    
+
     # SINGLE FIELDS
     slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
     name = models.CharField('Nome', max_length=50, null=True, blank=True)
@@ -245,23 +249,26 @@ class Client(models.Model):
     # ONE TO ONE RELATIONS
     genre = models.ForeignKey('ChoicesGenre', verbose_name='Gênero', on_delete=models.DO_NOTHING, null=False)
     eye = models.ForeignKey('ChoicesEyeColor', verbose_name='Olhos', on_delete=models.DO_NOTHING, null=True, blank=True)
-    hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True, blank=True)
-    ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True, blank=True)
-    status = models.ForeignKey('ChoicesStatus', verbose_name='Status', on_delete=models.DO_NOTHING, null=True, blank=True)
-    
+    hair = models.ForeignKey('ChoicesHairColor', verbose_name='Cabelos', on_delete=models.DO_NOTHING, null=True,
+                             blank=True)
+    ethnicity = models.ForeignKey('ChoicesEthnicity', verbose_name='Etnia', on_delete=models.DO_NOTHING, null=True,
+                                  blank=True)
+    status = models.ForeignKey('ChoicesStatus', verbose_name='Status', on_delete=models.DO_NOTHING, null=True,
+                               blank=True)
+
     # MANY TO MANY RELATIONS
     customer_services = models.ManyToManyField('ChoicesCustomerService',
                                                verbose_name='Atendimentos',
                                                through='InterClientCustomerServices')
-    
+
     places_accepted = models.ManyToManyField('ChoicesPlace',
                                              verbose_name='Lugares Aceitos',
                                              through='InterClientPlacesAccepted')
-    
+
     payments_accepted = models.ManyToManyField('ChoicesPaymentAccepted',
                                                verbose_name='Pagamentos Aceitos',
                                                through='InterClientPaymentsAccepted')
-    
+
     services_offered = models.ManyToManyField('ChoicesServicesOffered',
                                               verbose_name='Serviços Oferecidos',
                                               through='InterClientServicesOffered')
@@ -272,17 +279,32 @@ class Client(models.Model):
         ordering = ['genre', 'profile_priority']
         unique_together = ('city', 'genre', 'profile_priority')
         db_table = 'client'
-    
+
     def __str__(self):
         return self.name
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        # super().save()  # saving image first
+
+        img = Image.open(self.image_profile.path)  # Open image using self
+
+        new_img = (300, 300)
+        img.thumbnail(new_img)
+        path = f'{os.path.splitext(self.image_profile.path)[0]}_thumb.jpg'
+        file_name = os.path.basename(path)
+        # path = f'{self.image_thumb.path}'
+        # img.save(path)  # saving image at the same path
+
+        djangofile = ContentFile(img.tobytes())
+
+        self.image_thumb.save(file_name, djangofile, save=False)
+        super().save()
 
 
 # CLIENT SLUG CREATION
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
     instance.slug = unique_slug_generator(instance)
-    img = Image.open(instance.image_profile)
-    b = img.thumbnail((300, 300), Image.ANTIALIAS)
-    a = 0
 
 
 pre_save.connect(client_pre_save_receiver, sender=Client)
@@ -297,7 +319,7 @@ class ClientPhoto(models.Model):
     client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
     photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=False)
     order_priority = models.PositiveIntegerField('Prioridade da foto', null=False)
-    
+
     class Meta:
         verbose_name = 'Foto'
         verbose_name_plural = 'Fotos'
@@ -310,7 +332,7 @@ class ClientVideo(models.Model):
     client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
     video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=False)
     order_priority = models.PositiveIntegerField('Prioridade do Vídeo', null=False)
-    
+
     class Meta:
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
