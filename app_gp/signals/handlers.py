@@ -7,6 +7,13 @@ from app_gp.utils.utils import unique_slug_generator
 from app_gp.models import Client
 import os
 
+# http://www.lexev.org/en/2016/django-signal-or-model-method/
+# 1 - Create submodule signals and place handlers.py in it
+# 2 - Define signals in that file handlers.py
+# 3 - Create application config class
+# 4 - Add to __init__.py of your app the config class ex:
+#  default_app_config = 'app_gp.apps.AppGpConfig'
+
 
 @receiver(models.signals.pre_save, sender=Client)
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
