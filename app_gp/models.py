@@ -10,6 +10,7 @@ from django.utils.safestring import mark_safe
 import os
 from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
+from django.dispatch import receiver
 from django.db.models import Q
 
 from app_gp.utils.utils import unique_slug_generator, image_resize
@@ -284,7 +285,7 @@ class Client(models.Model):
         return self.name
 
 
-# CLIENT SLUG CREATION
+@receiver(models.signals.pre_save, sender=Client)
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
 
     # IF PK EXIST SO WE ARE SAVING FOR CHANGE SOME FIELD
@@ -323,12 +324,17 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
     instance.image_thumb.save(file_name, ContentFile(thumb_io.getvalue()), save=False)
 
 
-pre_save.connect(client_pre_save_receiver, sender=Client)
+@receiver(models.signals.post_delete, sender=Client)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    # Delete Image profile
+    if instance.image_profile:
+        if os.path.isfile(instance.image_profile.path):
+            os.remove(instance.image_profile.path)
 
-
-# class ClientPhotoManager(models.Manager):
-#     def get_queryset(self):
-#         return super().get_queryset().order_by('order_priority')
+    # Delete Thumbnail
+    if instance.image_thumb:
+        if os.path.isfile(instance.image_thumb.path):
+            os.remove(instance.image_thumb.path)
 
 
 class ClientPhoto(models.Model):
