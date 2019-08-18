@@ -48,7 +48,7 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
 
 
 @receiver(models.signals.post_delete, sender=Client)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
+def client_post_delete_receiver(sender, instance, **kwargs):
     # Delete Image profile
     if instance.image_profile:
         if os.path.isfile(instance.image_profile.path):
