@@ -11,8 +11,10 @@ import os
 # 1 - Create submodule signals and place handlers.py in it
 # 2 - Define signals in that file handlers.py
 # 3 - Create application config class
-# 4 - Add to __init__.py of your app the config class ex:
-#  default_app_config = 'app_gp.apps.AppGpConfig'
+# 4 - In apps.py overrided ready function to import the handler ex:
+#       def ready(self): import app_gp.signals.handlers
+# 5 - Add to __init__.py of your app the config class ex:
+#       default_app_config = 'app_gp.apps.AppGpConfig'
 
 
 @receiver(models.signals.pre_save, sender=Client)
