@@ -283,28 +283,22 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        # super().save()  # saving image first
-
-        img = Image.open(self.image_profile.path)  # Open image using self
-
-        new_img = (300, 300)
-        img.thumbnail(new_img)
-        path = f'{os.path.splitext(self.image_profile.path)[0]}_thumb.jpg'
-        file_name = os.path.basename(path)
-        # path = f'{self.image_thumb.path}'
-        # img.save(path)  # saving image at the same path
-
-        djangofile = ContentFile(img.tobytes())
-
-        self.image_thumb.save(file_name, djangofile, save=False)
-        super().save()
-
 
 # CLIENT SLUG CREATION
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
     instance.slug = unique_slug_generator(instance)
+
+    #   Create image based on other image
+    img = Image.open(instance.image_profile)
+
+    # Change image to thumbnail with specific size and save in a BytesIO
+    img.thumbnail((300, 300), Image.ANTIALIAS)
+    thumb_io = BytesIO()
+    img.save(thumb_io, img.format, quality=100)
+
+    # Create the filename and save the thumb image to thumb field
+    file_name = f'{os.path.splitext(instance.image_profile.name)[0]}_thumb.jpg'
+    instance.image_thumb.save(file_name, ContentFile(thumb_io.getvalue()), save=False)
 
 
 pre_save.connect(client_pre_save_receiver, sender=Client)

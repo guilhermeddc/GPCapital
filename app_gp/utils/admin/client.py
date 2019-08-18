@@ -41,7 +41,7 @@ class ClientAdmin(admin.ModelAdmin):
     #     return obj.client_city_sit.city.city
     
     def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.attname == 'image_profile':
+        if db_field.attname == 'image_profile' or db_field.attname == 'image_thumb':
             kwargs['widget'] = PictureShowWidget()
 
         return super(ClientAdmin, self).formfield_for_dbfield(db_field, **kwargs)
