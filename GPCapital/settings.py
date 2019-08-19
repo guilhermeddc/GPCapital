@@ -15,12 +15,18 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 # GP APP DIR PATH's
 GP_DIR = os.path.join(BASE_DIR, 'app_gp')
 TEMPLATES_DIR = (
     os.path.join(GP_DIR, 'templates')
 )
 GP_STATIC_DIR = os.path.join(GP_DIR, 'static')
+
+FIXTURE_DIRS = (
+   os.path.join(GP_DIR, 'fixtures'),
+)
+
 # GP_CLIENT_PHOTOS_DIR = os.path.join(GP_STATIC_DIR, 'models_photos')
 
 

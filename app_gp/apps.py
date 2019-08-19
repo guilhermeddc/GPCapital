@@ -5,4 +5,5 @@ class AppGpConfig(AppConfig):
     name = 'app_gp'
 
     def ready(self):
-        import app_gp.signals.handlers
+        from app_gp.signals import handlers
+

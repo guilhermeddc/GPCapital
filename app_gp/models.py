@@ -163,14 +163,18 @@ def get_basic_path(instance):
 
 def profile_upload_path(instance, filename):
     basic_path = get_basic_path(instance)
-    path = f'{basic_path}/profile/{filename}'
+    base_name = os.path.basename(filename)
+    path = f'Media/{basic_path}/profile/{base_name}'
     return path
 
 
 def thumb_upload_path(instance, filename):
     basic_path = get_basic_path(instance)
-    name, ext = os.path.splitext(filename)
-    path = f'{basic_path}/profile/{name}_thumb.{ext}'
+    base_name = os.path.basename(filename)
+    name, ext = os.path.splitext(base_name)
+    # Rename to filename_thumb.jpg
+    new_name = f'{name}_thumb{ext}'
+    path = f'{basic_path}/profile/{new_name}'
     return path
 
 

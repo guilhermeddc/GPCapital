@@ -1,8 +1,7 @@
 from PIL import Image
+from django.db.models.signals import pre_save, post_delete
 from django.utils.text import slugify
-from django.dispatch import receiver
 from django.core.files.base import ContentFile, BytesIO
-from django.db import models
 from app_gp.utils.utils import unique_slug_generator
 from app_gp.models import Client
 import os
@@ -17,7 +16,6 @@ import os
 #       default_app_config = 'app_gp.apps.AppGpConfig'
 
 
-@receiver(models.signals.pre_save, sender=Client)
 def client_pre_save_receiver(sender, instance, *args, **kwargs):
 
     # IF PK EXIST SO WE ARE SAVING FOR CHANGE SOME FIELD
@@ -58,11 +56,13 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
         img.save(thumb_io, img.format, quality=100)
 
         # Create the filename and save the thumb image to thumb field
-        file_name = f'{os.path.splitext(instance.image_profile.name)[0]}_thumb.jpg'
+        file_name = f'{instance.image_profile.name}'
         instance.image_thumb.save(file_name, ContentFile(thumb_io.getvalue()), save=False)
 
 
-@receiver(models.signals.post_delete, sender=Client)
+pre_save.connect(client_pre_save_receiver, sender=Client, dispatch_uid='unique')
+
+
 def client_post_delete_receiver(sender, instance, **kwargs):
     # Delete Image profile
     if instance.image_profile:
@@ -73,3 +73,6 @@ def client_post_delete_receiver(sender, instance, **kwargs):
     if instance.image_thumb:
         if os.path.isfile(instance.image_thumb.path):
             os.remove(instance.image_thumb.path)
+
+
+post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
