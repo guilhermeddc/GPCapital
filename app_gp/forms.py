@@ -9,9 +9,8 @@ from app_gp.models import *
 from django.forms.models import inlineformset_factory
 
 
-class CityForm(forms.Form):
-    state = ModelChoiceField(queryset=ChoicesStates.objects.all())
-    city = ModelChoiceField(queryset=ChoicesCity.objects.filter(state=7))
+class CitySearchForm(forms.Form):
+    search_city = ModelChoiceField(queryset=ChoicesCity.objects.all())
 
 
 class SearchClientForm(forms.Form):

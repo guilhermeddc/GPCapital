@@ -37,6 +37,27 @@ class CreateClientView(CreateView):
         return context
 
 
+class SearchCityView(ListView):
+    model = ChoicesCity
+    context_object_name = 'cities'
+    template_name = 'mdb/pages/search_form.html'
+    form = CitySearchForm()
+
+    def get_queryset(self):
+
+        list_filter_dict = {
+            'hair_id': self.request.GET.get('search_city', default=None)
+        }
+        # self.form = SearchClientForm(self.request.GET)
+        queryset = Client.objects.actives(list_filter_dict)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_form'] = self.form
+        return context
+
+
 class ClientList(ListView):
 
     model = Client

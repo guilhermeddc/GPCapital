@@ -164,7 +164,7 @@ def get_basic_path(instance):
 def profile_upload_path(instance, filename):
     basic_path = get_basic_path(instance)
     base_name = os.path.basename(filename)
-    path = f'Media/{basic_path}/profile/{base_name}'
+    path = f'{basic_path}/profile/{base_name}'
     return path
 
 
