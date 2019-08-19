@@ -51,11 +51,13 @@
                     <div class="row pt-5 mt-3">
                         <div class="col-md-12 mb-3">
                             <div class="intro-info-content text-center">
-                                <h1 class="display-3 mb-5 wow fadeInDown"
+                                <h1 class="display-3 mb-5 wow fadeInDown text-light"
+                                    style="text-shadow: black 0.04em 0.04em 0.1em; text-align: center;"
                                     data-wow-delay="0.3s">{{ object.fake_name }}
                                 </h1>
-                                <hr>
-                                <h5 class="text-uppercase mb-5 mt-1 font-weight-bold wow fadeInDown"
+                                <hr style="text-shadow: black 0.04em 0.04em 0.1em; text-align: center;">
+                                <h5 class="text-uppercase text-light mb-5 mt-1 font-weight-bold wow fadeInDown"
+                                    style="text-shadow: black 0.04em 0.04em 0.1em; text-align: center;"
                                     data-wow-delay="0.3s">{{ object.description }}</h5>
                                 <hr>
                             </div>
@@ -76,7 +78,7 @@
                     <!--Grid column-->
                     <div class="col-md-12 mb-4" style="margin-top: -100px;">
                         <div class="avatar mx-auto">
-                            <img src="{{ object.image_profile.url }}"
+                            <img src="{{ object.image_thumb.url }}"
                                  class="img-fluid rounded-circle z-depth-1"
                                  alt="First sample avatar image">
                         </div>
@@ -279,7 +281,7 @@
                                     {% for p in object.clientphoto_set.all %}
                                         <figure class="col-md-4">
                                             <a class="portfolio-box" href="{{ p.photo.url }}"
-                                               data-size="1024x768">
+                                               data-size="768x1024">
                                                 <img src="{{ p.photo.url }}"
                                                      class="img-fluid" alt="{{ p.photo }}">
                                             </a>
