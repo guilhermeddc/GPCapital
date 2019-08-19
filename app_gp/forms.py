@@ -1,6 +1,7 @@
-from django.forms import forms, ImageField, CharField, ChoiceField, widgets, ModelChoiceField, ModelMultipleChoiceField, \
-    modelformset_factory, \
-    CheckboxSelectMultiple, MultiWidget, FileField, Select
+from django.forms import (forms, ImageField, CharField, ChoiceField, widgets, ModelChoiceField,
+                          ModelMultipleChoiceField,
+                          modelformset_factory,
+                          CheckboxSelectMultiple, MultiWidget, FileField, Select, SelectMultiple)
 from django.utils.html import format_html
 
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
@@ -17,27 +18,31 @@ class CityForm(forms.Form):
 class SearchClientForm(forms.Form):
     category = ModelChoiceField(queryset=ChoicesHairColor.objects.all(),
                                 required=False,
-                                widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
-                                                     'multiple searchable': 'Search here..',
-                                                     'style': 'z-index:4;'}))
+                                widget=SelectMultiple(
+                                    attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                           # 'multiple searchable': 'Search here..',
+                                           'style': 'z-index:4;'}))
 
     genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(),
                              required=False,
-                             widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
-                                                  'multiple searchable': 'Search here..',
-                                                  'style': 'z-index:4;'}))
+                             widget=SelectMultiple(
+                                 attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                        # 'multiple searchable': 'Search here..',
+                                        'style': 'z-index:4;'}))
 
     eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(),
                            required=False,
-                           widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
-                                                'multiple searchable': 'Search here..',
-                                                'style': 'z-index:4;'}))
+                           widget=SelectMultiple(
+                               attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                      # 'multiple searchable': 'Search here..',
+                                      'style': 'z-index:4;'}))
 
     ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(),
                                  required=False,
-                                 widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
-                                                      'multiple searchable': 'Search here..',
-                                                      'style': 'z-index:4;'}))
+                                 widget=SelectMultiple(
+                                     attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                                            # 'multiple searchable': 'Search here..',
+                                            'style': 'z-index:4;'}))
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):
