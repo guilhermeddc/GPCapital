@@ -157,18 +157,21 @@ class ChoicesNeighborhoods(models.Model):
         return self.neighborhood
 
 
-def get_file_name_ext(filepath):
-    base_name = os.path.basename(filepath)
-    name, ext = os.path.splitext(base_name)
-    return name, ext
+def get_basic_path(instance):
+    return f'Media/{instance.genre}/{instance.name}'
 
 
-def upload_image_path(instance, filename):
-    new_file_name = random.randint(1, 99999)
-    name, ext = get_file_name_ext(filename)
-    final_file_name = '{new_file_name}{ext}'.format(new_file_name=new_file_name, ext=ext)
-    return 'clients_photos/{new_file_name}/{final_file_name}'.format(new_file_name=new_file_name,
-                                                                     final_file_name=final_file_name)
+def profile_upload_path(instance, filename):
+    basic_path = get_basic_path(instance)
+    path = f'{basic_path}/profile/{filename}'
+    return path
+
+
+def thumb_upload_path(instance, filename):
+    basic_path = get_basic_path(instance)
+    name, ext = os.path.splitext(filename)
+    path = f'{basic_path}/profile/{name}_thumb.{ext}'
+    return path
 
 
 class ChoicesStatus(models.Model):
@@ -222,8 +225,8 @@ class Client(models.Model):
     fake_name = models.CharField('Apelido', max_length=50, null=True, blank=True)
     short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
-    image_profile = models.ImageField('Imagem de Perfil', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
-    image_thumb = models.ImageField('Thumb', upload_to=UPLOAD_PHOTOS_PATH, null=True, blank=True)
+    image_profile = models.ImageField('Imagem de Perfil', upload_to=profile_upload_path, null=True, blank=True)
+    image_thumb = models.ImageField('Thumb', upload_to=thumb_upload_path, null=True, blank=True)
     profile_priority = models.PositiveIntegerField('Prioridade do Profile', null=False)
     city = models.ForeignKey('ChoicesCity', verbose_name='Cidade', null=False, on_delete=models.DO_NOTHING)
     age = models.PositiveIntegerField('Idade', null=True, blank=True)

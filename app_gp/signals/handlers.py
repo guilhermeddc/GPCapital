@@ -37,23 +37,29 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
                 os.remove(old_instance.image_profile.path)
             if os.path.isfile(old_instance.image_thumb.path):
                 os.remove(old_instance.image_thumb.path)
+            create_thumb = True
+        else:
+            create_thumb = False
+
     else:   # FIRST TIME
         # Create slug
         slug = slugify(instance.fake_name)
         instance.slug = unique_slug_generator(instance=instance, slug=slug)
+        create_thumb = True
 
-    # THIS CODE WIL RUN IN THE FIRST TIME AND CHANGE
-    # Create thumbnail from profile image
-    img = Image.open(instance.image_profile)
+    # THIS CODE WIL RUN IN EVERY SAVE
+    if create_thumb:
+        # Create thumbnail from profile image
+        img = Image.open(instance.image_profile)
 
-    # Change image to thumbnail with specific size and save in a BytesIO
-    img.thumbnail((300, 300), Image.ANTIALIAS)
-    thumb_io = BytesIO()
-    img.save(thumb_io, img.format, quality=100)
+        # Change image to thumbnail with specific size and save in a BytesIO
+        img.thumbnail((300, 300), Image.ANTIALIAS)
+        thumb_io = BytesIO()
+        img.save(thumb_io, img.format, quality=100)
 
-    # Create the filename and save the thumb image to thumb field
-    file_name = f'{os.path.splitext(instance.image_profile.name)[0]}_thumb.jpg'
-    instance.image_thumb.save(file_name, ContentFile(thumb_io.getvalue()), save=False)
+        # Create the filename and save the thumb image to thumb field
+        file_name = f'{os.path.splitext(instance.image_profile.name)[0]}_thumb.jpg'
+        instance.image_thumb.save(file_name, ContentFile(thumb_io.getvalue()), save=False)
 
 
 @receiver(models.signals.post_delete, sender=Client)
