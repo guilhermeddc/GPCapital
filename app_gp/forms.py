@@ -9,8 +9,16 @@ from app_gp.models import *
 from django.forms.models import inlineformset_factory
 
 
+class CityChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f'{obj.state}-{obj.city}'
+
+
 class CitySearchForm(forms.Form):
-    search_city = ModelChoiceField(queryset=ChoicesCity.objects.all())
+    city = CityChoiceField(queryset=ChoicesCity.objects.worked_cities(),
+                           required=True,
+                           widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-primary',
+                                                'searchable': 'Search here..'}))
 
 
 class SearchClientForm(forms.Form):
@@ -33,7 +41,6 @@ class SearchClientForm(forms.Form):
                                  required=False,
                                  widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
                                                       'multiple searchable': 'Search here..'}))
-
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):

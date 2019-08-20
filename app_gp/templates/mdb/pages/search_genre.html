@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Material Design Bootstrap Template</title>
+    {% include 'mdb/base/components/css.html' %}
+</head>
+<body>
+{% for genre in genres %}
+    <div class="col-sm-6 col-lg-4 col-xl-6">
+        <label>{{ genre.site_name }}</label>
+        <a class="portfolio-box" href="{% url 'index'%}">
+            <img class="img-fluid" src="{{ genre.representative_image.url }}"/>
+            <div class="portfolio-box-caption">
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+{% include 'mdb/base/components/scripts.html' %}
+</body>
+</html>

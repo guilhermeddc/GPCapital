@@ -1,5 +1,5 @@
 from string import Template
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from django.conf import settings
 from django.core.paginator import Paginator
@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 
 from app_gp.models import *
-from django.views.generic import TemplateView, ListView, FormView, CreateView, DetailView
+from django.views.generic import View, TemplateView, ListView, FormView, CreateView, DetailView
 from django.db.models import Q
 from django.forms.models import ModelForm
 from django.forms.widgets import Widget, CheckboxSelectMultiple
@@ -37,24 +37,36 @@ class CreateClientView(CreateView):
         return context
 
 
-class SearchCityView(ListView):
-    model = ChoicesCity
-    context_object_name = 'cities'
-    template_name = 'mdb/pages/search_form.html'
-    form = CitySearchForm()
+class SearchCityView(TemplateView):
+    form_class = CitySearchForm
+    template_name = 'mdb/pages/search_city.html'
 
-    def get_queryset(self):
-
-        list_filter_dict = {
-            'hair_id': self.request.GET.get('search_city', default=None)
-        }
-        # self.form = SearchClientForm(self.request.GET)
-        queryset = Client.objects.actives(list_filter_dict)
-        return queryset
+    def get(self, request, *args, **kwargs):
+        city_id = request.GET.get('city', default=None)
+        if city_id is not None:
+            city = ChoicesCity.objects.filter(id=city_id)
+            city_name = city[0].city
+            state = city[0].state
+            return redirect('search_genre_view', state=state, city_name=city_name)
+        return super(SearchCityView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['search_form'] = self.form
+        context['city'] = self.form_class
+        return context
+
+
+class SearchGenresView(TemplateView):
+    template_name = 'mdb/pages/search_genre.html'
+
+    def get(self, request, *args, **kwargs):
+        # self.state = kwargs['state']
+        # self.city_name = kwargs['city_name']
+        return super(SearchGenresView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['genres'] = ChoicesGenre.objects.genre_by_city(context['state'], context['city_name'])
         return context
 
 

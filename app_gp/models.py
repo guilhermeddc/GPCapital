@@ -19,8 +19,26 @@ class ChoicesEthnicity(models.Model):
         return self.ethnicity
 
 
+class GenresQuerySet(models.QuerySet):
+    def genre_by_city(self, state, city_name):
+        city_id = ChoicesCity.objects.filter(state=state, city=city_name)[0].id
+        existing_genre_in_city = Client.objects.values('genre_id').distinct().filter(city_id=city_id)
+        return ChoicesGenre.objects.filter(id__in=existing_genre_in_city)
+
+
+class GenreManager(models.Manager):
+    def get_queryset(self):
+        return GenresQuerySet(self.model, using=self._db)
+
+    def genre_by_city(self, state, city_name):
+        return self.get_queryset().genre_by_city(state, city_name)
+
+
 class ChoicesGenre(models.Model):
+    objects = GenreManager()
     genre = models.CharField('Gênero', max_length=50, null=False, blank=False)
+    site_name = models.CharField('Nome no site', max_length=50, null=False, blank=False)
+    representative_image = models.ImageField('Imagem representativa', upload_to='Media', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Gênero'
@@ -125,7 +143,24 @@ class ChoicesStates(models.Model):
         return self.uf
 
 
+class CitiesQuerySet(models.QuerySet):
+
+    def worked_cities(self):
+        existing_city_ids = Client.objects.values('city_id').distinct().order_by('city_id')
+        return ChoicesCity.objects.filter(id__in=existing_city_ids)
+
+
+class CityManager(models.Manager):
+    def get_queryset(self):
+        return CitiesQuerySet(self.model, using=self._db)
+
+    def worked_cities(self):
+        return self.get_queryset().worked_cities()
+
+
 class ChoicesCity(models.Model):
+    objects = CityManager()
+
     city = models.CharField('Cidade', max_length=255, null=False)
     state = models.CharField('UF', max_length=5, null=False)
     cep = models.CharField('Cep', max_length=10, null=True)
@@ -140,7 +175,7 @@ class ChoicesCity(models.Model):
         db_table = 'choices_city'
 
     def __str__(self):
-        return f'{self.state}-{self.city}'
+        return f'{self.city}'
 
 
 class ChoicesNeighborhoods(models.Model):

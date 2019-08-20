@@ -1,12 +1,25 @@
-{% extends 'mdb/base/base.html' %}
 {% load static %}
-{% block title %}
-    {{ block.super }} - Melhores garotas de programa da capital
-{% endblock %}
-{% block content %}
-{#    {% include 'mdb/base/components/intro.html' %}#}
-{#    {% include 'mdb/components/gallery.html' %}#}
-{#    {% include 'component/terms.html' %}#}
-{#    {% include 'mdb/components/streak.html' %}#}
-{#    {% include 'component/contact.html' %}#}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Material Design Bootstrap Template</title>
+    {% include 'mdb/base/components/css.html' %}
+</head>
+<body>
+            <form type="" action="" method="get">
+                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for=""></label>
+                        {{ city }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-xl">Buscar</button>
+            </form>
+{% include 'mdb/base/components/scripts.html' %}
+</body>
+</html>
