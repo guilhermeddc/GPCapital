@@ -78,9 +78,13 @@
                     <!--Grid column-->
                     <div class="col-md-12 mb-4" style="margin-top: -100px;">
                         <div class="avatar mx-auto">
-                            <img src="{{ object.image_thumb.url }}"
+                            <img src="{{ object.image_profile.url }}"
                                  class="img-fluid rounded-circle z-depth-1"
-                                 alt="First sample avatar image">
+                                 alt="First sample avatar image"
+                                 style="min-width: 300px;
+                                        max-height: 300px;
+                                        object-fit: cover;
+                                        object-position: center;">
                         </div>
                         <h3 class="my-3 font-weight-bold">
                             <strong>{{ object.fake_name }}</strong>
@@ -137,27 +141,78 @@
                             <!--Grid column-->
                             <div class="col-md-12">
                                 <!--Projects section v.4-->
-                                <section class="text-center mb-5">
-                                    <!--Grid row-->
-                                    <div class="row mb-4">
-                                        {% for v in object.clientvideo_set.all %}
-                                            <!--Grid column-->
-                                            <div class="col-md-12 mb-4 align-content-center zoom">
-                                                <video class="video-fluid z-depth-1" autoplay loop controls muted>
-                                                    <source src="{{ v.video.url }}"
-                                                            type="video/mp4"/>
-                                                </video>
+                                <!-- Grid row -->
+                                <div class="row">
+                                    {% for v in object.clientvideo_set.all %}
+                                        <!-- Grid column -->
+                                        <div class="col-lg-6 col-md-12 mb-6">
+
+                                            <!--Modal: Name-->
+                                            <div class="modal fade" id="modal1" tabindex="-1" role="dialog"
+                                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+
+                                                    <!--Content-->
+                                                    <div class="modal-content">
+                                                        <!--Body-->
+                                                        <div class="modal-body mb-0 p-0">
+                                                            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                <video controls="controls"
+                                                                       class="embed-responsive-item">
+                                                                    <source src="{{ v.video.url }}" type="video/mp4"/>
+                                                                </video>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Footer-->
+                                                        <div class="modal-footer justify-content-center">
+                                                            <span class="mr-4 pink-text">
+                                                                <strong>Entre em contato!!!</strong>
+                                                            </span>
+                                                            <!--WhatsApp-->
+                                                            <a href="https://api.whatsapp.com/send?phone=550{{ client.fake_name }}"
+                                                               type="button" class="btn-floating btn-sm btn-fb"><i
+                                                                    class="fab fa-whatsapp"></i></a>
+                                                            <!--Phone-->
+                                                            <a type="button" class="btn-floating btn-sm btn-tw"><i
+                                                                    class="fas fa-phone"></i></a>
+                                                            <a href="tel:{{ client.fake_name }}"><strong>Colocar variavel de telefone</strong></a>
+                                                            <button type="button"
+                                                                    class="btn btn-outline-pink btn-rounded btn-md ml-4"
+                                                                    data-dismiss="modal"><strong>Fechar</strong>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <hr>
-                                        {% endfor %}
-                                    </div>
-                                    <!--Grid row-->
-                                </section>
-                                <!--Projects section v.4-->
+                                            <div class="card card-cascade wider">
+                                                <div class="view view-cascade overlay zoom" style="display: inline-block;
+                                                                                                   position: relative;
+                                                                                                   margin: 15px 0">
+                                                    <a>
+                                                        <video class="img-fluid z-depth-1"
+                                                               src="{{ v.video.url }}"
+                                                               data-toggle="modal" data-target="#modal1">
+                                                        </video>
+                                                        <div class="flex-center">
+                                                            <i style="position: absolute;
+                                                                      top: 45%;
+                                                                      right: 45%;
+                                                                      font-size: 40px;
+                                                                      color: whitesmoke;
+                                                                      pointer-events: none;
+                                                                      cursor: default;
+                                                                      text-shadow: 0 0 5px black;"
+                                                               class="fas fa-play"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
-                            <!--Grid column-->
                         </div>
-                        <!--Grid row-->
                     </div>
                     <!--/.Panel 1-->
 
@@ -170,11 +225,8 @@
                             <br>
                             <hr>
                             <br>
-                            <!-- Grid row -->
                             <div class="row mb-lg-4 text-center text-md-left">
-                                <!-- Grid column -->
                                 <div class="col-lg-6 col-md-12 mb-4">
-
                                     <div class="list-group-flush">
                                         <ul>
                                             <li class="list-group-item text-uppercase">
@@ -194,12 +246,8 @@
                                             <li class="list-group-item">Bunda: {{ object.butt }}</li>
                                         </ul>
                                     </div>
-
                                 </div>
-                                <!-- Grid column -->
-                                <!-- Grid column -->
                                 <div class="col-lg-6 col-md-12 mb-4">
-
                                     <div class="list-group-flush">
                                         <ul>
                                             <li class="list-group-item text-uppercase">
@@ -211,7 +259,6 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-
                                     <div class="list-group-flush">
                                         <ul>
                                             <li class="list-group-item text-uppercase">
@@ -223,7 +270,6 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-
                                     <div class="list-group-flush">
                                         <ul>
                                             <li class="list-group-item text-uppercase">
@@ -235,48 +281,18 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-
                                 </div>
-                                <!-- Grid column -->
-
-
                             </div>
-                            <!-- Grid row -->
-
-                            <!-- Grid row -->
-                            <div class="row text-center text-md-left">
-
-                                <!-- Grid column -->
-                                <div class="col-lg-6 col-md-12 mb-4">
-
-
-                                </div>
-                                <!-- Grid column -->
-
-                                <!-- Grid column -->
-                                <div class="col-lg-6 col-md-12 mb-4">
-
-
-                                </div>
-                                <!-- Grid column -->
-
-                            </div>
-                            <!-- Grid row -->
-
                         </section>
-                        <!-- Section: Team v.3 -->
                     </div>
                     <!--/.Panel 2-->
 
                     <!--Panel 3-->
                     <div class="tab-pane fade show active" id="panel13" role="tabpanel">
                         <br>
-
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-12">
-
                                 <div id="mdb-lightbox-ui"></div>
-
                                 <div class="mdb-lightbox no-gutters">
                                     {% for p in object.clientphoto_set.all %}
                                         <figure class="col-md-4">
@@ -287,44 +303,16 @@
                                             </a>
                                         </figure>
                                     {% endfor %}
-
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <!--/.Panel 3-->
-
-                    <!--Panel 4-->
-                    <div class="tab-pane fade" id="panel14" role="tabpanel">
-                        <br>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
-                            doloribus
-                            reiciendis
-                            molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                            porro
-                            voluptate
-                            odit minima.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta
-                            doloribus
-                            reiciendis
-                            molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                            porro
-                            voluptate
-                            odit minima.</p>
-
-                    </div>
-                    <!--/.Panel 4-->
-
                 </div>
                 <hr>
             </section>
             <!--Section: Tabs-->
-
         </div>
-
     </main>
     <!--Main Layout-->
 {% endblock %}

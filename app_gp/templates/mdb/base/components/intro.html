@@ -1,14 +1,37 @@
 {% load static %}
 
+<style>
+    @media (max-width: 740px) {
+        .logo-bg{
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+        .logo-bg{
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 560px) and (max-width: 660px) {
+        .logo-bg{
+            width: 100%;
+        }
+    }
+</style>
+
 <!-- Intro Section -->
 <div class="view jarallax" data-jarallax='{"speed": 0.2}'
-     style="background-image: url({% static 'assets/img/bg.jpg' %}); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+     style="background-image: url({% static 'assets/img/bg.jpg' %});
+             background-repeat: no-repeat;
+             background-size: cover;
+             background-position: center center;">
     <div class="mask rgba-black-light">
         <div class="container h-100 d-flex justify-content-center align-items-center">
             <div class="row pt-5 mt-3">
                 <div class="col-md-12">
                     <div class="text-center">
-                        <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central">
+                        <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central" class="logo-bg">
                         <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
                         <h5 class="text-uppercase mb-5 white-text wow fadeInDown" data-wow-delay="0.4s">
                             <strong>Cabelos & opcao 2</strong></h5>

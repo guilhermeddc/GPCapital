@@ -1,87 +1,78 @@
 {% load static %}
 
 <!--Footer-->
-<footer class="page-footer pt-4 mt-4   text-center text-md-left">
+<footer class="page-footer pt-4 mt-4 text-center text-md-left">
 
     <!--Footer Links-->
     <div class="container">
         <div class="row">
-
             <!--First column-->
-            <div class="col-md-3">
-                <h5 class="text-uppercase font-weight-bold">About author </h5>
-                <p>Here you can use rows and columns here to organize your footer content.</p>
+            <div class="col-md-6">
+                <a href="{% url 'index' %}"><img class="nav-logo" src="{% static 'assets/img/navi-logo.png' %}"
+                                                 alt="logo GPCapital"></a>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s.</p>
             </div>
             <!--/.First column-->
-
             <hr class="w-100 clearfix d-md-none">
-
             <!--Second column-->
-            <div class="col-md-2 ml-auto">
-                <h5 class="text-uppercase font-weight-bold">Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
-                    <li><a href="#!">Link 3</a></li>
-                    <li><a href="#!">Link 4</a></li>
+            <div class="col-md-3 ml-auto text-center">
+                <h5 class="text-uppercase font-weight-bold">Site Map</h5>
+                <ul class="list-unstyled text-center">
+                    <li><a href="{% url 'index' %}#gallery">Galeria</a></li>
+                    <li><a href="{% url 'index' %}#terms">Termos</a></li>
+                    <li><a href="{% url 'index' %}#advertise">Anuncie</a></li>
+                    <li><a href="{% url 'index' %}#contact">Contato</a></li>
                 </ul>
             </div>
             <!--/.Second column-->
-
             <hr class="w-100 clearfix d-md-none">
-
             <!--Third column-->
-            <div class="col-md-2 ml-auto">
-                <h5 class="text-uppercase font-weight-bold">Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
-                    <li><a href="#!">Link 3</a></li>
-                    <li><a href="#!">Link 4</a></li>
+            <div class="col-md-3 ml-auto text-center">
+                <h5 class="text-uppercase font-weight-bold">Links Úteis</h5>
+                <ul class="list-unstyled text-center">
+                    <li><a href="{% url 'index' %}">Link 1</a></li>
+                    <li><a href="{% url 'index' %}">Link 2</a></li>
+                    <li><a href="{% url 'index' %}">Link 3</a></li>
+                    <li><a href="{% url 'index' %}">Link 4</a></li>
                 </ul>
             </div>
             <!--/.Third column-->
-
             <hr class="w-100 clearfix d-md-none">
-
-            <!--Fourth column-->
-            <div class="col-md-2 ml-auto">
-                <h5 class="text-uppercase font-weight-bold">Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
-                    <li><a href="#!">Link 3</a></li>
-                    <li><a href="#!">Link 4</a></li>
-                </ul>
-            </div>
-            <!--/.Fourth column-->
-
         </div>
     </div>
     <!--/.Footer Links-->
-
     <hr>
-
     <!--Social buttons-->
-    <div class="text-center mb-3">
-
-        <a class="btn-floating btn-fb"><i class="fab fa-facebook-f"> </i></a>
-        <a class="btn-floating btn-tw"><i class="fab fa-twitter"> </i></a>
-        <a class="btn-floating btn-gplus"><i class="fab fa-google-plus-g"> </i></a>
-        <a class="btn-floating btn-li"><i class="fab fa-linkedin-in"> </i></a>
-        <a class="btn-floating btn-dribbble"><i class="fab fa-dribbble"> </i></a>
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3 row flex-center">
+                    <a href="https://api.whatsapp.com/send?phone=55055999937833"><i
+                            class="col fab fa-whatsapp fa-3x mb-3 sr-contact pink-text"
+                            data-aos="zoom-in"
+                            data-aos-duration="300" data-aos-once="true">
+                    </i></a>
+                    <a href="tel:055999937833"><i class="col fa fa-phone fa-3x mb-3 sr-contact pink-text"
+                                                  data-aos="zoom-in"
+                                                  data-aos-duration="300" data-aos-once="true">
+                    </i></a>
+                    <a href="mailto:contato@gpcapital.com,br"><i class="col fa fa-envelope fa-3x mb-3 sr-contact pink-text"
+                                                              data-aos="zoom-in"
+                                                              data-aos-duration="300" data-aos-delay="300"
+                                                              data-aos-once="true">
+                    </i></a>
+                </div>
+            </div>
+        </div>
     </div>
     <!--/.Social buttons-->
-
     <!--Copyright-->
     <div class="footer-copyright py-3 text-center">
         <div class="container-fluid">
-            © 2019 Copyright: <a href="https://gpcapital.combr"> GPCapital.com.br </a>
-
+            © 2019 Copyright: <a href="https://www.gpcapital.com.br"> GPCapital.com.br </a>
         </div>
     </div>
     <!--/.Copyright-->
-
 </footer>
 <!--/.Footer-->
