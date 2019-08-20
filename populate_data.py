@@ -15,6 +15,7 @@ choices_eye_color_ids = list(ChoicesEyeColor.objects.all().values_list('pk', fla
 choices_hair_color_ids = list(ChoicesHairColor.objects.all().values_list('pk', flat=True))
 choices_ethnicity_ids = list(ChoicesEthnicity.objects.all().values_list('pk', flat=True))
 choices_status_ids = list(ChoicesStatus.objects.all().values_list('pk', flat=True))
+choices_languages_ids = list(ChoicesLanguage.objects.all().values_list('pk', flat=True))
 
 choices_customer_services_ids = list(ChoicesCustomerService.objects.all().values_list('pk', flat=True))
 choices_place_ids = list(ChoicesPlace.objects.all().values_list('pk', flat=True))
@@ -113,21 +114,27 @@ def create_client(
         fake_name = fake.first_name_female()
         image_profile = girls_image_profile_list[fake.random_int(min=0, max=count_girls_image_profile)]
 
+    contact_email = fake.ascii_safe_email()
     short_description = fake.sentence(nb_words=4, variable_nb_words=True, ext_word_list=None)
     description = fake.paragraph(nb_sentences=4, variable_nb_sentences=True, ext_word_list=None)
+    phone = fake.msisdn()
     age = fake.pyint(min_value=18, max_value=40, step=1)
     weight = round(random.uniform(55, 77), 1)
     height = round(random.uniform(1.58, 1.75), 2)
     bust = round(random.uniform(86, 97), 1)
     waist = round(random.uniform(78, 87), 1)
+    hip = round(random.uniform(80, 90), 1)
     butt = round(random.uniform(95, 102), 1)
+    foot = round(random.uniform(35, 39), 1)
     service_charged = fake.pyint(min_value=150, max_value=450, step=50)
 
     dict_person = {
         'name': name,
         'fake_name': fake_name,
+        'contact_email': contact_email,
         'short_description': short_description,
         'description': description,
+        'phone': phone,
         'image_profile': image_profile,
         'profile_priority': profile_priority,
         'city_id': city_id,
@@ -136,8 +143,10 @@ def create_client(
         'height': height,
         'bust': bust,
         'waist': waist,
+        'hip': hip,
         'butt': butt,
         'service_charged': service_charged,
+        'foot': foot,
         'genre_id': genre_id,
         'eye_id': eye_id,
         'hair_id': hair_id,
@@ -149,6 +158,21 @@ def create_client(
     client.save()
 
     return client
+
+
+def create_client_languages(client_id):
+    len_choice = len(choices_languages_ids)
+    r_number = random.randint(1, len_choice)
+    samples = random.sample(choices_languages_ids, r_number)
+
+    for i in samples:
+        dict_inter_client_language = {
+            'client_id': client_id,
+            'language_id': i,
+        }
+
+        inter_client_language = InterClientLanguages(**dict_inter_client_language)
+        inter_client_language.save()
 
 
 def create_client_customer_services(client_id):
@@ -266,6 +290,7 @@ if __name__ == '__main__':
 
                 person = create_client(status_id=1, genre_id=genre_id, city_id=city_id, profile_priority=priority)
 
+                create_client_languages(client_id=person.id)
                 create_client_customer_services(client_id=person.id)
                 create_client_places_accepted(client_id=person.id)
                 create_client_payments_accepted(client_id=person.id)

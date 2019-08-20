@@ -192,6 +192,19 @@ class ChoicesNeighborhoods(models.Model):
         return self.neighborhood
 
 
+class ChoicesLanguage(models.Model):
+    language = models.CharField('Idioma', max_length=50, null=False)
+
+    class Meta:
+        verbose_name = 'Idioma'
+        verbose_name_plural = 'Idiomas'
+        ordering = ['language']
+        db_table = 'choices_language'
+
+    def __str__(self):
+        return self.language
+
+
 def get_basic_path(instance):
     return f'Media/{instance.genre}/{instance.name}'
 
@@ -262,9 +275,10 @@ class Client(models.Model):
     slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
     name = models.CharField('Nome', max_length=50, null=True, blank=True)
     fake_name = models.CharField('Apelido', max_length=50, null=True, blank=True)
+    contact_email = models.EmailField('E-mail', unique=True, null=True)
     short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
-    phone = models.CharField('Celular', max_length=11, blank=True, null=True)
+    phone = models.CharField('Celular', max_length=15, blank=True, null=True)
     image_profile = models.ImageField('Imagem de Perfil', upload_to=profile_upload_path, null=True, blank=True)
     image_thumb = models.ImageField('Thumb', upload_to=thumb_upload_path, null=True, blank=True)
     profile_priority = models.PositiveIntegerField('Prioridade do Profile', null=False)
@@ -290,6 +304,10 @@ class Client(models.Model):
                                blank=True)
 
     # MANY TO MANY RELATIONS
+    languages = models.ManyToManyField('ChoicesLanguage',
+                                       verbose_name='Idiomas',
+                                       through='InterClientLanguages')
+
     customer_services = models.ManyToManyField('ChoicesCustomerService',
                                                verbose_name='Atendimentos',
                                                through='InterClientCustomerServices')
@@ -344,6 +362,18 @@ class ClientVideo(models.Model):
 
 
 # INTERMEDIATE MODELS
+class InterClientLanguages(models.Model):
+    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    language = models.ForeignKey('ChoicesLanguage', on_delete=models.DO_NOTHING, null=False)
+
+    class Meta:
+        verbose_name = 'Idioma'
+        verbose_name_plural = 'Idiomas'
+        ordering = ['client', 'language']
+        unique_together = ('client', 'language')
+        db_table = 'inter_client_languages'
+
+
 class InterClientCustomerServices(models.Model):
     client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
     customer_service = models.ForeignKey('ChoicesCustomerService', on_delete=models.DO_NOTHING, null=False)
