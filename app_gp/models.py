@@ -274,7 +274,9 @@ class Client(models.Model):
     height = models.FloatField('Altura(m)', null=True, blank=True)
     bust = models.FloatField('Busto(cm)', null=True, blank=True)
     waist = models.FloatField('Cintura(cm)', null=True, blank=True)
+    hip = models.FloatField('Quadril(cm)', null=True, blank=True)
     butt = models.FloatField('Bunda(cm)', null=True, blank=True)
+    foot = models.FloatField('Pés', null=True, blank=True)
     service_charged = models.DecimalField('Cachê/Hr', max_digits=6, decimal_places=2, null=True, blank=True)
 
     # ONE TO ONE RELATIONS
