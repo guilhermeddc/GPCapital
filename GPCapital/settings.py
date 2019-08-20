@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'GPCapital.wsgi.application'
 
 DATABASES = {
     'default': dict(ENGINE='django.db.backends.postgresql_psycopg2', NAME='gpcapital', USER='postgres',
-                    PASSWORD='29gu09il', HOST='localhost', PORT='5432')
+                    PASSWORD='trismegistos', HOST='localhost', PORT='5432')
 }
 
 # Password validation
