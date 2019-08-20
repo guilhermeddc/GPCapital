@@ -264,6 +264,7 @@ class Client(models.Model):
     fake_name = models.CharField('Apelido', max_length=50, null=True, blank=True)
     short_description = models.TextField('Pequena descrição', max_length=50, null=True, blank=True)
     description = models.TextField('Descrição', max_length=250, null=True, blank=True)
+    phone = models.CharField('Celular', max_length=11, blank=True, null=True)
     image_profile = models.ImageField('Imagem de Perfil', upload_to=profile_upload_path, null=True, blank=True)
     image_thumb = models.ImageField('Thumb', upload_to=thumb_upload_path, null=True, blank=True)
     profile_priority = models.PositiveIntegerField('Prioridade do Profile', null=False)
