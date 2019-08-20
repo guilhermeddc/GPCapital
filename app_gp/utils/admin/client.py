@@ -3,6 +3,7 @@ from django.forms import widgets, ModelForm, ModelChoiceField, fields
 
 # from app_gp.utils.admin.city import TabularClientCities
 from app_gp.models import *
+from app_gp.utils.admin.languages import TabularClientLanguages
 from app_gp.utils.admin.photo import TabularClientPhotos
 from app_gp.utils.admin.video import TabularClientVideos
 from app_gp.utils.admin.widgets.PictureShow import PictureShowWidget
@@ -16,7 +17,7 @@ class TabularClientCustomerServices(admin.TabularInline):
 
 class ClientAdmin(admin.ModelAdmin):
     # form = ModelFormClient
-    inlines = [TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos]
+    inlines = [TabularClientLanguages, TabularClientCustomerServices, TabularClientPhotos, TabularClientVideos]
     # change_form_template = 'admin/change2.html'
     list_display = ('slug', 'fake_name', 'name', 'city', 'profile_priority', 'genre', 'age', 'hair', 'eye',
                     'ethnicity', 'status', 'weight', 'height', 'bust', 'waist', 'butt')

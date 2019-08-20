@@ -7,7 +7,7 @@ class VideoForm(ModelForm):
 
     class Meta:
         model = ClientVideo
-        fields = ('video', )
+        fields = ('video', 'order_priority')
         widgets = {
             'video': VideoShowWidget()
         }
