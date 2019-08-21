@@ -19,6 +19,7 @@ admin.site.register(Client, ClientAdmin)
 # ADMIN CHOICES
 admin.site.register(ChoicesEthnicity)
 admin.site.register(ChoicesGenre)
+admin.site.register(ChoicesEyeColor)
 admin.site.register(ChoicesCustomerService)
 admin.site.register(ChoicesPlace)
 admin.site.register(ChoicesPaymentAccepted)

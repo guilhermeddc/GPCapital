@@ -30,7 +30,7 @@ class HomeView(TemplateView):
 class CreateClientView(CreateView):
     model = Client
     template_name = 'create_client_test.html'
-    fields = ('name',)
+    fields = ('name', )
 
     def get_context_data(self, **kwargs):
         context = super(CreateClientView, self).get_context_data(**kwargs)
@@ -69,6 +69,7 @@ class SearchGenresView(TemplateView):
 
 
 class ClientList(ListView):
+
     model = Client
     context_object_name = 'clients'
     template_name = 'mdb/pages/index.html'
@@ -79,6 +80,7 @@ class ClientList(ListView):
     # filtro = self.request.GET.getlist(key, default=None)
     # filtro = self.request.GET.get(key, default=None)
     def get_queryset(self):
+
         list_filter_dict = {
             'city_slug': self.kwargs['city_slug'],
             'genre_slug': self.kwargs['genre_slug'],
@@ -98,9 +100,11 @@ class ClientList(ListView):
 
 
 class ClientDetail(DetailView):
+
     template_name = 'mdb/pages/profile-page.html'
     model = Client
     slug_url_kwarg = 'client_slug'
+
 
     # def get_queryset(self):
     #     self.photos = get_object_or_404(Photo, name=self.kwargs['pk'])
@@ -108,13 +112,13 @@ class ClientDetail(DetailView):
 
     # def get_context_data(self, **kwargs):
     #     context = super(ClientList, self).get_context_data(**kwargs)
-    # context['photos'] = Photo.objects.filter(client=self.kwargs['pk'])
-    # return context
+        # context['photos'] = Photo.objects.filter(client=self.kwargs['pk'])
+        # return context
 
 
 class ClientView(CreateView):
     model = Client
-    template_name = 'admin/tabular.html'
+    template_name = 'admin/table.html'
 
     # state = ModelChoiceField(queryset=ChoicesStates.objects.all())
     # city = ModelChoiceField(queryset=ChoicesCity.objects.filter(state=7))
@@ -131,6 +135,7 @@ class ClientView(CreateView):
     #     state_id = request.GET.get('state')
     #     cities = ChoicesCity.objects.filter(sate=state_id).order_by('name')
     #     return render(request, 'load_cities.html', {'cities': cities})
+
 
 # class CityListView(TemplateView):
 #     template_name = 'table.html'
@@ -149,19 +154,19 @@ class ClientView(CreateView):
 #     page = request.GET.get('page')
 #     cities = paginator.get_page(page)
 
-# if request.method == 'POST':
-#     # show_value = request.POST.get('show_number', '')
-#     paginator = Paginator(cities, show_value)
-#     page = request.GET.get('page')
-#     cities = paginator.get_page(page)
-#     return render(request, 'table.html', {'object_list': cities, 'form': form})
-#
-# else:
-#     paginator = Paginator(cities, show_value)
-#     page = request.GET.get('page')
-#     cities = paginator.get_page(page)
+    # if request.method == 'POST':
+    #     # show_value = request.POST.get('show_number', '')
+    #     paginator = Paginator(cities, show_value)
+    #     page = request.GET.get('page')
+    #     cities = paginator.get_page(page)
+    #     return render(request, 'table.html', {'object_list': cities, 'form': form})
+    #
+    # else:
+    #     paginator = Paginator(cities, show_value)
+    #     page = request.GET.get('page')
+    #     cities = paginator.get_page(page)
 
-# return render(request, 'table.html', {'object_list': cities, 'form': form})
+    # return render(request, 'table.html', {'object_list': cities, 'form': form})
 
 
 # class CityView(FormView):
@@ -178,14 +183,14 @@ class ClientView(CreateView):
 #         return context
 #
 #     def form_valid(self, form):
-# form = MyForm(data=self.request.POST)
-# form = MyForm(data=form.cleaned_data)
-# form.show_number = form.cleaned_data["show_number"]
-# This method is called when valid form data has been POSTed.
-# It should return an HttpResponse.
-# form.send_email()
-# print "form is valid"
-# return super(CityView, self).form_valid(form)
+        # form = MyForm(data=self.request.POST)
+        # form = MyForm(data=form.cleaned_data)
+        # form.show_number = form.cleaned_data["show_number"]
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+        # print "form is valid"
+        # return super(CityView, self).form_valid(form)
 
 
 # class CityListView(ListView):
@@ -207,8 +212,8 @@ class ClientView(CreateView):
 #             if form.is_valid():
 #                 self.paginate_by = form.show_number
 
-# def get_paginate_by(self, queryset):
-#     return self.kwargs['items_per_page']
+    # def get_paginate_by(self, queryset):
+    #     return self.kwargs['items_per_page']
 
 
 # class Thumbnail(Widget):
