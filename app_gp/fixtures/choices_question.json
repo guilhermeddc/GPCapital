@@ -1,0 +1,464 @@
+[
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 1,
+  "fields": {
+    "question": "Como voc\u00ea gosta que seus clientes lhe tratem?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 2,
+  "fields": {
+    "question": "Como voc\u00ea se excita mais?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 3,
+  "fields": {
+    "question": "Como voc\u00ea se veste para receber seus clientes?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 4,
+  "fields": {
+    "question": "E a bebida que mais gosta qual seria?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 5,
+  "fields": {
+    "question": "\u00c9 mais caseira ou de balada?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 6,
+  "fields": {
+    "question": "Em qual momento do dia voc\u00ea se sente sexy?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 7,
+  "fields": {
+    "question": "Gosta de animais? Tem algum bichinho?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 8,
+  "fields": {
+    "question": "Gosta de atender mulheres?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 9,
+  "fields": {
+    "question": "Gosta de ver filmes porn\u00f4s?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 10,
+  "fields": {
+    "question": "Goza mais f\u00e1cil na penetra\u00e7\u00e3o ou com sexo oral?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 11,
+  "fields": {
+    "question": "J\u00e1 teve experi\u00eancias com pessoas do mesmo sexo?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 12,
+  "fields": {
+    "question": "O que um homem deve fazer pra chamar sua aten\u00e7\u00e3o?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 13,
+  "fields": {
+    "question": "O que um homem deve fazer pra te encher de tes\u00e3o?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 14,
+  "fields": {
+    "question": "O que voc\u00ea acha que os homens n\u00e3o sabem sobre as mulheres e deveriam saber?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 15,
+  "fields": {
+    "question": "O que voc\u00ea ama comer mas tem que maneirar pra n\u00e3o engordar?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 16,
+  "fields": {
+    "question": "O que voc\u00ea faz para se manter assim bonita?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 17,
+  "fields": {
+    "question": "O que voc\u00ea gosta de fazer nas horas livres?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 18,
+  "fields": {
+    "question": "O que voc\u00ea gosta de fazer pra dar prazer a um homem?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 19,
+  "fields": {
+    "question": "O que voc\u00ea mais ama no mundo?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 20,
+  "fields": {
+    "question": "O que voc\u00ea usa para dormir?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 21,
+  "fields": {
+    "question": "Prefere cinema ou teatro?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 22,
+  "fields": {
+    "question": "Prefere dias quentes pra usar decote e mostrar as pernas ou o frio pra se sentir elegante?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 23,
+  "fields": {
+    "question": "Quais s\u00e3o seus principais charmes de conquista? Suas armas de sedu\u00e7\u00e3o?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 24,
+  "fields": {
+    "question": "Qual a cor de lingerie voc\u00ea acha que fica perfeita em voc\u00ea?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 25,
+  "fields": {
+    "question": "Qual a fantasia sexual que gostaria de realizar?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 26,
+  "fields": {
+    "question": "Qual a maior loucura sexual que voc\u00ea j\u00e1 fez?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 27,
+  "fields": {
+    "question": "Qual a parte do seu corpo te d\u00e1 maior prazer quando tocam?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 28,
+  "fields": {
+    "question": "Qual a parte do seu corpo voc\u00ea mais gosta?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 29,
+  "fields": {
+    "question": "Qual a pior cantada voc\u00ea j\u00e1 recebeu?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 30,
+  "fields": {
+    "question": "Qual a principal qualidade que um homem deve ter?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 31,
+  "fields": {
+    "question": "Qual culin\u00e1ria voc\u00ea prefere para um jantar rom\u00e2ntico?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 32,
+  "fields": {
+    "question": "Qual elogio voc\u00ea mais recebe?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 33,
+  "fields": {
+    "question": "Qual fantasia sexual realizou que foi inesquec\u00edvel?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 34,
+  "fields": {
+    "question": "Qual foi a maior proposta indecente que voc\u00ea j\u00e1 recebeu?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 35,
+  "fields": {
+    "question": "Qual o perfume voc\u00ea usa como arma de sedu\u00e7\u00e3o?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 36,
+  "fields": {
+    "question": "Qual parte do seu corpo voc\u00ea acha mais sensual?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 37,
+  "fields": {
+    "question": "Qual posi\u00e7\u00e3o mais gosta de fazer sexo?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 38,
+  "fields": {
+    "question": "Qual posi\u00e7\u00e3o voc\u00ea mais gosta na cama?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 39,
+  "fields": {
+    "question": "Qual principal elogio voc\u00ea gosta de receber?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 40,
+  "fields": {
+    "question": "Qual seu prato preferido?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 41,
+  "fields": {
+    "question": "Qual sua bebida preferida?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 42,
+  "fields": {
+    "question": "Qual sua posi\u00e7\u00e3o sexual preferida?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 43,
+  "fields": {
+    "question": "Qual tipo de homem mexe com voc\u00ea?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 44,
+  "fields": {
+    "question": "Quando voc\u00ea est\u00e1 carente o que voc\u00ea faz?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 45,
+  "fields": {
+    "question": "Quantos orgasmos que voc\u00ea j\u00e1 teve em uma rela\u00e7\u00e3o?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 46,
+  "fields": {
+    "question": "Que tipo de balada voc\u00ea curte?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 47,
+  "fields": {
+    "question": "Que tipo de cantada funciona com voc\u00ea?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 48,
+  "fields": {
+    "question": "Que tipo de m\u00fasica voc\u00ea gosta de ouvir?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 49,
+  "fields": {
+    "question": "Se eu fosse te levar pra jantar, qual restaurante voc\u00ea ia preferir?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 50,
+  "fields": {
+    "question": "Se eu te desse uma passagem pra voc\u00ea viajar pra qualquer lugar do mundo, que lugar escolheria?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 51,
+  "fields": {
+    "question": "Tem algum presente que voc\u00ea gosta de ganhar?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 52,
+  "fields": {
+    "question": "Tem alguma fantasia n\u00e3o realizada?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 53,
+  "fields": {
+    "question": "Um assunto que voc\u00ea acha chato?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 54,
+  "fields": {
+    "question": "Um lugar hoje para descansar?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 55,
+  "fields": {
+    "question": "Uma assunto que voc\u00ea n\u00e3o gosta?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 56,
+  "fields": {
+    "question": "Voc\u00ea acha que vale tudo entre quatro paredes?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 57,
+  "fields": {
+    "question": "Voc\u00ea curtiu a experi\u00eancia?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 58,
+  "fields": {
+    "question": "Voc\u00ea \u00e9 mais de dar prazer ou de receber?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 59,
+  "fields": {
+    "question": "Voc\u00ea \u00e9 mais do tipo assanhada ou t\u00edmida?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 60,
+  "fields": {
+    "question": "Voc\u00ea gosta de fazer sexo ouvindo m\u00fasica?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 61,
+  "fields": {
+    "question": "Voc\u00ea j\u00e1 se apaixonou por algum cliente?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 62,
+  "fields": {
+    "question": "Voc\u00ea j\u00e1 transou com dois homens ao mesmo tempo?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 63,
+  "fields": {
+    "question": "Voc\u00ea j\u00e1 transou em locais p\u00fablicos?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 64,
+  "fields": {
+    "question": "Voc\u00ea parte pra cima quando quer conquistar algu\u00e9m ou fica na sua?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 65,
+  "fields": {
+    "question": "Voc\u00ea pratica algum esporte?"
+  }
+},
+{
+  "model": "app_gp.choicesquestion",
+  "pk": 66,
+  "fields": {
+    "question": "Voc\u00ea prefere viajar pra praia ou pro campo?"
+  }
+}
+]
