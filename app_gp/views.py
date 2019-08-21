@@ -103,7 +103,7 @@ class ClientDetail(DetailView):
 
     template_name = 'mdb/pages/profile-page.html'
     model = Client
-    slug_field = 'client_slug'
+    slug_url_kwarg = 'client_slug'
 
 
     # def get_queryset(self):
