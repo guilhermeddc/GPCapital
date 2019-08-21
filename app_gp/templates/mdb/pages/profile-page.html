@@ -19,6 +19,13 @@
             .jarallax {
                 height: 70vh;
             }
+
+            .avatar img {
+                min-width: 250px;
+                max-height: 250px;
+                object-fit: cover;
+                object-position: center;
+            }
         }
 
         @media (min-width: 800px) and (max-width: 850px) {
@@ -28,12 +35,33 @@
             .jarallax {
                 height: 70vh;
             }
+
+            .avatar img {
+                min-width: 200px;
+                max-height: 200px;
+                object-fit: cover;
+                object-position: center;
+            }
         }
 
         @media (min-width: 560px) and (max-width: 660px) {
             header .jarallax h5 {
                 display: none !important;
             }
+
+            .avatar img {
+                min-width: 150px;
+                max-height: 150px;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        .avatar img {
+            min-width: 300px;
+            max-height: 300px;
+            object-fit: cover;
+            object-position: center;
         }
     </style>
     <body>
@@ -69,7 +97,7 @@
     </header>
     <!--Main Navigation-->
     <!--Main Layout-->
-    <main>
+    <main class="content">
         <div class="container">
             <!--Section: Team v.1-->
             <section class="text-center team-section">
@@ -79,12 +107,8 @@
                     <div class="col-md-12 mb-4" style="margin-top: -100px;">
                         <div class="avatar mx-auto">
                             <img src="{{ object.image_profile.url }}"
-                                 class="img-fluid rounded-circle z-depth-1"
-                                 alt="First sample avatar image"
-                                 style="min-width: 300px;
-                                        max-height: 300px;
-                                        object-fit: cover;
-                                        object-position: center;">
+                                 class="img-fluid rounded-circle z-depth-1 "
+                                 alt="Avatar image">
                         </div>
                         <h3 class="my-3 font-weight-bold">
                             <strong>{{ object.fake_name }}</strong>
@@ -176,7 +200,8 @@
                                                             <!--Phone-->
                                                             <a type="button" class="btn-floating btn-sm btn-tw"><i
                                                                     class="fas fa-phone"></i></a>
-                                                            <a href="tel:{{ client.fake_name }}"><strong>Colocar variavel de telefone</strong></a>
+                                                            <a href="tel:{{ client.fake_name }}"><strong>Colocar
+                                                                variavel de telefone</strong></a>
                                                             <button type="button"
                                                                     class="btn btn-outline-pink btn-rounded btn-md ml-4"
                                                                     data-dismiss="modal"><strong>Fechar</strong>
