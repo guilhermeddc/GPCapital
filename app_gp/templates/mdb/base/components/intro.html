@@ -36,7 +36,7 @@
                         <h5 class="text-uppercase mb-5 white-text wow fadeInDown" data-wow-delay="0.4s">
                             <strong>Cabelos & opcao 2</strong></h5>
                         <div class="col-lg-12 mx-auto">
-                            <form type="" action="{% url 'index' %}" method="get">
+                            <form type="" action="{% url 'clients_view' city_slug=city_slug genre_slug=genre.site_name %}" method="get">
                                 <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">

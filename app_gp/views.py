@@ -44,7 +44,7 @@ class SearchCityView(TemplateView):
     def get(self, request, *args, **kwargs):
         city_slug = request.GET.get('city', default=None)
         if city_slug is not None:
-            return redirect('search_genre_view', slug=city_slug)
+            return redirect('search_genre_view', city_slug=city_slug)
         return super(SearchCityView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -63,7 +63,8 @@ class SearchGenresView(TemplateView):
     #
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['genres'] = ChoicesGenre.objects.genre_by_city_slug(context['slug'])
+        city_slug = kwargs['city_slug']
+        context['genres'] = ChoicesGenre.objects.get_genres_by_city(city_slug)
         return context
 
 

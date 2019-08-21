@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', SearchCityView.as_view(), name='search_city_view'),
-    path('<slug:slug>/', SearchGenresView.as_view(), name='search_genre_view'),
-    path('index', ClientList.as_view(), name='index'),
+    path('<slug:city_slug>/', SearchGenresView.as_view(), name='search_genre_view'),
+    path('<slug:city_slug>/<slug:genre_slug>/', ClientList.as_view(), name='clients_view'),
     path('client/<slug:slug>/', ClientDetail.as_view(), name='detail'),
     path('create/', CreateClientView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
