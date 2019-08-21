@@ -9,24 +9,24 @@
     <title>Material Design Bootstrap Template</title>
     {% include 'mdb/base/components/css.html' %}
     <style>
-    @media (max-width: 740px) {
-        .logo-bg{
-            width: 100%;
+        @media (max-width: 740px) {
+            .logo-bg {
+                width: 100%;
+            }
         }
-    }
 
-    @media (min-width: 800px) and (max-width: 850px) {
-        .logo-bg{
-            width: 100%;
+        @media (min-width: 800px) and (max-width: 850px) {
+            .logo-bg {
+                width: 100%;
+            }
         }
-    }
 
-    @media (min-width: 560px) and (max-width: 660px) {
-        .logo-bg{
-            width: 100%;
+        @media (min-width: 560px) and (max-width: 660px) {
+            .logo-bg {
+                width: 100%;
+            }
         }
-    }
-</style>
+    </style>
 </head>
 <body>
 <!-- Intro Section -->
@@ -40,21 +40,25 @@
             <div class="row pt-5 mt-3">
                 <div class="col-md-12">
                     <div class="text-center">
-                        <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central" class="logo-bg wow fadeIn" data-wow-delay="0.4s">
+                        <a href="{% url 'search_city_view' %}">
+                            <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central"
+                                 class="logo-bg wow fadeIn"
+                                 data-wow-delay="0.4s">
+                        </a>
+                        <h2 class="text-capitalize test-skin text-light">ESCOLHA SUA CIDADE:</h2>
                         <hr class="hr-light mt-4 wow fadeIn" data-wow-delay="0.4s">
                         <div class="col-lg-12 mx-auto">
                             <form type="" action="" method="get">
-                            <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <label for=""></label>
-                                    {{ city }}
+                                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                                <div class="form-row">
+                                    <div class="form-group col">
+                                        {{ city }}
+                                    </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-outline-white wow fadeIn"
-                                    data-wow-delay="0.4s">Buscar
-                            </button>
-                        </form>
+                                <button type="submit" class="btn btn-outline-white wow fadeIn"
+                                        data-wow-delay="0.4s">Buscar
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

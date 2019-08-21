@@ -58,8 +58,8 @@
         }
 
         .avatar img {
-            min-width: 300px;
-            max-height: 300px;
+            min-width: 250px;
+            max-height: 250px;
             object-fit: cover;
             object-position: center;
         }
@@ -118,8 +118,6 @@
                         <a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-whatsapp grey-text"></i></a>
                         <!--Phone-->
                         <a class="p-2 m-2 fa-lg tw-ic"><i class="fas fa-phone grey-text"></i></a>
-                        <!--Email-->
-                        <a class="p-2 m-2 fa-lg ins-ic"><i class="fas fa-at grey-text"></i></a>
                         <br>
                         <hr>
                         <h3 class="text-center">Serviços Aceitos</h3>
@@ -190,21 +188,17 @@
 
                                                         <!--Footer-->
                                                         <div class="modal-footer justify-content-center">
-                                                            <span class="mr-4 pink-text">
-                                                                <strong>Entre em contato!!!</strong>
-                                                            </span>
                                                             <!--WhatsApp-->
-                                                            <a href="https://api.whatsapp.com/send?phone=550{{ client.fake_name }}"
+                                                            <a href="https://api.whatsapp.com/send?phone=550{{ client.phone }}{{ client.fake_name }}"
                                                                type="button" class="btn-floating btn-sm btn-fb"><i
                                                                     class="fab fa-whatsapp"></i></a>
                                                             <!--Phone-->
                                                             <a type="button" class="btn-floating btn-sm btn-tw"><i
                                                                     class="fas fa-phone"></i></a>
-                                                            <a href="tel:{{ client.fake_name }}"><strong>Colocar
-                                                                variavel de telefone</strong></a>
+                                                            <a href="tel:{{ client.fake_name }}"><strong>{{ client.phone }}</strong></a>
                                                             <button type="button"
                                                                     class="btn btn-outline-pink btn-rounded btn-md ml-4"
-                                                                    data-dismiss="modal"><strong>Fechar</strong>
+                                                                    data-dismiss="modal"><i class="fas fa-times"></i>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -318,16 +312,18 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-md-12">
                                 <div id="mdb-lightbox-ui"></div>
-                                <div class="mdb-lightbox no-gutters">
+                                <div class="mdb-lightbox">
+
                                     {% for p in object.clientphoto_set.all %}
                                         <figure class="col-md-4">
-                                            <a class="portfolio-box" href="{{ p.photo.url }}"
-                                               data-size="768x1024">
+                                            <a class="white white-text white-ic white-skin bg-white" href="{{ p.photo.url }}"
+                                               data-size="768x1090">
                                                 <img src="{{ p.photo.url }}"
                                                      class="img-fluid" alt="{{ p.photo }}">
                                             </a>
                                         </figure>
                                     {% endfor %}
+
                                 </div>
                             </div>
                         </div>

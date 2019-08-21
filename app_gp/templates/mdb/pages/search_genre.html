@@ -40,14 +40,20 @@
             <div class="row pt-5 mt-3">
                 <div class="col-md-12">
                     <div class="text-center">
-                        <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central" class="logo-bg wow fadeIn" data-wow-delay="0.4s">
+                        <a href="{% url 'search_city_view' %}">
+                            <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central"
+                                 class="logo-bg wow fadeIn" data-wow-delay="0.4s">
+                        </a>
+                        <h2 class="text-capitalize test-skin text-light">ESCOLHA O GENERO:</h2>
                         <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
                         <div class="row mx-auto">
+                        <div id="mdb-lightbox-ui"></div>
                             {% for genre in genres %}
-                                <div class="col align-content-center justify-content-center flex-center mt-4 wow fadeIn" data-wow-delay="0.4s">
+                                <div class="col flex-center mt-4 wow fadeIn"
+                                     data-wow-delay="0.4s">
                                     <a class="mdb-main-label waves-effect waves-light"
                                        href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
-                                        <div class="avatar mx-auto">
+                                        <div class="avatar mx-auto mdb-lightbox zoom">
                                             <img src="{{ genre.representative_image.url }}"
                                                  class="img-fluid rounded-circle z-depth-1"
                                                  alt="genero"

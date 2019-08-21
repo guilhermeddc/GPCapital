@@ -22,32 +22,32 @@ class CitySearchForm(forms.Form):
                            widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
                                                 'data-wow-delay': '0.4s',
                                                 'is_hidden': 'False',
-                                                'searchable': "BUSQUE A CIDADE DESEJADA..."}))
+                                                'searchable': "ESCOLHA SUA CIDADE:"}))
 
 
 class SearchClientForm(forms.Form):
-    category = ModelChoiceField(queryset=ChoicesHairColor.objects.all(),
+    category = ModelChoiceField(queryset=ChoicesHairColor.objects.all(), empty_label="Todos",
                                 initial=False,
                                 required=False,
                                 widget=SelectMultiple(
                                     attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
                                            'data-wow-delay': '0.4s'}))
 
-    genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(),
+    genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(), empty_label="Todos",
                              initial=False,
                              required=False,
                              widget=SelectMultiple(
                                  attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
                                         'data-wow-delay': '0.4s'}))
 
-    eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(),
+    eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(), empty_label="Todos",
                            initial=False,
                            required=False,
                            widget=SelectMultiple(
                                attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
                                       'data-wow-delay': '0.4s'}))
 
-    ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(),
+    ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(), empty_label="Todos",
                                  initial=False,
                                  required=False,
                                  widget=SelectMultiple(
