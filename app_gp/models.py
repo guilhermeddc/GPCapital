@@ -161,7 +161,7 @@ class CityManager(models.Manager):
 class ChoicesCity(models.Model):
     objects = CityManager()
 
-    slug = models.SlugField('slug', max_length=255, blank=False, unique=True, null=True)
+    slug = models.SlugField('slug', max_length=255, unique=True)
     state = models.ForeignKey('ChoicesStates', verbose_name='Estado', on_delete=models.DO_NOTHING, null=False)
     city = models.CharField('Cidade', max_length=255, null=False)
     cep = models.CharField('Cep', max_length=10, null=True)
