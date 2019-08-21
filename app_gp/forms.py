@@ -19,7 +19,8 @@ class CitySearchForm(forms.Form):
                            initial=True,
                            required=True,
                            to_field_name='slug',
-                           widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form',
+                           widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                                                'data-wow-delay': '0.4s',
                                                 'is_hidden': 'False',
                                                 'searchable': "BUSQUE A CIDADE DESEJADA..."}))
 
@@ -29,23 +30,29 @@ class SearchClientForm(forms.Form):
                                 initial=False,
                                 required=False,
                                 widget=SelectMultiple(
-                                    attrs={'class': 'mdb-select colorful-select dropdown-dark md-form'}))
+                                    attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                                           'data-wow-delay': '0.4s'}))
 
     genre = ModelChoiceField(queryset=ChoicesGenre.objects.all(),
                              initial=False,
                              required=False,
-                             widget=SelectMultiple(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form'}))
+                             widget=SelectMultiple(
+                                 attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                                        'data-wow-delay': '0.4s'}))
 
     eye = ModelChoiceField(queryset=ChoicesEyeColor.objects.all(),
                            initial=False,
                            required=False,
-                           widget=SelectMultiple(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form'}))
+                           widget=SelectMultiple(
+                               attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                                      'data-wow-delay': '0.4s'}))
 
     ethnicity = ModelChoiceField(queryset=ChoicesEthnicity.objects.all(),
                                  initial=False,
                                  required=False,
                                  widget=SelectMultiple(
-                                     attrs={'class': 'mdb-select colorful-select dropdown-dark md-form'}))
+                                     attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                                            'data-wow-delay': '0.4s'}))
 
 # class PictureWidget(widgets.Widget):
 #     def render(self, name, value, attrs=None, renderer=None):
