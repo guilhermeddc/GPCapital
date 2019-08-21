@@ -3,14 +3,14 @@
   "model": "app_gp.choiceslanguage",
   "pk": 1,
   "fields": {
-    "language": "Portugu\u00eas"
+    "language": "Português"
   }
 },
 {
   "model": "app_gp.choiceslanguage",
   "pk": 2,
   "fields": {
-    "language": "Ingl\u00eas"
+    "language": "Inglês"
   }
 },
 {
@@ -24,7 +24,7 @@
   "model": "app_gp.choiceslanguage",
   "pk": 4,
   "fields": {
-    "language": "Alem\u00e3o"
+    "language": "Alemão"
   }
 }
 ]

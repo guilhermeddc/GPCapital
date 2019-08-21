@@ -3,28 +3,28 @@
   "model": "app_gp.choicesplace",
   "pk": 1,
   "fields": {
-    "place": "Aceita viajar"
+    "place": "Local próprio"
   }
 },
 {
   "model": "app_gp.choicesplace",
   "pk": 2,
   "fields": {
-    "place": "Domic\u00edlio"
+    "place": "Hotéis / Motéis / Domicílio"
   }
 },
 {
   "model": "app_gp.choicesplace",
   "pk": 3,
   "fields": {
-    "place": "Hot\u00e9is / Mot\u00e9is"
+    "place": "Eventos"
   }
 },
 {
   "model": "app_gp.choicesplace",
   "pk": 4,
   "fields": {
-    "place": "Local pr\u00f3prio"
+    "place": "Viagens"
   }
 }
 ]

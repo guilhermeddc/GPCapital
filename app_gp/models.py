@@ -210,7 +210,7 @@ class ChoicesLanguage(models.Model):
 
 
 def get_basic_path(instance):
-    return f'Media/{instance.genre}/{instance.name}'
+    return f'Media/{instance.city.slug}/{instance.genre.slug}/{instance.slug}'
 
 
 def profile_upload_path(instance, filename):

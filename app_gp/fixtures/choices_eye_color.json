@@ -3,84 +3,28 @@
   "model": "app_gp.choiceseyecolor",
   "pk": 1,
   "fields": {
-    "eye_color": "azul-clara"
+    "eye_color": "Azuis"
   }
 },
 {
   "model": "app_gp.choiceseyecolor",
   "pk": 2,
   "fields": {
-    "eye_color": "azul-esverdeada"
+    "eye_color": "Castanhos"
   }
 },
 {
   "model": "app_gp.choiceseyecolor",
   "pk": 3,
   "fields": {
-    "eye_color": "cinza"
+    "eye_color": "Verdes"
   }
 },
 {
   "model": "app_gp.choiceseyecolor",
   "pk": 4,
   "fields": {
-    "eye_color": "azul-escura"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 5,
-  "fields": {
-    "eye_color": "azul-cinza com manchas amarelas/marrons"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 6,
-  "fields": {
-    "eye_color": "cinza-verde com manchas amarelas/marrons"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 7,
-  "fields": {
-    "eye_color": "verde"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 8,
-  "fields": {
-    "eye_color": "verde com manchas amarelas/marrons"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 9,
-  "fields": {
-    "eye_color": "avel\u00e3 (castanho-esverdeada)"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 10,
-  "fields": {
-    "eye_color": "\u00e2mbar"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 11,
-  "fields": {
-    "eye_color": "castanho-clara"
-  }
-},
-{
-  "model": "app_gp.choiceseyecolor",
-  "pk": 12,
-  "fields": {
-    "eye_color": "castanho escura"
+    "eye_color": "Cor não listada"
   }
 }
 ]
