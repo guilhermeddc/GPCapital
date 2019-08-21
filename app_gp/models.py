@@ -247,22 +247,6 @@ class ClientQuerySet(models.QuerySet):
 
     def actives(self, list_filter_dict):
         select = "SELECT id FROM Client WHERE status_id = 1"
-        city_and = "city_id in (SELECT id from choices_city WHERE slug='brasilia-df')"
-        genre_and = "genre_id in (SELECT id from choices_genre WHERE slug='mulheres')"
-        # SELECT
-        # id
-        # FROM
-        # Client
-        # WHERE
-        # status_id = 1
-        # AND
-        # city_id in (SELECT id from choices_city WHERE slug='brasilia-df')
-        # AND
-        # genre_id in (SELECT id from choices_genre WHERE slug='mulheres')
-        # ORDER
-        # BY
-        # profile_priority
-        # ASC
 
         and_filter = ''
         params = []
@@ -355,9 +339,7 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        city_slug = self.city.slug
-        genre_slug = self.genre.slug
-        return reverse('city.genre.client.details', args=[city_slug, genre_slug, self.slug])
+        return reverse('city.genre.client.details', args=[self.city.slug, self.genre.slug, self.slug])
 
     class Meta:
         verbose_name = 'Cliente'
