@@ -17,6 +17,7 @@ class CityChoiceField(ModelChoiceField):
 class CitySearchForm(forms.Form):
     city = CityChoiceField(queryset=ChoicesCity.objects.worked_cities(),
                            required=True,
+                           to_field_name='slug',
                            widget=Select(attrs={'class': 'mdb-select md-form colorful-select dropdown-primary',
                                                 'searchable': 'Search here..'}))
 

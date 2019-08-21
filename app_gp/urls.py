@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', SearchCityView.as_view(), name='search_city_view'),
-    path('<state>-<city_name>', SearchGenresView.as_view(), name='search_genre_view'),
+    path('<slug:slug>/', SearchGenresView.as_view(), name='search_genre_view'),
     path('index', ClientList.as_view(), name='index'),
     path('client/<slug:slug>/', ClientDetail.as_view(), name='detail'),
     path('create/', CreateClientView.as_view()),

@@ -20,8 +20,9 @@ class ChoicesEthnicity(models.Model):
 
 
 class GenresQuerySet(models.QuerySet):
-    def genre_by_city(self, state, city_name):
-        city_id = ChoicesCity.objects.filter(state=state, city=city_name)[0].id
+
+    def genre_by_city_slug(self, slug):
+        city_id = ChoicesCity.objects.filter(slug=slug).first().id
         existing_genre_in_city = Client.objects.values('genre_id').distinct().filter(city_id=city_id)
         return ChoicesGenre.objects.filter(id__in=existing_genre_in_city)
 
@@ -30,8 +31,8 @@ class GenreManager(models.Manager):
     def get_queryset(self):
         return GenresQuerySet(self.model, using=self._db)
 
-    def genre_by_city(self, state, city_name):
-        return self.get_queryset().genre_by_city(state, city_name)
+    def genre_by_city_slug(self, slug):
+        return self.get_queryset().genre_by_city_slug(slug)
 
 
 class ChoicesGenre(models.Model):

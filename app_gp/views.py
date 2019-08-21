@@ -42,12 +42,9 @@ class SearchCityView(TemplateView):
     template_name = 'mdb/pages/search_city.html'
 
     def get(self, request, *args, **kwargs):
-        city_id = request.GET.get('city', default=None)
-        if city_id is not None:
-            city = ChoicesCity.objects.filter(id=city_id)
-            city_name = city[0].city
-            state = city[0].state
-            return redirect('search_genre_view', state=state, city_name=city_name)
+        city_slug = request.GET.get('city', default=None)
+        if city_slug is not None:
+            return redirect('search_genre_view', slug=city_slug)
         return super(SearchCityView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -59,14 +56,14 @@ class SearchCityView(TemplateView):
 class SearchGenresView(TemplateView):
     template_name = 'mdb/pages/search_genre.html'
 
-    def get(self, request, *args, **kwargs):
-        # state = request.GET.get('state', default=None)
-        # city_name = request.GET.get('city_name', default=None)
-        return super(SearchGenresView, self).get(request, *args, **kwargs)
-
+    # def get(self, request, *args, **kwargs):
+    #     # state = request.GET.get('state', default=None)
+    #     # city_name = request.GET.get('city_name', default=None)
+    #     return super(SearchGenresView, self).get(request, *args, **kwargs)
+    #
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['genres'] = ChoicesGenre.objects.genre_by_city(context['state'], context['city_name'])
+        context['genres'] = ChoicesGenre.objects.genre_by_city_slug(context['slug'])
         return context
 
 
