@@ -339,9 +339,7 @@ class Client(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        city_slug = self.city.slug
-        genre_slug = self.genre.slug
-        return reverse('city.genre.client.details', args=[city_slug, genre_slug, self.slug])
+        return reverse('city.genre.client.details', args=[self.city.slug, self.genre.slug, self.slug])
 
     class Meta:
         verbose_name = 'Cliente'
