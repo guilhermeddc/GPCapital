@@ -13,7 +13,7 @@
 {% for genre in genres %}
     <div class="col-sm-6 col-lg-4 col-xl-6">
         <label>{{ genre.site_name }}</label>
-        <a class="portfolio-box" href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.site_name %}">
+        <a class="portfolio-box" href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
             <img class="img-fluid" src="{{ genre.representative_image.url }}"/>
             <div class="portfolio-box-caption">
             </div>

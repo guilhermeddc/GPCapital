@@ -37,6 +37,8 @@ class GenreManager(models.Manager):
 
 class ChoicesGenre(models.Model):
     objects = GenreManager()
+
+    slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
     genre = models.CharField('Gênero', max_length=50, null=False, blank=False)
     site_name = models.CharField('Nome no site', max_length=50, null=False, blank=False)
     representative_image = models.ImageField('Imagem representativa', upload_to='Media', null=True, blank=True)
@@ -245,14 +247,39 @@ class ClientQuerySet(models.QuerySet):
 
     def actives(self, list_filter_dict):
         select = "SELECT id FROM Client WHERE status_id = 1"
+        city_and = "city_id in (SELECT id from choices_city WHERE slug='brasilia-df')"
+        genre_and = "genre_id in (SELECT id from choices_genre WHERE slug='mulheres')"
+        # SELECT
+        # id
+        # FROM
+        # Client
+        # WHERE
+        # status_id = 1
+        # AND
+        # city_id in (SELECT id from choices_city WHERE slug='brasilia-df')
+        # AND
+        # genre_id in (SELECT id from choices_genre WHERE slug='mulheres')
+        # ORDER
+        # BY
+        # profile_priority
+        # ASC
 
         and_filter = ''
         params = []
         for key, list_items in list_filter_dict.items():
             if len(list_items) and list_items != ['']:
                 # TO AVOID SQL INJECTION WE NEED TO PASS PARAMETERS IN FUNCTION RAW
-                params.append(tuple(list_items))
-                and_filter = f' {and_filter} AND {key} in %s'
+                if key == 'city_slug':
+                    params.append(list_items)
+                    and_filter = f'{and_filter} AND city_id in (SELECT id from choices_city WHERE slug=%s)'
+                    continue
+                if key == 'genre_slug':
+                    params.append(list_items)
+                    and_filter = f'{and_filter} AND genre_id in (SELECT id from choices_genre WHERE slug=%s)'
+                    continue
+                else:
+                    params.append(tuple(list_items))
+                    and_filter = f'{and_filter} AND {key} in %s'
 
         order_by = 'ORDER BY profile_priority ASC'
         select_and_filter = f'{select} {and_filter} {order_by}'
@@ -325,6 +352,12 @@ class Client(models.Model):
     services_offered = models.ManyToManyField('ChoicesServicesOffered',
                                               verbose_name='Serviços Oferecidos',
                                               through='InterClientServicesOffered')
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        city_slug = self.city.slug
+        genre_slug = self.genre.slug
+        return reverse('city.genre.client.details', args=[city_slug, genre_slug, self.slug])
 
     class Meta:
         verbose_name = 'Cliente'

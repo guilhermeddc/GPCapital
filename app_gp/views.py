@@ -82,8 +82,9 @@ class ClientList(ListView):
     def get_queryset(self):
 
         list_filter_dict = {
+            'city_slug': self.kwargs['city_slug'],
+            'genre_slug': self.kwargs['genre_slug'],
             'hair_id': self.request.GET.getlist('category', default=[]),
-            'genre_id': self.request.GET.getlist('genre', default=[]),
             'eye_id': self.request.GET.getlist('eye', default=[]),
             'ethnicity_id': self.request.GET.getlist('ethnicity', default=[])
         }
@@ -102,6 +103,8 @@ class ClientDetail(DetailView):
 
     template_name = 'mdb/pages/profile-page.html'
     model = Client
+    slug_field = 'client_slug'
+
 
     # def get_queryset(self):
     #     self.photos = get_object_or_404(Photo, name=self.kwargs['pk'])

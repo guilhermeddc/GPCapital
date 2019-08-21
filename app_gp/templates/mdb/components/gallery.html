@@ -23,7 +23,7 @@
                         <div class="card card-cascade wider">
                             <div class="view view-cascade overlay zoom" style="margin: 0 8px">
                                 <img src="{{ client.image_profile.url }}" class="img-fluid" alt="client photo">
-                                <a href="{% url 'detail' slug=client.slug %}">
+                                <a href="{{ client.get_absolute_url }}">
                                     <div class="mask rgba-white-slight"></div>
                                     <div class="mask flex-center waves-effect waves-light">
                                         <h4 class="text-uppercase text-light"
