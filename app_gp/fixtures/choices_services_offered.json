@@ -38,98 +38,210 @@
   "model": "app_gp.choicesservicesoffered",
   "pk": 6,
   "fields": {
-    "services": "Chuva dourada"
+    "services": "Brinquedos eróticos"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 7,
   "fields": {
-    "services": "Domina\u00e7\u00e3o"
+    "services": "Banho juntos"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 8,
   "fields": {
-    "services": "Festas e Eventos"
+    "services": "Chuva dourada"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 9,
   "fields": {
-    "services": "Fetiche"
+    "services": "Chuva negra"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 10,
   "fields": {
-    "services": "Invers\u00e3o de pap\u00e9is"
+    "services": "Dominação"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 11,
   "fields": {
-    "services": "Massagem"
+    "services": "Deixa fotografar"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 12,
   "fields": {
-    "services": "Massagem T\u00e2ntrica"
+    "services": "Dupla penetração"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 13,
   "fields": {
-    "services": "Masturba\u00e7\u00e3o"
+    "services": "Fetiche"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 14,
   "fields": {
-    "services": "Passiva"
+    "services": "Gozo facial"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 15,
   "fields": {
-    "services": "Sexo anal"
+    "services": "Inversão de papéis"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 16,
   "fields": {
-    "services": "Sexo grupal"
+    "services": "Masturbação"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 17,
   "fields": {
-    "services": "Sexo oral"
+    "services": "Massagem prostática"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 18,
   "fields": {
-    "services": "Sexo vaginal"
+    "services": "Massagem tântrica"
   }
 },
 {
   "model": "app_gp.choicesservicesoffered",
   "pk": 19,
   "fields": {
+    "services": "Massagem erótica"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 20,
+  "fields": {
+    "services": "Massagem tailandesa"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 21,
+  "fields": {
+    "services": "Massagem espanhola"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 22,
+  "fields": {
+    "services": "Massagem nuru"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 23,
+  "fields": {
+    "services": "Massagem relaxante"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 24,
+  "fields": {
+    "services": "Massagem com óleo e mãos"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 25,
+  "fields": {
+    "services": "Massagem com os pés"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 26,
+  "fields": {
+    "services": "Namoradinha"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 27,
+  "fields": {
+    "services": "Passiva"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 28,
+  "fields": {
+    "services": "Podolatria"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 29,
+  "fields": {
+    "services": "Seios naturais"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 30,
+  "fields": {
     "services": "Striptease"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 31,
+  "fields": {
+    "services": "Swingers"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 32,
+  "fields": {
+    "services": "Sexo anal"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 33,
+  "fields": {
+    "services": "Sexo grupal"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 34,
+  "fields": {
+    "services": "Sexo oral"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 35,
+  "fields": {
+    "services": "Sexo vaginal"
   }
 }
 ]

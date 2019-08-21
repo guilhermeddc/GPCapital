@@ -19,5 +19,12 @@
   "fields": {
     "customer_service": "Homens"
   }
+},
+{
+  "model": "app_gp.choicescustomerservice",
+  "pk": 4,
+  "fields": {
+    "customer_service": "Deficiente física"
+  }
 }
 ]
