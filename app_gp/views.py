@@ -105,10 +105,8 @@ class ClientDetail(DetailView):
     model = Client
     slug_url_kwarg = 'client_slug'
 
-
-    # def get_queryset(self):
-    #     self.photos = get_object_or_404(Photo, name=self.kwargs['pk'])
-    #     return Photo.objects.filter(publisher=self.photos)
+    def get_object(self, queryset=None):
+        return get_object_or_404(Client, pk=self.kwargs.get('pk', None))
 
     # def get_context_data(self, **kwargs):
     #     context = super(ClientList, self).get_context_data(**kwargs)
