@@ -1,0 +1,135 @@
+[
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 1,
+  "fields": {
+    "services": "Acompanhante"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 2,
+  "fields": {
+    "services": "Ativa"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 3,
+  "fields": {
+    "services": "BDSM"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 4,
+  "fields": {
+    "services": "Beijo grego"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 5,
+  "fields": {
+    "services": "Beijo na boca"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 6,
+  "fields": {
+    "services": "Chuva dourada"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 7,
+  "fields": {
+    "services": "Domina\u00e7\u00e3o"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 8,
+  "fields": {
+    "services": "Festas e Eventos"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 9,
+  "fields": {
+    "services": "Fetiche"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 10,
+  "fields": {
+    "services": "Invers\u00e3o de pap\u00e9is"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 11,
+  "fields": {
+    "services": "Massagem"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 12,
+  "fields": {
+    "services": "Massagem T\u00e2ntrica"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 13,
+  "fields": {
+    "services": "Masturba\u00e7\u00e3o"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 14,
+  "fields": {
+    "services": "Passiva"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 15,
+  "fields": {
+    "services": "Sexo anal"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 16,
+  "fields": {
+    "services": "Sexo grupal"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 17,
+  "fields": {
+    "services": "Sexo oral"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 18,
+  "fields": {
+    "services": "Sexo vaginal"
+  }
+},
+{
+  "model": "app_gp.choicesservicesoffered",
+  "pk": 19,
+  "fields": {
+    "services": "Striptease"
+  }
+}
+]

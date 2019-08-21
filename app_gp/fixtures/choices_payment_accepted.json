@@ -1,0 +1,23 @@
+[
+{
+  "model": "app_gp.choicespaymentaccepted",
+  "pk": 1,
+  "fields": {
+    "payment": "Cart\u00e3o de cr\u00e9dito"
+  }
+},
+{
+  "model": "app_gp.choicespaymentaccepted",
+  "pk": 2,
+  "fields": {
+    "payment": "Cart\u00e3o de d\u00e9bito"
+  }
+},
+{
+  "model": "app_gp.choicespaymentaccepted",
+  "pk": 3,
+  "fields": {
+    "payment": "Dinheiro"
+  }
+}
+]

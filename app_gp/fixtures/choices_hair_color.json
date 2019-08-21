@@ -1,0 +1,44 @@
+[
+{
+  "model": "app_gp.choiceshaircolor",
+  "pk": 1,
+  "fields": {
+    "hair_color": "loiros"
+  }
+},
+{
+  "model": "app_gp.choiceshaircolor",
+  "pk": 2,
+  "fields": {
+    "hair_color": "ruivos"
+  }
+},
+{
+  "model": "app_gp.choiceshaircolor",
+  "pk": 3,
+  "fields": {
+    "hair_color": "castanhos"
+  }
+},
+{
+  "model": "app_gp.choiceshaircolor",
+  "pk": 4,
+  "fields": {
+    "hair_color": "pretos"
+  }
+},
+{
+  "model": "app_gp.choiceshaircolor",
+  "pk": 5,
+  "fields": {
+    "hair_color": "grisalhos"
+  }
+},
+{
+  "model": "app_gp.choiceshaircolor",
+  "pk": 6,
+  "fields": {
+    "hair_color": "outras cores"
+  }
+}
+]

@@ -60,8 +60,8 @@ class SearchGenresView(TemplateView):
     template_name = 'mdb/pages/search_genre.html'
 
     def get(self, request, *args, **kwargs):
-        # self.state = kwargs['state']
-        # self.city_name = kwargs['city_name']
+        # state = request.GET.get('state', default=None)
+        # city_name = request.GET.get('city_name', default=None)
         return super(SearchGenresView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):

@@ -1,0 +1,20 @@
+[
+{
+  "model": "app_gp.choicesgenre",
+  "pk": 1,
+  "fields": {
+    "genre": "Masculino",
+    "site_name": "Homens",
+    "representative_image": "Media/Homens.jpg"
+  }
+},
+{
+  "model": "app_gp.choicesgenre",
+  "pk": 2,
+  "fields": {
+    "genre": "Feminino",
+    "site_name": "Mulheres",
+    "representative_image": "Media/Mulheres.jpg"
+  }
+}
+]

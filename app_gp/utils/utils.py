@@ -6,7 +6,7 @@ import os
 def unique_slug_generator(instance, slug='', counter=0):
 
     if counter > 0:
-        slug = "{slug}-{number}".format(slug=slug, number=counter)
+        slug = "{number}-{slug}".format(slug=slug, number=counter)
 
     klass = instance.__class__
 

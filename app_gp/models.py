@@ -161,8 +161,9 @@ class CityManager(models.Manager):
 class ChoicesCity(models.Model):
     objects = CityManager()
 
+    slug = models.SlugField('slug', max_length=255, blank=False, unique=True, null=True)
+    state = models.ForeignKey('ChoicesStates', verbose_name='Estado', on_delete=models.DO_NOTHING, null=False)
     city = models.CharField('Cidade', max_length=255, null=False)
-    state = models.CharField('UF', max_length=5, null=False)
     cep = models.CharField('Cep', max_length=10, null=True)
     ibge_code = models.CharField('Código IBGE', max_length=255, null=False)
     area = models.FloatField('Area', null=True)
@@ -171,7 +172,7 @@ class ChoicesCity(models.Model):
     class Meta:
         verbose_name = 'Cidade'
         verbose_name_plural = 'Cidades'
-        ordering = ['state', 'city']
+        ordering = ['city']
         db_table = 'choices_city'
 
     def __str__(self):

@@ -24,6 +24,7 @@ TEMPLATES_DIR = (
 GP_STATIC_DIR = os.path.join(GP_DIR, 'static')
 
 #   dumpdata app_gp.Client --format=json --indent 2 -o app_gp/fixtures/initial_data.json
+#   loaddata choices_customer_service choices_ethnicity choices_eye_color choices_genre choices_hair_color choices_language choices_payment_accepted choices_place choices_services_offered choices_status choices_states choices_city choices_neighborhoods
 FIXTURE_DIRS = (
    os.path.join(GP_DIR, 'fixtures'),
 )

@@ -1,0 +1,23 @@
+[
+{
+  "model": "app_gp.choicescustomerservice",
+  "pk": 1,
+  "fields": {
+    "customer_service": "Casais"
+  }
+},
+{
+  "model": "app_gp.choicescustomerservice",
+  "pk": 2,
+  "fields": {
+    "customer_service": "Mulheres"
+  }
+},
+{
+  "model": "app_gp.choicescustomerservice",
+  "pk": 3,
+  "fields": {
+    "customer_service": "Homens"
+  }
+}
+]

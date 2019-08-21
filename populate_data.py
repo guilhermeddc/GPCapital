@@ -271,6 +271,11 @@ def create_client_video(client_id, genre_id, n_samples=5):
 
 if __name__ == '__main__':
 
+    # for city in ChoicesCity.objects.all():
+    #     uf_name = city.state
+    #     state_id = ChoicesStates.objects.filter(uf=uf_name)[0].id
+    #     city.uf_id = state_id
+    #     city.save()
     active_men = 5
     active_girls = 10
     genre_list = [active_men, active_girls]
