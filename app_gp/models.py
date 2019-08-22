@@ -6,6 +6,19 @@ UPLOAD_PHOTOS_PATH = 'Media'
 UPLOAD_VIDEOS_PATH = 'Media'
 
 
+class ChoicesQuestion(models.Model):
+    question = models.CharField('Pergunta', max_length=255, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Pergunta'
+        verbose_name_plural = 'Perguntas'
+        ordering = ['question']
+        db_table = 'choices_question'
+
+    def __str__(self):
+        return self.question
+
+
 class ChoicesEthnicity(models.Model):
     ethnicity = models.CharField('Etnia', max_length=50, null=False, blank=False)
 
