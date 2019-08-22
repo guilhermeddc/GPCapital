@@ -1,1 +1,1 @@
-web: gunicorn gp-capital.wsgi --log-file -
+web: gunicorn gp-capital.wsgi
