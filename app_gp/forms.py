@@ -15,7 +15,7 @@ class CityChoiceField(ModelChoiceField):
 
 
 class CitySearchForm(forms.Form):
-    city = CityChoiceField(queryset=ChoicesCity.objects.worked_cities(),
+    city = CityChoiceField(queryset=ChoicesCity.objects.worked_cities(), label=False,
                            initial=True,
                            required=True,
                            to_field_name='slug',

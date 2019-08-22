@@ -1,87 +1,85 @@
+{% extends 'mdb/base/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Material Design Bootstrap Template</title>
-    {% include 'mdb/base/components/css.html' %}
+{% block title %}
+    {{ block.super }} As Melhores Garotas de Programa
+{% endblock %}
+{% block content %}
     <style>
-        @media (max-width: 740px) {
-            .logo-bg {
-                width: 100%;
-            }
+
+        .square {
+            background-color: whitesmoke;
+            padding: 40px;
+            border-radius: 10px;
+            mso-border-shadow: yes;
         }
 
-        @media (min-width: 800px) and (max-width: 850px) {
-            .logo-bg {
-                width: 100%;
-            }
-        }
-
-        @media (min-width: 560px) and (max-width: 660px) {
-            .logo-bg {
-                width: 100%;
-            }
-        }
     </style>
-</head>
-<body>
-<!-- Intro Section -->
-<div class="view jarallax" data-jarallax='{"speed": 0.2}'
-     style="background-image: url({% static 'assets/img/bg.jpg' %});
-             background-repeat: no-repeat;
-             background-size: cover;
-             background-position: center center;">
-    <div class="mask rgba-black-light">
-        <div class="container h-100 d-flex justify-content-center align-items-center">
-            <div class="row pt-5 mt-3">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <a href="{% url 'search_city_view' %}">
-                            <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo central"
-                                 class="logo-bg wow fadeIn" data-wow-delay="0.4s">
-                        </a>
-                        <h2 class="text-capitalize test-skin text-light">ESCOLHA O GENERO:</h2>
-                        <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <div class="row mx-auto">
-                        <div id="mdb-lightbox-ui"></div>
-                            {% for genre in genres %}
-                                <div class="col flex-center mt-4 wow fadeIn"
-                                     data-wow-delay="0.4s">
-                                    <a class="mdb-main-label waves-effect waves-light"
-                                       href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
-                                        <div class="avatar mx-auto mdb-lightbox zoom">
-                                            <img src="{{ genre.representative_image.url }}"
-                                                 class="img-fluid rounded-circle z-depth-1"
-                                                 alt="genero"
-                                                 style="min-width: 250px;
-                                                        max-height: 250px;
-                                                        object-fit: cover;
-                                                        object-position: center;">
+
+    <body style="background-color: whitesmoke;">
+    <!-- Intro Section -->
+    <div style="background-color: whitesmoke; height: 9vh"></div>
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}'
+         style="background-color: #f2f2f2;
+                height: 80vh">
+        <div class="mask rgba-black-light">
+            <div class="container h-66 d-flex justify-content-center align-items-center">
+                <div class="row pt-5 mt-3">
+                    <div class="col-md-12 square">
+                        <div class="text-center">
+                            <h2 class="h1-responsive">ESCOLHA O GENERO:</h2>
+                            <hr class="hr-bold mt-4 wow fadeIn" data-wow-delay="0.4s">
+                            <div class="row mx-auto">
+                                <div id="mdb-lightbox-ui"></div>
+                                {% for genre in genres %}
+                                    <div class="col-lg-4 col-md-6 col-md-12 mb-4">
+                                        <div class="card card-ecommerce">
+                                            <div class="card-up"></div>
+                                            <div class="avatar mx-auto white"><img
+                                                    src="{{ genre.representative_image.url }}"
+                                                    alt="avatar mx-auto white" class="img-fluid">
+                                                <a href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
+                                                    <div class="mask rgba-white-slight"></div>
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h4 class="card-title mt-1">{{ genre.site_name }}</h4>
+                                                <hr>
+                                                <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet,
+                                                    consectetur adipisicing elit. Eos,
+                                                    adipisci.</p>
+                                            </div>
                                         </div>
-                                        <div class="mask flex-center">
-                                            <h4 class="text-uppercase text-light"
-                                                style="text-shadow: black 0.04em 0.04em 0.1em; text-align: center;">
-                                                <strong>{{ genre.site_name }}</strong>
-                                            </h4>
-                                        </div>
-                                    </a>
-                                </div>
-                            {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="container-fluid mt-5">
+        <div class="row mt-5 mb-4">
+            <div class="col-md-12">
+                <div class="divider-new">
+                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
+                        data-wow-delay="0.2s">Parceiros</h3>
+                </div>
+                <br>
+                <br>
+                <h5 class="text-center">Links AdSense</h5>
+                <br>
+                <br>
+                <div class="divider-new">
+                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
+                        data-wow-delay="0.2s">X</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% include 'mdb/base/components/scripts.html' %}
-</body>
-</html>
+{% endblock %}
+
 
 

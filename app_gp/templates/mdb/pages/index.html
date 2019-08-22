@@ -1,12 +1,13 @@
 {% extends 'mdb/base/base.html' %}
 {% load static %}
 {% block title %}
-    {{ block.super }} Melhores garotas de programa da capital
+    {{ block.super }} As Melhores Garotas de Programa
 {% endblock %}
 {% block content %}
-    {% include 'mdb/base/components/intro.html' %}
-    {% include 'mdb/components/gallery.html' %}
-    {% include 'component/terms.html' %}
-    {% include 'mdb/components/streak.html' %}
-    {% include 'component/contact.html' %}
+    {% include 'mdb/base/components/navbar.html' %}
+    {% include 'mdb/pages/components/intro.html' %}
+    {% include 'mdb/pages/components/gallery.html' %}
+    {% include 'mdb/pages/components/terms.html' %}
+    {% include 'mdb/pages/components/streak.html' %}
+    {% include 'mdb/pages/components/contact.html' %}
 {% endblock %}
