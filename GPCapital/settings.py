@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # GP APP DIR PATH's
 GP_DIR = os.path.join(BASE_DIR, 'app_gp')
 TEMPLATES_DIR = (
@@ -26,7 +25,7 @@ GP_STATIC_DIR = os.path.join(GP_DIR, 'static')
 #   dumpdata app_gp.Client --format=json --indent 2 -o app_gp/fixtures/initial_data.json
 #   loaddata choices_customer_service choices_ethnicity choices_eye_color choices_genre choices_hair_color choices_language choices_payment_accepted choices_place choices_services_offered choices_status choices_states choices_city choices_neighborhoods
 FIXTURE_DIRS = (
-   os.path.join(GP_DIR, 'fixtures'),
+    os.path.join(GP_DIR, 'fixtures'),
 )
 
 # GP_CLIENT_PHOTOS_DIR = os.path.join(GP_STATIC_DIR, 'models_photos')
@@ -57,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Django whitenoise configuration
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'GPCapital.wsgi.application'
 
 DATABASES = {
     'default': dict(ENGINE='django.db.backends.postgresql_psycopg2', NAME='gpcapital', USER='postgres',
-                    PASSWORD='trismegistos', HOST='localhost', PORT='5432')
+                    PASSWORD='29gu09il', HOST='localhost', PORT='5432')
 }
 
 # Password validation
@@ -131,6 +131,8 @@ USE_TZ = True
 # STATIC_URL
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # That's where files get collected automatically after you run manage.py collectstatic
 # This will export all static files stored in $APP/static/ and STATICFILES_DIRS to STATIC_ROOT
 # STATIC_ROOT = os.path.join(BASE_DIR, "allstaticfiles")
@@ -141,4 +143,20 @@ STATIC_URL = '/static/'
 # os.path.join(GP_DIR, 'my_static_file_path')
 # ]
 
+# Heroku config
+
 MEDIA_URL = '/media/'
+
+if os.getcwd() == '/app':
+    import dj_database_url
+
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+    # Honor the 'X-forwarded`-Proto' header for request.is_segure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED-PROTO', 'https')
+
+    # Allow all host headers
+    ALLOWED_HOSTS = ['gpcapital.herokuapp.com']
+    DEBUG = True
+    # Static asset configuration
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

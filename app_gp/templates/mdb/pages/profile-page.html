@@ -115,9 +115,11 @@
                         </h3>
                         <h6 class="font-weight-bold pink-text mb-4">{{ object.short_description }}</h6>
                         <!--Whatsapp-->
-                        <a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-whatsapp grey-text"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=550{{ client.phone }}" class="p-2 m-2 fa-lg fb-ic">
+                            <i class="fab fa-whatsapp grey-text"></i></a>
                         <!--Phone-->
-                        <a class="p-2 m-2 fa-lg tw-ic"><i class="fas fa-phone grey-text"></i></a>
+                        <a href="tel:{{ client.phone }}" class="p-2 m-2 fa-lg tw-ic"><i
+                                class="fas fa-phone grey-text"></i></a>
                         <br>
                         <hr>
                         <h3 class="text-center">Serviços Aceitos</h3>
@@ -189,13 +191,13 @@
                                                         <!--Footer-->
                                                         <div class="modal-footer justify-content-center">
                                                             <!--WhatsApp-->
-                                                            <a href="https://api.whatsapp.com/send?phone=550{{ client.phone }}{{ client.fake_name }}"
+                                                            <a href="https://api.whatsapp.com/send?phone=550{{ client.phone }}"
                                                                type="button" class="btn-floating btn-sm btn-fb"><i
                                                                     class="fab fa-whatsapp"></i></a>
                                                             <!--Phone-->
                                                             <a type="button" class="btn-floating btn-sm btn-tw"><i
                                                                     class="fas fa-phone"></i></a>
-                                                            <a href="tel:{{ client.fake_name }}"><strong>{{ client.phone }}</strong></a>
+                                                            <a href="tel:{{ client.phone }}"><strong>{{ client.phone }}</strong></a>
                                                             <button type="button"
                                                                     class="btn btn-outline-pink btn-rounded btn-md ml-4"
                                                                     data-dismiss="modal"><i class="fas fa-times"></i>
@@ -316,7 +318,8 @@
 
                                     {% for p in object.clientphoto_set.all %}
                                         <figure class="col-md-4">
-                                            <a class="white white-text white-ic white-skin bg-white" href="{{ p.photo.url }}"
+                                            <a class="white white-text white-ic white-skin bg-white"
+                                               href="{{ p.photo.url }}"
                                                data-size="768x1090">
                                                 <img src="{{ p.photo.url }}"
                                                      class="img-fluid" alt="{{ p.photo }}">

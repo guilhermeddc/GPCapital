@@ -133,4 +133,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.gitignore
+Media/Feminino
+Media/Masculino
+Media/Transex
