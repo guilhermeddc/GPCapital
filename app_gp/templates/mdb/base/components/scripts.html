@@ -1,5 +1,4 @@
 {% load static %}
-
 <!--  SCRIPTS  -->
 <!-- JQuery -->
 <script type="text/javascript" src="{% static 'mdb/js/jquery-3.4.1.min.js' %}"></script>
@@ -10,6 +9,11 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{% static 'mdb/js/mdb.min.js' %}"></script>
 <script>
+    // Modal 18+
+    $(document).ready(function () {
+        $('#modal18').modal('show');
+    });
+
     new WOW().init();
     // Material Select Initialization
     $(document).ready(function () {

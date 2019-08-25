@@ -13,10 +13,22 @@
             mso-border-shadow: yes;
         }
 
+        .modal-content {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .modal-btn {
+            color: whitesmoke;
+            width: 100%;
+            background-color: #4F012C;
+            margin: 0 auto;
+        }
+
     </style>
 
     <body style="background-color: whitesmoke;">
-    <!-- Intro Section -->
+
     <div style="background-color: whitesmoke; height: 9vh"></div>
     <div class="view jarallax" data-jarallax='{"speed": 0.2}'
          style="background-image: url({% static 'assets/img/bg.jpg' %});
@@ -71,5 +83,21 @@
             </div>
         </div>
     </div>
-
+    <!-- Small modal -->
+    <div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <img src="{% static 'assets/img/18+.png' %}" alt="img 18+">
+                <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
+                <p>Entendo que o <strong>GP Capital</strong> apresenta
+                    <strong>conteudo explicito</strong> destinado a <strong>adultos</strong></p>
+                <a href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
+                <br>
+                <button type="button" class="btn modal-btn" data-dismiss="modal"><i class="fas fa-check"></i> Concordo
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Intro Section -->
 {% endblock %}
