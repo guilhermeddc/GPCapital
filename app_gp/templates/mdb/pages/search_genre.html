@@ -8,7 +8,7 @@
 
         .square {
             background-color: whitesmoke;
-            padding: 40px;
+            padding: 20px;
             border-radius: 10px;
             mso-border-shadow: yes;
         }
@@ -27,14 +27,14 @@
         <div class="mask rgba-black-light">
             <div class="container h-66 d-flex justify-content-center align-items-center">
                 <div class="row pt-5 mt-3">
-                    <div class="col-md-12 square">
+                    <div class="col-md-12  square">
                         <div class="text-center">
                             <h2 class="h1-responsive">ESCOLHA O GENERO:</h2>
                             <hr class="hr-bold mt-4 wow fadeIn" data-wow-delay="0.4s">
                             <div class="row mx-auto">
                                 <div id="mdb-lightbox-ui"></div>
                                 {% for genre in genres %}
-                                    <div class="col-lg-4 col-md-6 col-md-12 mb-4">
+                                    <div class="col-sm-6 col-lg-4 col-xl-4 offset-xl-0">
                                         <div class="card card-ecommerce">
                                             <div class="card-up"></div>
                                             <div class="avatar mx-auto white"><img
@@ -45,11 +45,7 @@
                                                 </a>
                                             </div>
                                             <div class="card-body">
-                                                <h4 class="card-title mt-1">{{ genre.site_name }}</h4>
-                                                <hr>
-                                                <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet,
-                                                    consectetur adipisicing elit. Eos,
-                                                    adipisci.</p>
+                                                <h4 class="card-title mt-1 img-thumbnail">{{ genre.site_name }}</h4>
                                             </div>
                                         </div>
                                     </div>

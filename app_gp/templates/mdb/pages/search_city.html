@@ -1,16 +1,22 @@
-{% extends 'mdb/base/base.html' %}
 {% load static %}
-{% block title %}
-    {{ block.super }} As Melhores Garotas de Programa
-{% endblock %}
-{% block content %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>GP Capital | As Melhores Garotas de Programa</title>
+    {% include 'mdb/base/components/css.html' %}
     <style>
 
         .square {
-            background-color: whitesmoke;
-            padding: 100px;
-            border-radius: 10px;
-            mso-border-shadow: yes;
+            width: 800px;
+            background-color: white;
+            padding: 80px;
+            border: 1px #0b0b0b solid;
+            border-radius: 0;
+            -webkit-box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
         }
 
         .modal-content {
@@ -25,79 +31,65 @@
             margin: 0 auto;
         }
 
+        .center-logo {
+            width: 30%;
+            margin: 50px auto;
+        }
+
+        .center-logo img {
+            width: 100%;
+            margin: 0 auto;
+        }
+
     </style>
+</head>
+<body>
 
-    <body style="background-color: whitesmoke;">
-
-    <div style="background-color: whitesmoke; height: 9vh"></div>
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}'
-         style="background-image: url({% static 'assets/img/bg.jpg' %});
-                 background-repeat: no-repeat;
-                 background-size: cover;
-                 background-position: center center;
-                 height: 70vh">
-        <div class="mask rgba-black-light">
-            <div class="container h-66 d-flex justify-content-center align-items-center">
-                <div class="row pt-5 mt-3">
-                    <div class="col-md-12 square">
-                        <div class="text-center">
-                            <h2 class="h1-responsive"><strong>ESCOLHA SUA CIDADE:</strong></h2>
-                            <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="col-lg-12 mx-auto">
-                                <form type="" action="" method="get">
-                                    <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            {{ city }}
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <button type="submit" class="btn btn-outline-dark wow fadeIn"
-                                            data-wow-delay="0.4s">Buscar
-                                    </button>
-                                </form>
+<div class="container">
+    <div class="row">
+        <div class="center-logo col-auto">
+            <img src="{% static 'assets/img/navi-logo.png' %}" alt="logo central">
+        </div>
+        <div class="col-md-12 square">
+            <div class="text-center">
+                <h2 class="h1-responsive"><strong>ESCOLHA SUA CIDADE:</strong></h2>
+                <div class="col-lg-12 mx-auto">
+                    <form type="" action="" method="get">
+                        <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                {{ city }}
                             </div>
                         </div>
-                    </div>
+                        <br>
+                        <button type="submit" class="btn btn-outline-dark wow fadeIn"
+                                data-wow-delay="0.4s">Buscar
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container-fluid mt-5">
-        <div class="row mt-5 mb-4">
-            <div class="col-md-12">
-                <div class="divider-new">
-                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
-                        data-wow-delay="0.2s">Parceiros</h3>
-                </div>
-                <br>
-                <br>
-                <h5 class="text-center">Links AdSense</h5>
-                <br>
-                <br>
-                <div class="divider-new">
-                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
-                        data-wow-delay="0.2s">X</h3>
-                </div>
-            </div>
+
+<!-- Small modal -->
+<div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <img src="{% static 'assets/img/18+.png' %}" alt="img 18+">
+            <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
+            <p>Entendo que o <strong>GP Capital</strong> apresenta
+                <strong>conteudo explicito</strong> destinado a <strong>adultos</strong></p>
+            <a href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
+            <br>
+            <button type="button" class="btn modal-btn" data-dismiss="modal"><i class="fas fa-check"></i> Concordo
+            </button>
         </div>
     </div>
-    <!-- Small modal -->
-    <div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <img src="{% static 'assets/img/18+.png' %}" alt="img 18+">
-                <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
-                <p>Entendo que o <strong>GP Capital</strong> apresenta
-                    <strong>conteudo explicito</strong> destinado a <strong>adultos</strong></p>
-                <a href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
-                <br>
-                <button type="button" class="btn modal-btn" data-dismiss="modal"><i class="fas fa-check"></i> Concordo
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- Intro Section -->
-{% endblock %}
+</div>
+<!-- Intro Section -->
+{% include 'mdb/base/components/scripts.html' %}
+</body>
+</html>
