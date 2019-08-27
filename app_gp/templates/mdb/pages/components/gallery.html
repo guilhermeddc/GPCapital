@@ -1,5 +1,10 @@
 {% load static %}
-
+<style>
+    .pad {
+        padding: 10px 0 5px 0;
+        margin-bottom: -5px;
+    }
+</style>
 <div class="container-fluid mt-5" id="gallery">
     <section>
         <div class="row mt-5 mb-4">
@@ -18,20 +23,25 @@
                             <div class="row no-gutters">
                         {% endif %}
 
-                    <div class="col-lg-3 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
+                    <div class="col-lg-2 col-md-12 mb-3 wow fadeIn" data-wow-delay="0.4s">
 
                         <div class="card card-cascade wider">
-                            <div class="view view-cascade overlay zoom" style="margin: 0 8px">
-                                <img src="{{ client.image_profile.url }}" class="img-fluid" alt="client photo">
+                            <div class="view view-cascade" style="margin: 0 8px">
                                 <a href="{{ client.get_absolute_url }}">
-                                    <div class="mask rgba-white-slight"></div>
-                                    <div class="mask flex-center waves-effect waves-light">
-                                        <h4 class="text-uppercase text-light"
-                                            style="text-shadow: black 0.04em 0.04em 0.1em; text-align: center;">
-                                            <strong>{{ client.fake_name }}</strong><br><br>
-                                            <span>R<i
-                                                    class="fas fa-dollar-sign"></i> {{ client.service_charged }}</span>
-                                        </h4>
+                                    <h6 class="text-black-50 text-center pad">
+                                        <strong>{{ client.fake_name }}</strong>
+                                    </h6>
+                                    <img src="{{ client.image_profile.url }}" class="img-fluid" alt="client photo">
+                                    <div class="row text-center text-black-50">
+                                        <div class="col pad">
+                                            <p><i class="fas fa-fingerprint"></i><br>{{ client.age }}</p>
+                                        </div>
+                                        <div class="col pad">
+                                            <p><i class="fas fa-coins"></i><br>{{ client.service_charged }}</p>
+                                        </div>
+                                        <div class="col pad">
+                                            <p><i class="fas fa-fingerprint"></i><br>{{ client.age }}</p>
+                                        </div>
                                     </div>
                                 </a>
                             </div>
