@@ -7,7 +7,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 DATABASES['default'].update({
-    'NAME': 'mydb',
+    'NAME': 'gpcapital',
     'USER': 'postgres',
     'PASSWORD': 'trismegistos',
     'HOST': 'localhost',
