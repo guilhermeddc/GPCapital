@@ -5,37 +5,6 @@ header,
     height: 100vh;
 }
 
-.square {
-    background-color: whitesmoke;
-    padding: 100px;
-    border-radius: 10px;
-    mso-border-shadow: yes;
-}
-
-@media (max-width: 740px) {
-    html,
-    body,
-    header,
-    .jarallax {
-        height: 100vh;
-    }
-}
-
-@media (min-width: 800px) and (max-width: 850px) {
-    html,
-    body,
-    header,
-    .jarallax {
-        height: 100vh;
-    }
-}
-
-@media (min-width: 560px) and (max-width: 650px) {
-    header .jarallax h5 {
-        margin-bottom: 1.5rem !important;
-    }
-}
-
 .top-nav-collapse {
     color: #0b0b0b !important;
     background-color: #0b0b0b !important;
@@ -45,16 +14,21 @@ header,
     background: transparent !important;
 }
 
-@media (max-width: 768px) {
-    .navbar:not(.top-nav-collapse) {
-        background: #0b0b0b !important;
-    }
+.nav-logo {
+    width: 110px;
 }
 
-@media (min-width: 800px) and (max-width: 850px) {
-    .navbar:not(.top-nav-collapse) {
-        background: #0b0b0b !important;
-    }
+#contact, #terms, #gallery {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+a {
+    color: hotpink;
+}
+
+a:hover {
+    color: deeppink;
 }
 
 h1 {
@@ -74,26 +48,27 @@ footer.page-footer {
     background-color: #0b0b0b;
 }
 
+@media (min-width: 560px) and (max-width: 650px) {
+    header .jarallax h5 {
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #0b0b0b !important;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #0b0b0b !important;
+    }
+}
+
 @media (max-width: 450px) {
     .btn-floating {
         margin-left: 0;
         margin-right: 0;
     }
-}
-
-.nav-logo {
-    width: 110px;
-}
-
-#contact, #terms, #gallery {
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-
-a {
-    color: hotpink;
-}
-
-a:hover {
-    color: deeppink;
 }

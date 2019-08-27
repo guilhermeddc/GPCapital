@@ -323,7 +323,7 @@ a, a:hover {
 }
 
 b, strong {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', serif;
   color: #5c013c;
   font-weight: 800;
   text-shadow: black 0.03em 0.03em 0.1em;

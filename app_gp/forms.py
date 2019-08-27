@@ -19,10 +19,11 @@ class CitySearchForm(forms.Form):
                            initial=True,
                            required=True,
                            to_field_name='slug',
-                           widget=Select(attrs={'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
-                                                'data-wow-delay': '0.4s',
-                                                'is_hidden': 'False',
-                                                'searchable': "ESCOLHA SUA CIDADE:"}))
+                           widget=Select(attrs={
+                               'class': 'into-square mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                               'data-wow-delay': '0.4s',
+                               'is_hidden': 'False',
+                               'searchable': "ESCOLHA SUA CIDADE:"}))
 
 
 class SearchClientForm(forms.Form):

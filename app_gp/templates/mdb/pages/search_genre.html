@@ -1,84 +1,36 @@
-{% extends 'mdb/base/base.html' %}
 {% load static %}
-{% block title %}
-    {{ block.super }} As Melhores Garotas de Programa
-{% endblock %}
-{% block content %}
-    <style>
 
-        .square {
-            background-color: whitesmoke;
-            padding: 20px;
-            border-radius: 10px;
-            mso-border-shadow: yes;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>GP Capital | As Melhores Garotas de Programa</title>
+    {% include 'mdb/base/components/css.html' %}
+    <style>
+        .temp {
+            width: 100%;
+            height: 100vh;
+            background-image: url("{% static 'assets/img/Capa-sexo.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
         }
 
+        .my-btn {
+            width: 33%;
+        }
     </style>
-
-    <body style="background-color: whitesmoke;">
-    <!-- Intro Section -->
-    <div style="background-color: whitesmoke; height: 9vh"></div>
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}'
-         style="background-image: url({% static 'assets/img/bg.jpg' %});
-                 background-repeat: no-repeat;
-                 background-size: cover;
-                 background-position: center center;
-                 height: 80vh">
-        <div class="mask rgba-black-light">
-            <div class="container h-66 d-flex justify-content-center align-items-center">
-                <div class="row pt-5 mt-3">
-                    <div class="col-md-12  square">
-                        <div class="text-center">
-                            <h2 class="h1-responsive">ESCOLHA O GENERO:</h2>
-                            <hr class="hr-bold mt-4 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="row mx-auto">
-                                <div id="mdb-lightbox-ui"></div>
-                                {% for genre in genres %}
-                                    <div class="col-sm-6 col-lg-4 col-xl-4 offset-xl-0">
-                                        <div class="card card-ecommerce">
-                                            <div class="card-up"></div>
-                                            <div class="avatar mx-auto white"><img
-                                                    src="{{ genre.representative_image.url }}"
-                                                    alt="avatar mx-auto white" class="img-fluid">
-                                                <a href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
-                                                    <div class="mask rgba-white-slight"></div>
-                                                </a>
-                                            </div>
-                                            <div class="card-body">
-                                                <h4 class="card-title mt-1 img-thumbnail">{{ genre.site_name }}</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body>
+<!-- Intro Section -->
+<section class="row temp">
+    {% for genre in genres %}
+        <div class="view col-lg-4">
+        <a href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
+            <div class="flex-center waves-effect waves-light"></div>
+         </a>
         </div>
-    </div>
-
-    <div class="container-fluid mt-5">
-        <div class="row mt-5 mb-4">
-            <div class="col-md-12">
-                <div class="divider-new">
-                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
-                        data-wow-delay="0.2s">Parceiros</h3>
-                </div>
-                <br>
-                <br>
-                <h5 class="text-center">Links AdSense</h5>
-                <br>
-                <br>
-                <div class="divider-new">
-                    <h3 class="text-center text-uppercase font-weight-bold mr-3 ml-3 wow fadeIn"
-                        data-wow-delay="0.2s">X</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-{% endblock %}
-
-
-
+    {% endfor %}
+</section>
+{% include 'mdb/base/components/scripts.html' %}
+</body>
+</html>
