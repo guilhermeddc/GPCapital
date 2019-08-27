@@ -366,7 +366,7 @@ class Client(models.Model):
 
 
 class ClientPhoto(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=False)
     order_priority = models.PositiveIntegerField('Prioridade da foto', null=False)
 
@@ -379,7 +379,7 @@ class ClientPhoto(models.Model):
 
 
 class ClientVideo(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=False)
     order_priority = models.PositiveIntegerField('Prioridade do Vídeo', null=False)
 
@@ -393,7 +393,7 @@ class ClientVideo(models.Model):
 
 # INTERMEDIATE MODELS
 class InterClientLanguages(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     language = models.ForeignKey('ChoicesLanguage', on_delete=models.DO_NOTHING, null=False)
 
     class Meta:
@@ -405,7 +405,7 @@ class InterClientLanguages(models.Model):
 
 
 class InterClientCustomerServices(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     customer_service = models.ForeignKey('ChoicesCustomerService', on_delete=models.DO_NOTHING, null=False)
 
     class Meta:
@@ -417,7 +417,7 @@ class InterClientCustomerServices(models.Model):
 
 
 class InterClientPlacesAccepted(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     place = models.ForeignKey('ChoicesPlace', on_delete=models.DO_NOTHING, null=False)
 
     class Meta:
@@ -429,7 +429,7 @@ class InterClientPlacesAccepted(models.Model):
 
 
 class InterClientPaymentsAccepted(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     payment_accepted = models.ForeignKey('ChoicesPaymentAccepted', on_delete=models.DO_NOTHING, null=False)
 
     class Meta:
@@ -441,7 +441,7 @@ class InterClientPaymentsAccepted(models.Model):
 
 
 class InterClientServicesOffered(models.Model):
-    client = models.ForeignKey('Client', on_delete=models.DO_NOTHING, null=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
     services_offered = models.ForeignKey('ChoicesServicesOffered', on_delete=models.DO_NOTHING, null=False)
 
     class Meta:

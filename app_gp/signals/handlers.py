@@ -32,9 +32,9 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
         # Image profile changed? IF yes, delete old image and old thumb from path
         if not old_instance.image_profile == instance.image_profile:
             if os.path.isfile(old_instance.image_profile.path):
-                os.remove(old_instance.image_profile.path)
+                old_instance.image_profile.delete(save=False)
             if os.path.isfile(old_instance.image_thumb.path):
-                os.remove(old_instance.image_thumb.path)
+                old_instance.image_thumb.delete(save=False)
             create_thumb = True
         else:
             create_thumb = False
@@ -67,12 +67,12 @@ def client_post_delete_receiver(sender, instance, **kwargs):
     # Delete Image profile
     if instance.image_profile:
         if os.path.isfile(instance.image_profile.path):
-            os.remove(instance.image_profile.path)
+            instance.image_profile.delete(save=False)
 
     # Delete Thumbnail
     if instance.image_thumb:
         if os.path.isfile(instance.image_thumb.path):
-            os.remove(instance.image_thumb.path)
+            instance.image_thumb.delete(save=False)
 
 
 post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
