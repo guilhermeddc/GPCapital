@@ -103,10 +103,7 @@
                         <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
                         <div class="form-row">
                             <div class="form-group col">
-                                {% if city.city %}
-                                {{ city.city }}
-                                {% endif %}
-
+                                {{ city }}
                             </div>
                         </div>
                         <br>
