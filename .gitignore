@@ -135,3 +135,8 @@ dmypy.json
 
 # ADD BY THIAGO
 /Media/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
