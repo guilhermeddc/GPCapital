@@ -15,6 +15,7 @@ class Command(BaseCommand):
         ChoicesPaymentAccepted.objects.all().delete()
         ChoicesPlace.objects.all().delete()
         ChoicesQuestion.objects.all().delete()
+        ChoicesServicesOffered.objects.all().delete()
 
         customer_service = ["Casais", "Mulheres", "Homens", "Deficiente física"]
         for obj in customer_service:
@@ -38,15 +39,15 @@ class Command(BaseCommand):
 
         choices_languages = ["Português", "Inglês", "Espanhol", "Alemão"]
         for obj in choices_languages:
-            ChoicesLanguage.objects.create(choices_languages=obj)
+            ChoicesLanguage.objects.create(language=obj)
 
         choices_payment_accepted = ["Cartão de crédito", "Cartão de débito", "Dinheiro"]
         for obj in choices_payment_accepted:
-            ChoicesPaymentAccepted.objects.create(choices_payment_accepted=obj)
+            ChoicesPaymentAccepted.objects.create(payment=obj)
 
         choices_place = ["Local próprio", "Hotéis / Motéis / Domicílio", "Eventos", "Viagens"]
         for obj in choices_place:
-            ChoicesPlace.objects.create(choices_place=obj)
+            ChoicesPlace.objects.create(place=obj)
 
         choices_question = [
             "Como você gosta que seus clientes lhe tratem?",
@@ -117,6 +118,46 @@ class Command(BaseCommand):
             "Você prefere viajar pra praia ou pro campo?"
         ]
         for obj in choices_question:
-            ChoicesQuestion.objects.create(choices_question=obj)
+            ChoicesQuestion.objects.create(question=obj)
+
+        choices_services_offered = [
+            "Acompanhante",
+            "Ativa",
+            "BDSM",
+            "Beijo grego",
+            "Beijo na boca",
+            "Brinquedos eróticos",
+            "Banho juntos",
+            "Chuva dourada",
+            "Chuva negra",
+            "Dominação",
+            "Deixa fotografar",
+            "Dupla penetração",
+            "Fetiche",
+            "Gozo facial",
+            "Inversão de papéis",
+            "Masturbação",
+            "Massagem prostática",
+            "Massagem tântrica",
+            "Massagem erótica",
+            "Massagem tailandesa",
+            "Massagem espanhola",
+            "Massagem nuru",
+            "Massagem relaxante",
+            "Massagem com óleo e mãos",
+            "Massagem com os pés",
+            "Namoradinha",
+            "Passiva",
+            "Podolatria",
+            "Seios naturais",
+            "Striptease",
+            "Swingers",
+            "Sexo anal",
+            "Sexo grupal",
+            "Sexo oral",
+            "Sexo vaginal"
+        ]
+        for obj in choices_services_offered:
+            ChoicesPlace.objects.create(services=obj)
 
         self.stdout.write(self.style.SUCCESS('INSERTED!'))
