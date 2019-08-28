@@ -51,7 +51,7 @@ class ChoicesGenre(models.Model):
     slug = models.SlugField('slug', max_length=50, blank=True, unique=True)
     genre = models.CharField('Gênero', max_length=50, null=False, blank=False)
     site_name = models.CharField('Nome no site', max_length=50, null=False, blank=False)
-    representative_image = models.ImageField('Imagem representativa', upload_to='Media', null=True, blank=True)
+    representative_image = models.ImageField('Imagem representativa', upload_to='genero_images', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Gênero'
@@ -218,10 +218,6 @@ class ChoicesLanguage(models.Model):
 
     def __str__(self):
         return self.language
-
-
-def get_basic_path(instance):
-    return f'Media/{instance.city.slug}/{instance.genre.slug}/{instance.slug}'
 
 
 def profile_upload_path(instance, filename):

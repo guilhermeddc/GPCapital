@@ -27,56 +27,63 @@ choices_cities_ids = [1761, 7989, 2133, 2709, 9560]
 
 # GIRLS
 girls_image_profile_list = []
-girl_image_profile_dir = 'Media/girls_image_profile_1024_768'
+girl_image_profile_dir = 'media/girls_image_profile_1024_768'
 for root, dirs, files in os.walk(girl_image_profile_dir):
     for filename in files:
-        image_path = f'{girl_image_profile_dir}/{filename}'
+        base_name = os.path.basename(girl_image_profile_dir)
+        image_path = f'{base_name}/{filename}'
         girls_image_profile_list.append(image_path)
 
 count_girls_image_profile = len(girls_image_profile_list) - 1
 
 girls_photos_list = []
-girls_photos_profile_dir = 'Media/girls_images_shuffle_size'
+girls_photos_profile_dir = 'media/girls_images_shuffle_size'
 for root, dirs, files in os.walk(girls_photos_profile_dir):
     for filename in files:
-        image_path = f'{girls_photos_profile_dir}/{filename}'
+        base_name = os.path.basename(girls_photos_profile_dir)
+        image_path = f'{base_name}/{filename}'
         girls_photos_list.append(image_path)
 
 count_girls_photos = len(girls_photos_list) - 1
 
 girls_videos_list = []
-girls_videos_profile_dir = 'Media/girls_videos'
+girls_videos_profile_dir = 'media/girls_videos'
 for root, dirs, files in os.walk(girls_videos_profile_dir):
     for filename in files:
-        image_path = f'{girls_videos_profile_dir}/{filename}'
+        base_name = os.path.basename(girls_videos_profile_dir)
+        image_path = f'{base_name}/{filename}'
         girls_videos_list.append(image_path)
 
 count_girls_videos = len(girls_videos_list) - 1
 
 # MEN
 men_image_profile_list = []
-men_image_profile_dir = 'Media/men_image_profile_1024_768'
+men_image_profile_dir = 'media/men_image_profile_1024_768'
 for root, dirs, files in os.walk(men_image_profile_dir):
     for filename in files:
-        image_path = f'{men_image_profile_dir}/{filename}'
+        base_name = os.path.basename(men_image_profile_dir)
+        image_path = f'{base_name}/{filename}'
         men_image_profile_list.append(image_path)
 
 count_men_image_profile = len(men_image_profile_list) - 1
 
+
 men_photos_list = []
-men_photos_profile_dir = 'Media/men_images_shuffle_size'
+men_photos_profile_dir = 'media/men_images_shuffle_size'
 for root, dirs, files in os.walk(men_photos_profile_dir):
     for filename in files:
-        image_path = f'{men_photos_profile_dir}/{filename}'
+        base_name = os.path.basename(men_photos_profile_dir)
+        image_path = f'{base_name}/{filename}'
         men_photos_list.append(image_path)
 
 count_men_photos = len(men_photos_list) - 1
 
 men_videos_list = []
-men_videos_profile_dir = 'Media/men_videos'
+men_videos_profile_dir = 'media/men_videos'
 for root, dirs, files in os.walk(men_videos_profile_dir):
     for filename in files:
-        image_path = f'{men_videos_profile_dir}/{filename}'
+        base_name = os.path.basename(men_videos_profile_dir)
+        image_path = f'{base_name}/{filename}'
         men_videos_list.append(image_path)
 
 count_men_videos = len(men_videos_list) - 1

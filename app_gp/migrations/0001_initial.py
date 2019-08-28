@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(blank=True, unique=True, verbose_name='slug')),
                 ('genre', models.CharField(max_length=50, verbose_name='Gênero')),
                 ('site_name', models.CharField(max_length=50, verbose_name='Nome no site')),
-                ('representative_image', models.ImageField(blank=True, null=True, upload_to='Media', verbose_name='Imagem representativa')),
+                ('representative_image', models.ImageField(blank=True, null=True, upload_to='genero_images', verbose_name='Imagem representativa')),
             ],
             options={
                 'verbose_name': 'Gênero',

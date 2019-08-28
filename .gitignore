@@ -134,7 +134,7 @@ dmypy.json
 .pyre/
 
 # ADD BY THIAGO
-/Media/
+/media/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
