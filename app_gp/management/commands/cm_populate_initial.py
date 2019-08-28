@@ -28,7 +28,17 @@ class Command(BaseCommand):
 
         ChoicesHairColor.objects.all().delete()
         hair_color = ["Loiros", "Ruivos", "Castanhos", "Pretos", "Grisalhos", "Outras cores"]
-        for obj in eye_color:
+        for obj in hair_color:
             ChoicesHairColor.objects.create(hair_color=obj)
+
+        ChoicesLanguage.objects.all().delete()
+        choices_languages = ["Português", "Inglês", "Espanhol", "Alemão"]
+        for obj in choices_languages:
+            ChoicesLanguage.objects.create(choices_languages=obj)
+
+        ChoicesPaymentAccepted.objects.all().delete()
+        choices_payment_accepted = ["Cartão de crédito", "Cartão de débito", "Dinheiro"]
+        for obj in choices_payment_accepted:
+            ChoicesPaymentAccepted.objects.create(choices_payment_accepted=obj)
 
         self.stdout.write(self.style.SUCCESS('INSERTED!'))
