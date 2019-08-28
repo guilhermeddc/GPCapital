@@ -18,15 +18,32 @@ class Command(BaseCommand):
         ChoicesServicesOffered.objects.all().delete()
         ChoicesStatus.objects.all().delete()
 
-        customer_service = ["Casais", "Mulheres", "Homens", "Deficiente física"]
+        customer_service = [
+            "Casais",
+            "Mulheres",
+            "Homens",
+            "Deficiente física"
+        ]
         for obj in customer_service:
             ChoicesCustomerService.objects.create(customer_service=obj)
 
-        ethnicity = ["Branco", "Mestiço", "Mulato", "Negro", "Oriental", "Pardo"]
+        ethnicity = [
+            "Branco",
+            "Mestiço",
+            "Mulato",
+            "Negro",
+            "Oriental",
+            "Pardo"
+        ]
         for obj in ethnicity:
             ChoicesEthnicity.objects.create(ethnicity=obj)
 
-        eye_color = ["Azuis", "Castanhos", "Verdes", "Outras cores"]
+        eye_color = [
+            "Azuis",
+            "Castanhos",
+            "Verdes",
+            "Outras cores"
+        ]
         for obj in eye_color:
             ChoicesEyeColor.objects.create(eye_color=obj)
 
@@ -38,19 +55,40 @@ class Command(BaseCommand):
         for obj in choices_genre:
             ChoicesGenre.objects.create(genre=obj[0], site_name=obj[1], representative_image=obj[2])
 
-        hair_color = ["Loiros", "Ruivos", "Castanhos", "Pretos", "Grisalhos", "Outras cores"]
+        hair_color = [
+            "Loiros",
+            "Ruivos",
+            "Castanhos",
+            "Pretos",
+            "Grisalhos",
+            "Outras cores"
+        ]
         for obj in hair_color:
             ChoicesHairColor.objects.create(hair_color=obj)
 
-        choices_languages = ["Português", "Inglês", "Espanhol", "Alemão"]
+        choices_languages = [
+            "Português",
+            "Inglês",
+            "Espanhol",
+            "Alemão"
+        ]
         for obj in choices_languages:
             ChoicesLanguage.objects.create(language=obj)
 
-        choices_payment_accepted = ["Cartão de crédito", "Cartão de débito", "Dinheiro"]
+        choices_payment_accepted = [
+            "Cartão de crédito",
+            "Cartão de débito",
+            "Dinheiro"
+        ]
         for obj in choices_payment_accepted:
             ChoicesPaymentAccepted.objects.create(payment=obj)
 
-        choices_place = ["Local próprio", "Hotéis / Motéis / Domicílio", "Eventos", "Viagens"]
+        choices_place = [
+            "Local próprio",
+            "Hotéis / Motéis / Domicílio",
+            "Eventos",
+            "Viagens"
+        ]
         for obj in choices_place:
             ChoicesPlace.objects.create(place=obj)
 
