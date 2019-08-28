@@ -2,9 +2,6 @@ import random
 from django.db import models
 import os
 
-UPLOAD_PHOTOS_PATH = 'Media'
-UPLOAD_VIDEOS_PATH = 'Media'
-
 
 class ChoicesQuestion(models.Model):
     question = models.CharField('Pergunta', max_length=255, null=False, blank=False)
@@ -227,19 +224,33 @@ def get_basic_path(instance):
 
 
 def profile_upload_path(instance, filename):
-    basic_path = get_basic_path(instance)
+    # basic_path = get_basic_path(instance)
     base_name = os.path.basename(filename)
-    path = f'{basic_path}/profile/{base_name}'
+    # path = f'{basic_path}/profile/{base_name}'
+    path = f'{instance.genre.slug}/{instance.slug}/profile/{base_name}'
     return path
 
 
 def thumb_upload_path(instance, filename):
-    basic_path = get_basic_path(instance)
+    # basic_path = get_basic_path(instance)
     base_name = os.path.basename(filename)
     name, ext = os.path.splitext(base_name)
     # Rename to filename_thumb.jpg
     new_name = f'{name}_thumb{ext}'
-    path = f'{basic_path}/profile/{new_name}'
+    # path = f'{basic_path}/profile/{new_name}'
+    path = f'{instance.genre.slug}/{instance.slug}/profile/{new_name}'
+    return path
+
+
+def photos_upload_path(instance, filename):
+    base_name = os.path.basename(filename)
+    path = f'{instance.client.genre.slug}/{instance.client.slug}/photos/{base_name}'
+    return path
+
+
+def videos_upload_path(instance, filename):
+    base_name = os.path.basename(filename)
+    path = f'{instance.client.genre.slug}/{instance.client.slug}/videos/{base_name}'
     return path
 
 
@@ -367,7 +378,7 @@ class Client(models.Model):
 
 class ClientPhoto(models.Model):
     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
-    photo = models.ImageField('Fotos', upload_to=UPLOAD_PHOTOS_PATH, null=False)
+    photo = models.ImageField('Fotos', upload_to=photos_upload_path, null=False)
     order_priority = models.PositiveIntegerField('Prioridade da foto', null=False)
 
     class Meta:
@@ -380,7 +391,7 @@ class ClientPhoto(models.Model):
 
 class ClientVideo(models.Model):
     client = models.ForeignKey('Client', on_delete=models.CASCADE, null=False)
-    video = models.FileField('Videos', upload_to=UPLOAD_VIDEOS_PATH, null=False)
+    video = models.FileField('Videos', upload_to=videos_upload_path, null=False)
     order_priority = models.PositiveIntegerField('Prioridade do Vídeo', null=False)
 
     class Meta:
