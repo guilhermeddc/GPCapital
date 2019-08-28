@@ -10,7 +10,6 @@ class Command(BaseCommand):
         # CALL manage.py flush --noinput (THIS WILL ERASE ALL DATA IN DATABASE)
         call_command('flush', interactive=False)
 
-
         customer_service = [
             "Casais",
             "Mulheres",
