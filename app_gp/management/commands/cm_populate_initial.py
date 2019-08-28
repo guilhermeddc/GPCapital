@@ -206,37 +206,37 @@ class Command(BaseCommand):
             ChoicesStatus.objects.create(status=obj)
 
         choices_states = [
-            [12, "AC", "Acre"],
-            [27, "AL", "Alagoas"],
-            [13, "AM", "Amazonas"],
-            [16, "AP", "Amapá"],
-            [29, "BA", "Bahia"],
-            [23, "CE", "Ceará"],
-            [53, "DF", "Distrito Federal"],
-            [32, "ES", "Espírito Santo"],
-            [52, "GO", "Goiás"],
-            [21, "MA", "Maranhão"],
-            [31, "MG", "Minas Gerais"],
-            [50, "MS", "Mato Grosso do Sul"],
-            [51, "MT", "Mato Grosso"],
-            [15, "PA", "Pará"],
-            [25, "PB", "Paraíba"],
-            [26, "PE", "Pernambuco"],
-            [22, "PI", "Piauí"],
-            [41, "PR", "Paraná"],
-            [33, "RJ", "Rio de Janeiro"],
-            [24, "RN", "Rio Grande do Norte"],
-            [11, "RO", "Rondônia"],
-            [14, "RR", "Roraima"],
-            [43, "RS", "Rio Grande do Sul"],
-            [42, "SC", "Santa Catarina"],
-            [28, "SE", "Sergipe"],
-            [35, "SP", "São Paulo"],
-            [17, "TO", "Tocantins"]
+            [1, 12, "AC", "Acre"],
+            [2, 27, "AL", "Alagoas"],
+            [3, 13, "AM", "Amazonas"],
+            [4, 16, "AP", "Amapá"],
+            [5, 29, "BA", "Bahia"],
+            [6, 23, "CE", "Ceará"],
+            [7, 53, "DF", "Distrito Federal"],
+            [8, 32, "ES", "Espírito Santo"],
+            [9, 52, "GO", "Goiás"],
+            [10, 21, "MA", "Maranhão"],
+            [11, 31, "MG", "Minas Gerais"],
+            [12, 50, "MS", "Mato Grosso do Sul"],
+            [13, 51, "MT", "Mato Grosso"],
+            [14, 15, "PA", "Pará"],
+            [15, 25, "PB", "Paraíba"],
+            [16, 26, "PE", "Pernambuco"],
+            [17, 22, "PI", "Piauí"],
+            [18, 41, "PR", "Paraná"],
+            [19, 33, "RJ", "Rio de Janeiro"],
+            [20, 24, "RN", "Rio Grande do Norte"],
+            [21, 11, "RO", "Rondônia"],
+            [22, 14, "RR", "Roraima"],
+            [23, 43, "RS", "Rio Grande do Sul"],
+            [24, 42, "SC", "Santa Catarina"],
+            [25, 28, "SE", "Sergipe"],
+            [26, 35, "SP", "São Paulo"],
+            [27, 17, "TO", "Tocantins"]
         ]
 
         for obj in choices_states:
-            ChoicesStates.objects.create(ibge_code=obj[0], uf=obj[1], state=obj[2])
+            ChoicesStates.objects.create(pk=obj[0], ibge_code=obj[1], uf=obj[2], state=obj[3])
             
         choices_city = [
             [1, 12, "Acrelândia", "69945000", "1200013", 180795, 0],
@@ -11069,7 +11069,7 @@ class Command(BaseCommand):
             [15216, 31, "Dom Corrêa", "36909800", "0", 0, 3373]
         ]
         for obj in choices_city:
-            ChoicesCity.objects.create(pk=obj[0], state=obj[1], city=obj[2], cep=obj[3], ibge_code=obj[4],
+            ChoicesCity.objects.create(state_id=obj[1], city=obj[2], cep=obj[3], ibge_code=obj[4],
                                        area=obj[5], subordinate_municipality=obj[6])
 
         self.stdout.write(self.style.SUCCESS('INSERTED!'))

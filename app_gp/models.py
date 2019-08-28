@@ -142,9 +142,10 @@ class ChoicesServicesOffered(models.Model):
 
 
 class ChoicesStates(models.Model):
-    ibge_code = models.IntegerField('Código IBGE', primary_key=True, null=False)
+
     uf = models.CharField('UF', max_length=5, null=False)
     state = models.CharField('Estado', max_length=75, null=False)
+    ibge_code = models.IntegerField('Código IBGE', null=False)
 
     class Meta:
         verbose_name = 'UF'

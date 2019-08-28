@@ -84,9 +84,14 @@ def city_pre_save_receiver(sender, instance, *args, **kwargs):
     if not kwargs.get('raw', False):
         # IF PK EXIST SO WE ARE SAVING FOR CHANGE SOME FIELD
         # ELSE WE ARE CREATING THE DATA FOR THE FIRST TIME
+        a = kwargs.get('created')
         if instance.pk:
-            # GET Instance before change anything
-            old_instance = sender.objects.get(pk=instance.pk)
+
+            try:
+                # GET Instance before change anything
+                old_instance = sender.objects.get(pk=instance.pk)
+            except sender.DoesNotExist:
+                return
 
             # City name or State changed? IF yes, recreate the slug field
             if not ((old_instance.city == instance.city) or (old_instance.state == instance.state)):
