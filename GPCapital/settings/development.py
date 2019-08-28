@@ -4,7 +4,7 @@ SECRET_KEY = '2ggw4rwb6&mzh0jdfxvmkdi)io%8emyv3*u8me8rk455v^ery5'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['mytest4.f6epcrspyn.sa-east-1.elasticbeanstalk.com', '127.0.0.1']
+ALLOWED_HOSTS = ['gpcapital-dev.sa-east-1.elasticbeanstalk.com', '127.0.0.1']
 
 INSTALLED_APPS += [
     'storages',
