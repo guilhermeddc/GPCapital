@@ -206,37 +206,37 @@ class Command(BaseCommand):
             ChoicesStatus.objects.create(status=obj)
 
         choices_states = [
-            [1, "AC", "Acre", 12],
-            [2, "AL", "Alagoas", 27],
-            [3, "AM", "Amazonas", 13],
-            [4, "AP", "Amapá", 16],
-            [5, "BA", "Bahia", 29],
-            [6, "CE", "Ceará", 23],
-            [7, "DF", "Distrito Federal", 53],
-            [8, "ES", "Espírito Santo", 32],
-            [9, "GO", "Goiás", 52],
-            [10, "MA", "Maranhão", 21],
-            [11, "MG", "Minas Gerais", 31],
-            [12, "MS", "Mato Grosso do Sul", 50],
-            [13, "MT", "Mato Grosso", 51],
-            [14, "PA", "Pará", 15],
-            [15, "PB", "Paraíba", 25],
-            [16, "PE", "Pernambuco", 26],
-            [17, "PI", "Piauí", 22],
-            [18, "PR", "Paraná", 41],
-            [19, "RJ", "Rio de Janeiro", 33],
-            [20, "RN", "Rio Grande do Norte", 24],
-            [21, "RO", "Rondônia", 11],
-            [22, "RR", "Roraima", 14],
-            [23, "RS", "Rio Grande do Sul", 43],
-            [24, "SC", "Santa Catarina", 42],
-            [25, "SE", "Sergipe", 28],
-            [26, "SP", "São Paulo", 35],
-            [27, "TO", "Tocantins", 17]
+            [12, "AC", "Acre"],
+            [27, "AL", "Alagoas"],
+            [13, "AM", "Amazonas"],
+            [16, "AP", "Amapá"],
+            [29, "BA", "Bahia"],
+            [23, "CE", "Ceará"],
+            [53, "DF", "Distrito Federal"],
+            [32, "ES", "Espírito Santo"],
+            [52, "GO", "Goiás"],
+            [21, "MA", "Maranhão"],
+            [31, "MG", "Minas Gerais"],
+            [50, "MS", "Mato Grosso do Sul"],
+            [51, "MT", "Mato Grosso"],
+            [15, "PA", "Pará"],
+            [25, "PB", "Paraíba"],
+            [26, "PE", "Pernambuco"],
+            [22, "PI", "Piauí"],
+            [41, "PR", "Paraná"],
+            [33, "RJ", "Rio de Janeiro"],
+            [24, "RN", "Rio Grande do Norte"],
+            [11, "RO", "Rondônia"],
+            [14, "RR", "Roraima"],
+            [43, "RS", "Rio Grande do Sul"],
+            [42, "SC", "Santa Catarina"],
+            [28, "SE", "Sergipe"],
+            [35, "SP", "São Paulo"],
+            [17, "TO", "Tocantins"]
         ]
 
         for obj in choices_states:
-            ChoicesStates.objects.create(pk=obj[0], uf=obj[1], state=obj[2], ibge_code=obj[3])
+            ChoicesStates.objects.create(ibge_code=obj[0], uf=obj[1], state=obj[2], )
             
         choices_city = [
             ["Abacate da Pedreira", "68912350", "0", "0", 307, 4],
