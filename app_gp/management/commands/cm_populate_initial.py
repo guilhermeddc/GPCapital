@@ -40,9 +40,9 @@ class Command(BaseCommand):
             ChoicesEyeColor.objects.create(eye_color=obj)
 
         choices_genre = [
-            ["Masculino", "Homens", "Media/Homens.jpg"],
-            ["Feminino", "Mulheres", "Media/Mulheres.jpg"],
-            ["Travesti", "Travestis", "Media/Travestis.jpg"]
+            ["Masculino", "Homens", ""],
+            ["Feminino", "Mulheres", ""],
+            ["Travesti", "Travestis", ""]
         ]
         for obj in choices_genre:
             ChoicesGenre.objects.create(genre=obj[0], site_name=obj[1], representative_image=obj[2])
