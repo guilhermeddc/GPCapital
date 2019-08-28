@@ -2,7 +2,7 @@ import os
 
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'GPCapital.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'GPCapital.settings.local')
 django.setup()
 
 from app_gp.models import *
@@ -23,7 +23,7 @@ choices_payment_accepted_ids = list(ChoicesPaymentAccepted.objects.all().values_
 choices_services_offered_ids = list(ChoicesServicesOffered.objects.all().values_list('pk', flat=True))
 
 # Brasília, Santa Maria, Goiânia, Belo Horizonte, São Paulo
-choices_cities_ids = [1778, 8087, 2174, 2754, 9668]
+choices_cities_ids = [1761, 7989, 2133, 2709, 9560]
 
 # GIRLS
 girls_image_profile_list = []
