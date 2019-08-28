@@ -158,6 +158,6 @@ class Command(BaseCommand):
             "Sexo vaginal"
         ]
         for obj in choices_services_offered:
-            ChoicesPlace.objects.create(services=obj)
+            ChoicesServicesOffered.objects.create(services=obj)
 
         self.stdout.write(self.style.SUCCESS('INSERTED!'))
