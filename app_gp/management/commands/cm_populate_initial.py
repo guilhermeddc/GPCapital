@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.core.management import execute_from_command_line
+from django.core.management import call_command
 from app_gp.models import *
 
 
@@ -7,20 +7,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        ChoicesCustomerService.objects.all().delete()
-        ChoicesEthnicity.objects.all().delete()
-        ChoicesEyeColor.objects.all().delete()
-        ChoicesGenre.objects.all().delete()
-        ChoicesHairColor.objects.all().delete()
-        ChoicesLanguage.objects.all().delete()
-        ChoicesPaymentAccepted.objects.all().delete()
-        ChoicesPlace.objects.all().delete()
-        ChoicesQuestion.objects.all().delete()
-        ChoicesServicesOffered.objects.all().delete()
-        ChoicesStatus.objects.all().delete()
-        ChoicesNeighborhoods.objects.all().delete()
-        ChoicesCity.objects.all().delete()
-        ChoicesStates.objects.all().delete()
+        # CALL manage.py flush --noinput (THIS WILL ERASE ALL DATA IN DATABASE)
+        call_command('flush', interactive=False)
+
 
         customer_service = [
             "Casais",
