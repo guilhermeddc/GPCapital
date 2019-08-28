@@ -33,11 +33,11 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
 
-STATICFILES_STORAGE = 'DjangoAWS.customS3.utils.PublicStaticStorage'
+STATICFILES_STORAGE = 'GPCapital.customS3.utils.PublicStaticStorage'
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
 # STATIC_ROOT = '/static/'
 
-DEFAULT_FILE_STORAGE = 'DjangoAWS.customS3.utils.PublicMediaStorage'
+DEFAULT_FILE_STORAGE = 'GPCapital.customS3.utils.PublicMediaStorage'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 # MEDIA_ROOT = '/media/'
 
