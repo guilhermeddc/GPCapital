@@ -16,6 +16,7 @@ class Command(BaseCommand):
         ChoicesPlace.objects.all().delete()
         ChoicesQuestion.objects.all().delete()
         ChoicesServicesOffered.objects.all().delete()
+        ChoicesStatus.objects.all().delete()
 
         customer_service = ["Casais", "Mulheres", "Homens", "Deficiente física"]
         for obj in customer_service:
@@ -29,9 +30,13 @@ class Command(BaseCommand):
         for obj in eye_color:
             ChoicesEyeColor.objects.create(eye_color=obj)
 
-        # eye_color = ["Azuis", "Castanhos", "Verdes", "Outras cores"]
-        # for obj in eye_color:
-        #     ChoicesGenre.objects.create(eye_color=obj)
+        choices_genre = [
+            ["Masculino", "Homens", "Media/Homens.jpg"],
+            ["Feminino", "Mulheres", "Media/Mulheres.jpg"],
+            ["Travesti", "Travestis", "Media/Travestis.jpg"]
+        ]
+        for obj in choices_genre:
+            ChoicesGenre.objects.create(genre=obj[0], site_name=obj[1], representative_image=obj[2])
 
         hair_color = ["Loiros", "Ruivos", "Castanhos", "Pretos", "Grisalhos", "Outras cores"]
         for obj in hair_color:
