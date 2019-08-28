@@ -41,4 +41,9 @@ class Command(BaseCommand):
         for obj in choices_payment_accepted:
             ChoicesPaymentAccepted.objects.create(choices_payment_accepted=obj)
 
+        ChoicesPlace.objects.all().delete()
+        choices_place = ["Local próprio", "Hotéis / Motéis / Domicílio", "Eventos", "Viagens"]
+        for obj in choices_place:
+            ChoicesPlace.objects.create(choices_place=obj)
+
         self.stdout.write(self.style.SUCCESS('INSERTED!'))
