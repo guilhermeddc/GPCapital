@@ -17,6 +17,9 @@ class Command(BaseCommand):
         ChoicesQuestion.objects.all().delete()
         ChoicesServicesOffered.objects.all().delete()
         ChoicesStatus.objects.all().delete()
+        ChoicesNeighborhoods.objects.all().delete()
+        ChoicesCity.objects.all().delete()
+        ChoicesStates.objects.all().delete()
 
         customer_service = [
             "Casais",
@@ -204,37 +207,37 @@ class Command(BaseCommand):
             ChoicesServicesOffered.objects.create(services=obj)
 
         choices_states = [
-            ["AC", "Acre", 12],
-            ["AL", "Alagoas", 27],
-            ["AM", "Amazonas", 13],
-            ["AP", "Amapá", 16],
-            ["BA", "Bahia", 29],
-            ["CE", "Ceará", 23],
-            ["DF", "Distrito Federal", 53],
-            ["ES", "Espírito Santo", 32],
-            ["GO", "Goiás", 52],
-            ["MA", "Maranhão", 21],
-            ["MG", "Minas Gerais", 31],
-            ["MS", "Mato Grosso do Sul", 50],
-            ["MT", "Mato Grosso", 51],
-            ["PA", "Pará", 15],
-            ["PB", "Paraíba", 25],
-            ["PE", "Pernambuco", 26],
-            ["PI", "Piauí", 22],
-            ["PR", "Paraná", 41],
-            ["RJ", "Rio de Janeiro", 33],
-            ["RN", "Rio Grande do Norte", 24],
-            ["RO", "Rondônia", 11],
-            ["RR", "Roraima", 14],
-            ["RS", "Rio Grande do Sul", 43],
-            ["SC", "Santa Catarina", 42],
-            ["SE", "Sergipe", 28],
-            ["SP", "São Paulo", 35],
-            ["TO", "Tocantins", 17]
+            [1, "AC", "Acre", 12],
+            [2, "AL", "Alagoas", 27],
+            [3, "AM", "Amazonas", 13],
+            [4, "AP", "Amapá", 16],
+            [5, "BA", "Bahia", 29],
+            [6, "CE", "Ceará", 23],
+            [7, "DF", "Distrito Federal", 53],
+            [8, "ES", "Espírito Santo", 32],
+            [9, "GO", "Goiás", 52],
+            [10, "MA", "Maranhão", 21],
+            [11, "MG", "Minas Gerais", 31],
+            [12, "MS", "Mato Grosso do Sul", 50],
+            [13, "MT", "Mato Grosso", 51],
+            [14, "PA", "Pará", 15],
+            [15, "PB", "Paraíba", 25],
+            [16, "PE", "Pernambuco", 26],
+            [17, "PI", "Piauí", 22],
+            [18, "PR", "Paraná", 41],
+            [19, "RJ", "Rio de Janeiro", 33],
+            [20, "RN", "Rio Grande do Norte", 24],
+            [21, "RO", "Rondônia", 11],
+            [22, "RR", "Roraima", 14],
+            [23, "RS", "Rio Grande do Sul", 43],
+            [24, "SC", "Santa Catarina", 42],
+            [25, "SE", "Sergipe", 28],
+            [26, "SP", "São Paulo", 35],
+            [27, "TO", "Tocantins", 17]
         ]
 
         for obj in choices_states:
-            ChoicesStates.objects.create(uf=obj[0], state=obj[1], ibge_code=obj[2])
+            ChoicesStates.objects.create(pk=obj[0], uf=obj[1], state=obj[2], ibge_code=obj[3])
 
         choices_status = [
             "Ativo",
