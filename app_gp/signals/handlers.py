@@ -31,9 +31,11 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
 
         # Image profile changed? IF yes, delete old image and old thumb from path
         if not old_instance.image_profile == instance.image_profile:
-            if os.path.isfile(old_instance.image_profile.path):
+            # if os.path.isfile(old_instance.image_profile.path):
+            if old_instance.image_profile:
                 old_instance.image_profile.delete(save=False)
-            if os.path.isfile(old_instance.image_thumb.path):
+            # if os.path.isfile(old_instance.image_thumb.path):
+            if old_instance.image_thumb:
                 old_instance.image_thumb.delete(save=False)
             create_thumb = True
         else:
@@ -66,13 +68,13 @@ pre_save.connect(client_pre_save_receiver, sender=Client, dispatch_uid='unique')
 def client_post_delete_receiver(sender, instance, **kwargs):
     # Delete Image profile
     if instance.image_profile:
-        if os.path.isfile(instance.image_profile.path):
-            instance.image_profile.delete(save=False)
+        # if os.path.isfile(instance.image_profile.path):
+        instance.image_profile.delete(save=False)
 
     # Delete Thumbnail
     if instance.image_thumb:
-        if os.path.isfile(instance.image_thumb.path):
-            instance.image_thumb.delete(save=False)
+        # if os.path.isfile(instance.image_thumb.path):
+        instance.image_thumb.delete(save=False)
 
 
 post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
@@ -81,8 +83,8 @@ post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='un
 def photos_post_delete_receiver(sender, instance, **kwargs):
     # Delete Image photo
     if instance.photo:
-        if os.path.isfile(instance.photo.path):
-            instance.photo.delete(save=False)
+        # if os.path.isfile(instance.photo.path):
+        instance.photo.delete(save=False)
 
 
 post_delete.connect(photos_post_delete_receiver, sender=ClientPhoto, dispatch_uid='unique')
@@ -91,8 +93,8 @@ post_delete.connect(photos_post_delete_receiver, sender=ClientPhoto, dispatch_ui
 def videos_post_delete_receiver(sender, instance, **kwargs):
     # Delete video
     if instance.video:
-        if os.path.isfile(instance.video.path):
-            instance.video.delete(save=False)
+        # if os.path.isfile(instance.video.path):
+        instance.video.delete(save=False)
 
 
 post_delete.connect(videos_post_delete_receiver, sender=ClientVideo, dispatch_uid='unique')
