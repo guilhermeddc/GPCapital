@@ -3,8 +3,7 @@ from django.db.models.signals import pre_save, post_delete
 from django.utils.text import slugify
 from django.core.files.base import ContentFile, BytesIO
 from app_gp.utils.utils import unique_slug_generator
-from app_gp.models import Client, ChoicesCity, ChoicesGenre, ClientPhoto, ClientVideo
-import os
+from app_gp.models import Client
 
 # http://www.lexev.org/en/2016/django-signal-or-model-method/
 # 1 - Create submodule signals and place h_client.py in it
