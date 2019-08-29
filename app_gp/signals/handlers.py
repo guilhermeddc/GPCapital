@@ -80,24 +80,7 @@ def client_post_delete_receiver(sender, instance, **kwargs):
 post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
 
 
-def photos_post_delete_receiver(sender, instance, **kwargs):
-    # Delete Image photo
-    if instance.photo:
-        # if os.path.isfile(instance.photo.path):
-        instance.photo.delete(save=False)
 
-
-post_delete.connect(photos_post_delete_receiver, sender=ClientPhoto, dispatch_uid='unique')
-
-
-def videos_post_delete_receiver(sender, instance, **kwargs):
-    # Delete video
-    if instance.video:
-        # if os.path.isfile(instance.video.path):
-        instance.video.delete(save=False)
-
-
-post_delete.connect(videos_post_delete_receiver, sender=ClientVideo, dispatch_uid='unique')
 
 
 # CITY
