@@ -5,6 +5,6 @@ class AppGpConfig(AppConfig):
     name = 'app_gp'
 
     def ready(self):
-        from app_gp.signals import handlers, h_clientphoto
+        from app_gp.signals import handlers, h_clientphoto, h_clientvideo
 
 
