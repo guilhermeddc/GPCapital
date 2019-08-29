@@ -1,5 +1,8 @@
 import os
-
+from PIL import Image
+from django.utils.text import slugify
+from django.core.files.base import ContentFile, BytesIO
+from app_gp.utils.utils import unique_slug_generator
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'GPCapital.settings.local')
@@ -27,63 +30,63 @@ choices_cities_ids = [1761, 7989, 2133, 2709, 9560]
 
 # GIRLS
 girls_image_profile_list = []
-girl_image_profile_dir = 'media/girls_image_profile_1024_768'
+girl_image_profile_dir = 'fake_images/mulheres/profile'
 for root, dirs, files in os.walk(girl_image_profile_dir):
     for filename in files:
         base_name = os.path.basename(girl_image_profile_dir)
-        image_path = f'{base_name}/{filename}'
+        image_path = f'{root}/{filename}'
         girls_image_profile_list.append(image_path)
 
 count_girls_image_profile = len(girls_image_profile_list) - 1
 
 girls_photos_list = []
-girls_photos_profile_dir = 'media/girls_images_shuffle_size'
+girls_photos_profile_dir = 'fake_images/mulheres/photos'
 for root, dirs, files in os.walk(girls_photos_profile_dir):
     for filename in files:
         base_name = os.path.basename(girls_photos_profile_dir)
-        image_path = f'{base_name}/{filename}'
+        image_path = f'{root}/{filename}'
         girls_photos_list.append(image_path)
 
 count_girls_photos = len(girls_photos_list) - 1
 
 girls_videos_list = []
-girls_videos_profile_dir = 'media/girls_videos'
+girls_videos_profile_dir = 'fake_images/mulheres/videos'
 for root, dirs, files in os.walk(girls_videos_profile_dir):
     for filename in files:
         base_name = os.path.basename(girls_videos_profile_dir)
-        image_path = f'{base_name}/{filename}'
+        image_path = f'{root}/{filename}'
         girls_videos_list.append(image_path)
 
 count_girls_videos = len(girls_videos_list) - 1
 
 # MEN
 men_image_profile_list = []
-men_image_profile_dir = 'media/men_image_profile_1024_768'
+men_image_profile_dir = 'fake_images/homens/profile'
 for root, dirs, files in os.walk(men_image_profile_dir):
     for filename in files:
         base_name = os.path.basename(men_image_profile_dir)
-        image_path = f'{base_name}/{filename}'
+        image_path = f'{root}/{filename}'
         men_image_profile_list.append(image_path)
 
 count_men_image_profile = len(men_image_profile_list) - 1
 
 
 men_photos_list = []
-men_photos_profile_dir = 'media/men_images_shuffle_size'
+men_photos_profile_dir = 'fake_images/homens/photos'
 for root, dirs, files in os.walk(men_photos_profile_dir):
     for filename in files:
         base_name = os.path.basename(men_photos_profile_dir)
-        image_path = f'{base_name}/{filename}'
+        image_path = f'{root}/{filename}'
         men_photos_list.append(image_path)
 
 count_men_photos = len(men_photos_list) - 1
 
 men_videos_list = []
-men_videos_profile_dir = 'media/men_videos'
+men_videos_profile_dir = 'fake_images/homens/videos'
 for root, dirs, files in os.walk(men_videos_profile_dir):
     for filename in files:
         base_name = os.path.basename(men_videos_profile_dir)
-        image_path = f'{base_name}/{filename}'
+        image_path = f'{root}/{filename}'
         men_videos_list.append(image_path)
 
 count_men_videos = len(men_videos_list) - 1
@@ -142,7 +145,7 @@ def create_client(
         'short_description': short_description,
         'description': description,
         'phone': phone,
-        'image_profile': image_profile,
+        # 'image_profile': image_profile,
         'profile_priority': profile_priority,
         'city_id': city_id,
         'age': age,
@@ -162,6 +165,17 @@ def create_client(
     }
 
     client = Client(**dict_person)
+
+    slug = slugify(client.fake_name)
+    client.slug = unique_slug_generator(instance=client, slug=slug)
+
+    img = Image.open(image_profile)
+
+    buffer = BytesIO()
+    img.save(buffer, img.format, quality=100)
+
+    file_name = os.path.basename(image_profile)
+    client.image_profile.save(file_name, ContentFile(buffer.getvalue(), name=file_name), save=False)
     client.save()
 
     return client
@@ -256,6 +270,15 @@ def create_client_photo(client_id, genre_id, n_samples=5):
         }
 
         client_photo = ClientPhoto(**dict_client_photo)
+
+        img = Image.open(photo)
+
+        buffer = BytesIO()
+        img.save(buffer, img.format, quality=100)
+
+        file_name = os.path.basename(photo)
+        client_photo.photo.save(file_name, ContentFile(buffer.getvalue(), name=file_name), save=False)
+
         client_photo.save()
 
 
@@ -311,5 +334,5 @@ if __name__ == '__main__':
                 n_samples = random.randint(3, 10)
                 create_client_photo(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
 
-                n_samples = random.randint(1, 5)
-                create_client_video(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
+                # n_samples = random.randint(1, 5)
+                # create_client_video(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
