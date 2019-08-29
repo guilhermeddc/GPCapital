@@ -14,3 +14,5 @@ class Command(BaseCommand):
             for dir_ in dirs:
                 if not os.listdir(os.path.join(relative_root, dir_)):
                     os.rmdir(os.path.join(relative_root, dir_))
+
+        self.stdout.write(self.style.SUCCESS('...Empty folders deleted'))

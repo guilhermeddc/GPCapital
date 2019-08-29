@@ -48,6 +48,8 @@ class Command(BaseCommand):
                     n_samples = random.randint(1, 5)
                     create_client_video(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
 
+        self.stdout.write(self.style.SUCCESS('...Fake data inserted!'))
+
 
 fake = Faker(locale='pt_BR')
 

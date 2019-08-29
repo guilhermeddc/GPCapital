@@ -11074,4 +11074,4 @@ class Command(BaseCommand):
             ChoicesCity.objects.create(state_id=obj[0], city=obj[1], cep=obj[2], ibge_code=obj[3],
                                        area=obj[4], subordinate_municipality=obj[5])
 
-        self.stdout.write(self.style.SUCCESS('INSERTED!'))
+        self.stdout.write(self.style.SUCCESS('...All data inserted!'))
