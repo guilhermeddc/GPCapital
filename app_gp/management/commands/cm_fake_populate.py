@@ -1,7 +1,6 @@
 import os
 
 from django.core.files import File
-from django.core.files.storage import default_storage
 from django.core.management.base import BaseCommand
 from PIL import Image
 from django.utils.text import slugify
@@ -48,6 +47,7 @@ class Command(BaseCommand):
 
                     n_samples = random.randint(1, 5)
                     create_client_video(client_id=person.id, genre_id=genre_id, n_samples=n_samples)
+
 
 fake = Faker(locale='pt_BR')
 
@@ -335,9 +335,10 @@ def create_client_video(client_id, genre_id, n_samples=5):
         client_video = ClientVideo(**dict_client_video)
         file_name = os.path.basename(video)
 
-        with open(video, 'rb') as f:
-            my_file = File(f)
-            client_video.video.save(file_name, ContentFile(my_file.read()), save=False)
+        f = open(video, 'rb')
+        my_file = File(f)
+
+        client_video.video.save(file_name, ContentFile(my_file.read()), save=False)
 
         my_file.close()
         f.close()
