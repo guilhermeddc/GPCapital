@@ -3,8 +3,8 @@ from app_gp.models import ClientVideo
 
 
 # http://www.lexev.org/en/2016/django-signal-or-model-method/
-# 1 - Create submodule signals and place handlers.py in it
-# 2 - Define signals in that file handlers.py
+# 1 - Create submodule signals and place h_client.py in it
+# 2 - Define signals in that file h_client.py
 # 3 - Create application config class
 # 4 - In apps.py overrided ready function to import the handler ex:
 #       def ready(self): import app_gp.signals.handlers
