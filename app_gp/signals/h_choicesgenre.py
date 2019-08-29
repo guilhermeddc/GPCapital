@@ -15,17 +15,17 @@ def choices_genre_pre_save_receiver(sender, instance, *args, **kwargs):
 
             # Genre site name changed? IF yes, recreate the slug field
             if not old_instance.site_name == instance.site_name:
-                instance.slug = create_city_slug(instance)
+                instance.slug = create_genre_slug(instance)
 
         else:   # FIRST TIME
             # Create slug
-            instance.slug = create_city_slug(instance)
+            instance.slug = create_genre_slug(instance)
 
 
 pre_save.connect(choices_genre_pre_save_receiver, sender=ChoicesGenre, dispatch_uid='choices_genre_pre_save')
 
 
-def create_city_slug(instance):
+def create_genre_slug(instance):
     slug_candidate = f'{instance.site_name}'
     slug = slugify(slug_candidate)
     return unique_slug_generator(instance=instance, slug=slug)

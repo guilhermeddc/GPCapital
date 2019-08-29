@@ -80,35 +80,5 @@ def client_post_delete_receiver(sender, instance, **kwargs):
 post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
 
 
-# CITY
-def city_pre_save_receiver(sender, instance, *args, **kwargs):
-    # PREVENT FIXTURE ERRORS if (kwargs.get('created', True) and not kwargs.get('raw', False)):
-    if not kwargs.get('raw', False):
-        # IF PK EXIST SO WE ARE SAVING FOR CHANGE SOME FIELD
-        # ELSE WE ARE CREATING THE DATA FOR THE FIRST TIME
-        if instance.pk:
-
-            try:
-                # GET Instance before change anything
-                old_instance = sender.objects.get(pk=instance.pk)
-
-                # City name or State changed? IF yes, recreate the slug field
-                if not ((old_instance.city == instance.city) or (old_instance.state == instance.state)):
-                    slug_candidate = f'{instance.city}-{instance.state}'
-                    slug = slugify(slug_candidate)
-                    instance.slug = unique_slug_generator(instance=instance, slug=slug)
-
-            except sender.DoesNotExist:
-                return
-
-        else:   # FIRST TIME
-            # Create slug
-            slug_candidate = f'{instance.city}-{instance.state}'
-            slug = slugify(slug_candidate)
-            instance.slug = unique_slug_generator(instance=instance, slug=slug)
-
-
-pre_save.connect(city_pre_save_receiver, sender=ChoicesCity, dispatch_uid='unique')
-
 
 
