@@ -34,7 +34,7 @@ class GenresQuerySet(models.QuerySet):
     def get_genres_by_city(self, slug):
         city_id = ChoicesCity.objects.filter(slug=slug).first().id
         select = "SELECT DISTINCT genre.id, genre.slug, genre.genre, genre.site_name, genre.representative_image " \
-                 "from choices_genre as genre " \
+                 "FROM choices_genre AS genre " \
                  "INNER JOIN client ON genre.id = client.genre_id " \
                  "WHERE client.city_id = %s " \
                  "ORDER BY genre.id"
