@@ -359,6 +359,7 @@ class Client(models.Model):
                                               through='InterClientServicesOffered')
 
     def get_absolute_url(self):
+
         from django.urls import reverse
         return reverse('city.genre.client.details', args=[self.city.slug, self.genre.slug, self.slug])
 

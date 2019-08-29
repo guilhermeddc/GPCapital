@@ -7,6 +7,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
+        # To call post delete we need manually delete
+        Client.objects.all().delete()
         # CALL manage.py flush --noinput (THIS WILL ERASE ALL DATA IN DATABASE)
         call_command('flush', interactive=False)
 

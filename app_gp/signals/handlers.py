@@ -3,7 +3,7 @@ from django.db.models.signals import pre_save, post_delete
 from django.utils.text import slugify
 from django.core.files.base import ContentFile, BytesIO
 from app_gp.utils.utils import unique_slug_generator
-from app_gp.models import Client, ChoicesCity, ChoicesGenre
+from app_gp.models import Client, ChoicesCity, ChoicesGenre, ClientPhoto, ClientVideo
 import os
 
 # http://www.lexev.org/en/2016/django-signal-or-model-method/
@@ -76,6 +76,26 @@ def client_post_delete_receiver(sender, instance, **kwargs):
 
 
 post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
+
+
+def photos_post_delete_receiver(sender, instance, **kwargs):
+    # Delete Image photo
+    if instance.photo:
+        if os.path.isfile(instance.photo.path):
+            instance.photo.delete(save=False)
+
+
+post_delete.connect(photos_post_delete_receiver, sender=ClientPhoto, dispatch_uid='unique')
+
+
+def videos_post_delete_receiver(sender, instance, **kwargs):
+    # Delete video
+    if instance.video:
+        if os.path.isfile(instance.video.path):
+            instance.video.delete(save=False)
+
+
+post_delete.connect(videos_post_delete_receiver, sender=ClientVideo, dispatch_uid='unique')
 
 
 # CITY
