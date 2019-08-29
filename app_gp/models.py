@@ -33,8 +33,12 @@ class GenresQuerySet(models.QuerySet):
 
     def get_genres_by_city(self, slug):
         city_id = ChoicesCity.objects.filter(slug=slug).first().id
-        existing_genre_in_city = Client.objects.values('genre_id').distinct().filter(city_id=city_id)
-        return ChoicesGenre.objects.filter(id__in=existing_genre_in_city)
+        select = "SELECT DISTINCT genre.id, genre.slug, genre.genre, genre.site_name, genre.representative_image " \
+                 "from choices_genre as genre " \
+                 "INNER JOIN client ON genre.id = client.genre_id " \
+                 "WHERE client.city_id = %s " \
+                 "ORDER BY genre.id"
+        return self.raw(select, params=[city_id])
 
 
 class GenreManager(models.Manager):
@@ -142,7 +146,6 @@ class ChoicesServicesOffered(models.Model):
 
 
 class ChoicesStates(models.Model):
-
     uf = models.CharField('UF', max_length=5, null=False)
     state = models.CharField('Estado', max_length=75, null=False)
     ibge_code = models.IntegerField('Código IBGE', null=False)
@@ -359,7 +362,6 @@ class Client(models.Model):
                                               through='InterClientServicesOffered')
 
     def get_absolute_url(self):
-
         from django.urls import reverse
         return reverse('city.genre.client.details', args=[self.city.slug, self.genre.slug, self.slug])
 
