@@ -3,6 +3,7 @@ from app_gp.forms import *
 # from app_gp.utils.admin.client import *
 from app_gp.utils.admin.city import *
 from app_gp.utils.admin.customer_service import *
+from app_gp.utils.admin.highlight import HighlightAdmin
 from app_gp.utils.admin.neighborhoods import AdminNeighborhood
 
 
@@ -15,6 +16,7 @@ class InterClientActingCitiesAdmin(admin.ModelAdmin):
 # Register your models here.
 # admin.site.register(Client)
 admin.site.register(Client, ClientAdmin)
+admin.site.register(Highlight, HighlightAdmin)
 
 # ADMIN CHOICES
 admin.site.register(ChoicesEthnicity)
@@ -28,6 +30,7 @@ admin.site.register(ChoicesStates)
 admin.site.register(ChoicesNeighborhoods, AdminNeighborhood)
 admin.site.register(ChoicesLanguage)
 admin.site.register(ChoicesCity, AdminCity)
+
 
 # ADMIN INTERMEDIATE
 # admin.site.register(ModelInterClientCustomerServices)
