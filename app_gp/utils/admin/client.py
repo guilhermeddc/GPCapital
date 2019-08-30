@@ -23,6 +23,7 @@ class ClientAdmin(admin.ModelAdmin):
                     'ethnicity', 'status')
     list_filter = ('status', 'genre', 'hair', 'eye', 'ethnicity')
     readonly_fields = ('slug', )
+    raw_id_fields = ('city',)
     list_per_page = 15
     
     # fields = ('slug', 'fake_name', 'name')
