@@ -24,6 +24,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_filter = ('status', 'genre', 'hair', 'eye', 'ethnicity')
     readonly_fields = ('slug', )
     raw_id_fields = ('city',)
+    search_fields = ('slug', 'fake_name', 'name')
     list_per_page = 15
     
     # fields = ('slug', 'fake_name', 'name')

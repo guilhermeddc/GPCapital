@@ -244,7 +244,7 @@ def thumb_upload_path(instance, filename):
 
 def highlight_photo_upload_path(instance, filename):
     base_name = os.path.basename(filename)
-    path = f'{instance.city}/{instance.genre}/{base_name}'
+    path = f'destaques/{instance.city.slug}/{instance.genre.slug}/{instance.get_highlight_type_display()}/{base_name}'
     return path
 
 
@@ -410,17 +410,19 @@ class ClientVideo(models.Model):
 
 class Highlight(models.Model):
     highlight_type_choices = (
-        ("1", "Top"),
-        ("2", "Left"),
-        ("3", "Right"),
-        ("4", "Bottom")
+        ("1", "top"),
+        ("2", "left"),
+        ("3", "right"),
+        ("4", "bottom")
     )
 
-    city = models.ForeignKey('ChoicesCity', on_delete=models.CASCADE, null=False)
-    genre = models.ForeignKey('ChoicesGenre', on_delete=models.CASCADE, null=False)
-    photo = models.ImageField('Foto destaque', upload_to=highlight_photo_upload_path, null=False)
-    highlight_type = models.CharField(max_length=50, choices=highlight_type_choices, null=False)
-    order_priority = models.PositiveIntegerField('Prioridade da foto', null=False)
+    city = models.ForeignKey('ChoicesCity', on_delete=models.CASCADE, null=False, blank=False)
+    genre = models.ForeignKey('ChoicesGenre', on_delete=models.CASCADE, null=False, blank=False)
+    photo = models.ImageField('Foto destaque', upload_to=highlight_photo_upload_path, null=False, blank=False)
+    highlight_type = models.CharField(max_length=50, choices=highlight_type_choices, null=False, blank=False)
+    order_priority = models.PositiveIntegerField('Prioridade da foto', null=False, blank=False)
+    client = models.ForeignKey('Client', on_delete=models.CASCADE, null=True, blank=True)
+    url = models.CharField(max_length=255, null=False, blank=True)
 
     class Meta:
         verbose_name = 'Highlight'
