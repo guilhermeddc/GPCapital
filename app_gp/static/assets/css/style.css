@@ -123,8 +123,6 @@ footer {
 span.new-line-span {
   display: block;
   font-weight: normal;
-  display: block;
-  font-weight: normal;
   font-size: 14px;
   line-height: 2;
 }
@@ -186,7 +184,7 @@ hr {
 .btn.btn-primary.btn-xl.js-scroll-trigger {
   background-color: #CD074F;
   border-color: #CD074F;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', serif;
 }
 
 .btn.btn-primary.btn-xl.js-scroll-trigger:hover {
@@ -346,7 +344,7 @@ b, strong {
 }
 
 .lg-icon {
-  font-family: lg;
+  font-family: lg, serif;
   speak: none;
   font-style: normal;
   font-weight: 400;
@@ -388,7 +386,7 @@ b, strong {
 
 .lg-actions .lg-next:before {
   content: "\f3d3";
-  font-family: Ionicons;
+  font-family: Ionicons, serif;
 }
 
 .lg-actions .lg-prev {
@@ -397,13 +395,7 @@ b, strong {
 
 .lg-actions .lg-prev:after {
   content: "\f3d2";
-  font-family: Ionicons;
-}
-
-@keyframes lg-right-end {
-}
-
-@keyframes lg-left-end {
+  font-family: Ionicons, serif;
 }
 
 .lg-outer.lg-right-end .lg-object {
@@ -451,7 +443,7 @@ b, strong {
 
 .lg-toolbar .lg-close:after {
   content: "\f2d7";
-  font-family: Ionicons;
+  font-family: Ionicons, serif;
 }
 
 .lg-toolbar .lg-download:after {
@@ -1670,7 +1662,7 @@ b, strong {
 
 .lg-outer .lg-toogle-thumb:after {
   content: "\f481";
-  font-family: Ionicons;
+  font-family: Ionicons, serif;
 }
 
 .lg-outer .lg-toogle-thumb:hover, .lg-outer.lg-dropdown-active #lg-share {

@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>GP Capital | As Melhores Garotas de Programa</title>
+    {% include 'mdb/base/components/css.html' %}
+    <style>
+
+        .page-top {
+            width: 100%;
+            height: 10vh;
+            background-color: #0b0b0b;
+        }
+
+        .page-mid {
+            background-image: url("{% static 'assets/img/bg2.jpg' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 80vh;
+        }
+
+        .page-bot {
+            background-color: #0b0b0b;
+            height: 10vh;
+            margin: 0 auto;
+        }
+
+        .page-bot img {
+            width: 10em;
+            margin: 0 auto;
+        }
+
+        .h2-responsive {
+            padding-top: 5em;
+        }
+
+        .form {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="page-top"></div>
+</div>
+<section class="page-mid">
+    <h2 class="text-center h2-responsive text-light"><strong>ESCOLHA SUA CIDADE:</strong></h2>
+    <div class="container">
+        <form type="" action="" method="get">
+            <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+            <div class="form-row">
+                <div class="form-group col text-light">
+                    {{ city }}
+                </div>
+            </div>
+            <br>
+            <div class="flex-center">
+            <button type="submit" class="btn btn-light wow fadeIn justify-content-center"
+                    data-wow-delay="0.4s">Buscar
+            </button>
+            </div>
+        </form>
+    </div>
+</section>
+<footer>
+    <div class="page-bot flex-center">
+        <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo">
+    </div>
+</footer>
+
+
+<!-- Small modal -->
+<div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="flex-center modal-content">
+            <img src="{% static 'assets/img/18+.png' %}" alt="img 18+">
+            <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
+            <p class="container-fluid">Entendo que o <strong>GP Capital</strong> apresenta
+                <strong>conteudo explicito</strong> destinado a <strong>adultos</strong></p>
+            <a href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
+            <br>
+            <button type="button" class="btn btn-elegant" data-dismiss="modal"><i class="fas fa-check"></i> Concordo
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Intro Section -->
+{% include 'mdb/base/components/scripts.html' %}
+</body>
+</html>

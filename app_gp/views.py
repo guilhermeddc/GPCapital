@@ -39,7 +39,7 @@ class CreateClientView(CreateView):
 
 class SearchCityView(TemplateView):
     form_class = CitySearchForm
-    template_name = 'mdb/pages/search_city.html'
+    template_name = 'mdb/pages/search_city_v2.html'
 
     def get(self, request, *args, **kwargs):
         city_slug = request.GET.get('city', default=None)
