@@ -3,11 +3,12 @@
 <style>
 
     .page-intro {
+        padding-top: 60px;
         background-image: url("{% static 'assets/img/bg.jpeg' %}");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        height: 70vh;
+        height: 80vh;
     }
 
     .box {
@@ -36,17 +37,13 @@
             <h2 class="text-center h2-responsive text-dark"><strong>O que você procura?</strong></h2>
             <div class="col-md-12">
                 <hr class="hr-dark mt-4 wow fadeInDown" data-wow-delay="0.4s">
-                <br>
-
                 <form type="" action="#" method="get">
                     <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
                     <div class="row flex-center">
                         <div class="col-md-6">
-
                             {{ search_form.category }}
                         </div>
                         <div class="col-md-6">
-
                             {{ search_form.ethnicity }}
                         </div>
                     </div>

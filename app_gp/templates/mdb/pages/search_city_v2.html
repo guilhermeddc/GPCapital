@@ -7,11 +7,15 @@
     <title>GP Capital | As Melhores Garotas de Programa</title>
     {% include 'mdb/base/components/css.html' %}
     <style>
-
+        body {
+            font-size: 1rem;
+        }
         .page-top {
             width: 100%;
-            height: 6vh;
+            height: 10%;
             background-color: #0b0b0b;
+            display: flex;
+            top: 0;
         }
 
         .page-mid {
@@ -19,12 +23,18 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            height: 84vh;
+            height: 100vh;
+            font-size: 2.75rem;
+        }
+
+        .btn {
+            font-size: 2.75rem;
+            border-radius: 0.5rem;
         }
 
         .page-bot {
             background-color: #0b0b0b;
-            height: 10vh;
+            height: 10%;
             margin: 0 auto;
         }
 
@@ -43,44 +53,45 @@
 
         .box {
             background-color: rgba(255, 255, 255, 0.5);
-            padding: 2rem 1.75rem;
+            padding: 6rem 4.75rem;
             border-radius: 0.5rem;
         }
 
-        @media screen and (max-width: 768px) {
-
+        @media screen and (max-width: 740px) {
+            .box {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
-<body>
-<div>
-    <div class="page-top"></div>
-</div>
+<body style="font-size: 2rem">
+<div class="page-top fixed-top"></div>
 <section class="page-mid">
-    <div class="container flex-center">
-        <div class="col-sm-9 col-md-9 box">
+    <div class="container-fluid flex-center">
+        <div class="col-md-12 box">
             <h2 class="text-center h2-responsive text-dark"><strong>ESCOLHA SUA CIDADE:</strong></h2>
-            <hr class="hr-dark mt-4 wow fadeInDown" data-wow-delay="0.4s">
-            <form type="" action="" method="get">
-                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
-                <div class="form-row">
-                    <div class="form-group col text-dark">
-                        {{ city }}
+            <div class="col-md-12">
+                <hr class="hr-dark mt-4 wow fadeInDown" data-wow-delay="0.4s">
+                <form type="" action="" method="get">
+                    <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                    <div class="form-row">
+                        <div class="form-group col text-dark">
+                            {{ city }}
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="flex-center">
-                    <button type="submit" class="btn btn-elegant wow fadeIn justify-content-center"
-                            data-wow-delay="0.4s">Buscar
-                    </button>
-                </div>
-            </form>
-
+                    <br>
+                    <div class="flex-center">
+                        <button type="submit" class="btn btn-elegant wow fadeIn justify-content-center"
+                                data-wow-delay="0.4s">Buscar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
 <footer>
-    <div class="page-bot flex-center">
+    <div class="page-bot fixed-bottom flex-center">
         <img src="{% static 'assets/img/GP_3nav2.png' %}" alt="logo">
     </div>
 </footer>
@@ -90,7 +101,7 @@
 <div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-sm">
-        <div class="flex-center modal-content col-md-12">
+        <div class="flex-center modal-content">
             <img class="mt-4" src="{% static 'assets/img/18+.png' %}" alt="img 18+">
             <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
             <p class="container-fluid">Entendo que o <strong>GP Capital</strong> apresenta

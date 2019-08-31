@@ -20,8 +20,9 @@ class CitySearchForm(forms.Form):
                            required=True,
                            to_field_name='slug',
                            widget=Select(attrs={
-                               'class': 'col-md-12 mdb-select colorful-select dropdown-dark md-form wow fadeIn',
+                               'class': 'mdb-select colorful-select dropdown-dark md-form wow fadeIn',
                                'data-wow-delay': '0.4s',
+                               'style': 'font-size: 2rem;',
                                'is_hidden': 'False',
                                'searchable': "ESCOLHA SUA CIDADE:"}))
 
