@@ -3,8 +3,7 @@ from django.db.models.signals import pre_save, post_delete
 from django.utils.text import slugify
 from django.core.files.base import ContentFile, BytesIO
 from app_gp.utils.utils import unique_slug_generator
-from app_gp.models import Client, ChoicesCity, ChoicesGenre, ClientPhoto, ClientVideo
-import os
+from app_gp.models import Client
 
 # http://www.lexev.org/en/2016/django-signal-or-model-method/
 # 1 - Create submodule signals and place h_client.py in it
@@ -31,10 +30,8 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
 
         # Image profile changed? IF yes, delete old image and old thumb from path
         if not old_instance.image_profile == instance.image_profile:
-            # if os.path.isfile(old_instance.image_profile.path):
             if old_instance.image_profile:
                 old_instance.image_profile.delete(save=False)
-            # if os.path.isfile(old_instance.image_thumb.path):
             if old_instance.image_thumb:
                 old_instance.image_thumb.delete(save=False)
             create_thumb = True
@@ -62,22 +59,20 @@ def client_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.image_thumb.save(file_name, ContentFile(thumb_io.getvalue()), save=False)
 
 
-pre_save.connect(client_pre_save_receiver, sender=Client, dispatch_uid='unique')
+pre_save.connect(client_pre_save_receiver, sender=Client, dispatch_uid='client_pre_save')
 
 
 def client_post_delete_receiver(sender, instance, **kwargs):
     # Delete Image profile
     if instance.image_profile:
-        # if os.path.isfile(instance.image_profile.path):
         instance.image_profile.delete(save=False)
 
     # Delete Thumbnail
     if instance.image_thumb:
-        # if os.path.isfile(instance.image_thumb.path):
         instance.image_thumb.delete(save=False)
 
 
-post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='unique')
+post_delete.connect(client_post_delete_receiver, sender=Client, dispatch_uid='client_post_delete')
 
 
 
