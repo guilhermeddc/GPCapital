@@ -5,6 +5,12 @@ header,
     height: 100vh;
 }
 
+.box {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 2rem 1.75rem;
+    border-radius: 0.5rem;
+}
+
 .top-nav-collapse {
     color: #0b0b0b !important;
     background-color: #0b0b0b !important;
@@ -49,7 +55,8 @@ a:hover {
 }
 
 
-@media (min-width: 800px) and (max-width: 850px) {}
+@media (min-width: 800px) and (max-width: 850px) {
+}
 
 @media (min-width: 560px) and (max-width: 650px) {
     header .jarallax h5 {

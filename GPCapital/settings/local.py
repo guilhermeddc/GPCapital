@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 DATABASES['default'].update({
     'NAME': 'gpcapital',
     'USER': 'postgres',
-    'PASSWORD': 'trismegistos',
+    'PASSWORD': '29gu09il',
     'HOST': 'localhost',
     'PORT': '5432',
 })

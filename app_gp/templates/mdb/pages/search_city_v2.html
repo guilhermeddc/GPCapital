@@ -10,16 +10,16 @@
 
         .page-top {
             width: 100%;
-            height: 10vh;
+            height: 6vh;
             background-color: #0b0b0b;
         }
 
         .page-mid {
-            background-image: url("{% static 'assets/img/bg2.jpg' %}");
+            background-image: url("{% static 'assets/img/bg.jpeg' %}");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            height: 80vh;
+            height: 84vh;
         }
 
         .page-bot {
@@ -34,11 +34,17 @@
         }
 
         .h2-responsive {
-            padding-top: 5em;
+
         }
 
         .form {
             width: 100%;
+        }
+
+        .box {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 1.75rem;
+            border-radius: 0.5rem;
         }
 
         @media screen and (max-width: 768px) {
@@ -51,22 +57,26 @@
     <div class="page-top"></div>
 </div>
 <section class="page-mid">
-    <h2 class="text-center h2-responsive text-light"><strong>ESCOLHA SUA CIDADE:</strong></h2>
-    <div class="container">
-        <form type="" action="" method="get">
-            <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
-            <div class="form-row">
-                <div class="form-group col text-light">
-                    {{ city }}
+    <div class="container flex-center">
+        <div class="col-sm-9 col-md-9 box">
+            <h2 class="text-center h2-responsive text-dark"><strong>ESCOLHA SUA CIDADE:</strong></h2>
+            <hr class="hr-dark mt-4 wow fadeInDown" data-wow-delay="0.4s">
+            <form type="" action="" method="get">
+                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+                <div class="form-row">
+                    <div class="form-group col text-dark">
+                        {{ city }}
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="flex-center">
-            <button type="submit" class="btn btn-light wow fadeIn justify-content-center"
-                    data-wow-delay="0.4s">Buscar
-            </button>
-            </div>
-        </form>
+                <br>
+                <div class="flex-center">
+                    <button type="submit" class="btn btn-elegant wow fadeIn justify-content-center"
+                            data-wow-delay="0.4s">Buscar
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
 </section>
 <footer>
@@ -80,14 +90,15 @@
 <div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-sm">
-        <div class="flex-center modal-content">
-            <img src="{% static 'assets/img/18+.png' %}" alt="img 18+">
+        <div class="flex-center modal-content col-md-12">
+            <img class="mt-4" src="{% static 'assets/img/18+.png' %}" alt="img 18+">
             <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
             <p class="container-fluid">Entendo que o <strong>GP Capital</strong> apresenta
                 <strong>conteudo explicito</strong> destinado a <strong>adultos</strong></p>
             <a href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
             <br>
-            <button type="button" class="btn btn-elegant" data-dismiss="modal"><i class="fas fa-check"></i> Concordo
+            <button type="button" class="btn btn-elegant mb-4" data-dismiss="modal"><i class="fas fa-check"></i>
+                Concordo
             </button>
         </div>
     </div>
