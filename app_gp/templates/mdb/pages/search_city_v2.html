@@ -23,12 +23,12 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            height: 100vh;
-            font-size: 2.75rem;
+            height: 100%;
+            font-size: 2.1rem;
         }
 
         .btn {
-            font-size: 2.75rem;
+            font-size: 2rem;
             border-radius: 0.5rem;
         }
 
@@ -57,25 +57,20 @@
             border-radius: 0.5rem;
         }
 
-        @media screen and (max-width: 740px) {
-            .box {
-                font-size: 2rem;
-            }
-        }
     </style>
 </head>
 <body style="font-size: 2rem">
 <div class="page-top fixed-top"></div>
 <section class="page-mid">
     <div class="container-fluid flex-center">
-        <div class="col-md-12 box">
+        <div class="col-sm-12 col-md-12 col-lg-6 box">
             <h2 class="text-center h2-responsive text-dark"><strong>ESCOLHA SUA CIDADE:</strong></h2>
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <hr class="hr-dark mt-4 wow fadeInDown" data-wow-delay="0.4s">
                 <form type="" action="" method="get">
                     <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
                     <div class="form-row">
-                        <div class="form-group col text-dark">
+                        <div class="form-group col-sm-12">
                             {{ city }}
                         </div>
                     </div>
@@ -100,15 +95,16 @@
 <!-- Small modal -->
 <div id="modal18" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-success">
         <div class="flex-center modal-content">
             <img class="mt-4" src="{% static 'assets/img/18+.png' %}" alt="img 18+">
-            <hr class="hr-dark mt-4 wow fadeIn" data-wow-delay="0.4s">
-            <p class="container-fluid">Entendo que o <strong>GP Capital</strong> apresenta
-                <strong>conteudo explicito</strong> destinado a <strong>adultos</strong></p>
-            <a href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
             <br>
-            <button type="button" class="btn btn-elegant mb-4" data-dismiss="modal"><i class="fas fa-check"></i>
+            <p class="mx-2 px-5">Entendo que o GP Capital apresenta
+                conteudo explicito destinado a adultos.</p>
+            <br>
+            <a class="text-danger" href="#"><i class="fas fa-external-link-alt"></i> Termos de uso</a>
+            <br>
+            <button type="button" class="btn btn-elegant" data-dismiss="modal"><i class="fas fa-check fa-sm"></i>
                 Concordo
             </button>
         </div>

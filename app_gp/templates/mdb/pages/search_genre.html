@@ -16,63 +16,19 @@
             background-position: center;
         }
 
-        #v2 {
-            display: none;
-        }
-
-        .mobile {
-            width: 100%;
-            height: 100vh;
-            background-image: url("{% static 'assets/img/Capa-sexo-mobile-v2.jpg' %}");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            padding-top: 15em;
-        }
-
-        .mobile-cards {
-            padding-top: 3em;
-        }
-
         .btn {
-            border-radius: 10px;
+            font-size: 3rem;
+            border-radius: 0;
+            padding-bottom: -2rem;
+        }
+        .btn-gui {
+            background-color: rgba(255,255,255,0.25);
+            color: whitesmoke;
+            font-size: 3rem;
+            cursor: unset;
+            text-shadow: black 0.04em 0.04em 0.1em;
         }
 
-        .mass {
-            width: 200px;
-            height: 80px;
-            margin: 0 auto;
-        }
-
-        .mass a div {
-            font-size: 1.25em;
-        }
-
-        @media screen and (max-width: 768px) {
-            #v1 {
-                display: none;
-            }
-
-            #v2 {
-                display: block;
-            }
-        }
-
-        @media screen and (min-width: 576px) and (max-width: 767px) {
-
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 991px) {
-
-        }
-
-        @media screen and (min-width: 992px) and (max-width: 1199px) {
-
-        }
-
-        @media screen and (min-width: 1200px) {
-
-        }
     </style>
 <body>
 <!-- Intro Section -->
@@ -80,23 +36,30 @@
     {% for genre in genres %}
         <div class="view col-lg-4">
             <a href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
-                <div class="flex-center waves-effect waves-light"></div>
+                <div class="flex-center waves-effect waves-light btn btn-gui">
+                    <strong>{{ genre.site_name }}</strong>
+                </div>
             </a>
         </div>
     {% endfor %}
 </section>
 
-<section id="v2" class="row mobile">
-    {% for genre in genres %}
-        <div class="mobile-cards container">
-            <div class="mass">
-                <a href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">
-                    <div class="flex-center waves-effect waves-light btn btn-elegant">{{ genre.site_name }}</div>
-                </a>
-            </div>
-        </div>
-    {% endfor %}
-</section>
+{#<section class="mobile">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-sm-12 col-md-12">#}
+{#            {% for genre in genres %}#}
+{#                <div class="fixed-sn flex-center">#}
+{#                    <a class="waves-effect waves-light btn btn-elegant"#}
+{#                       href="{% url 'clients_view' city_slug=city_slug genre_slug=genre.slug %}">#}
+{#                        {{ genre.site_name }}#}
+{#                    </a>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
 {% include 'mdb/base/components/scripts.html' %}
 </body>
 </html>
